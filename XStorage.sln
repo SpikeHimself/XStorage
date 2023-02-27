@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XStorage", "XStorage\XStorage.csproj", "{5AD119F9-7A24-4686-B3EE-90FC6A3CEE9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AD119F9-7A24-4686-B3EE-90FC6A3CEE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD119F9-7A24-4686-B3EE-90FC6A3CEE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD119F9-7A24-4686-B3EE-90FC6A3CEE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD119F9-7A24-4686-B3EE-90FC6A3CEE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B409DB09-6B28-4527-81CB-DA770D836C7F}
+	EndGlobalSection
+EndGlobal

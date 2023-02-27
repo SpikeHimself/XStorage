@@ -1,0 +1,14 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ output extension=".json" #>
+{
+  "name": "<#= XStorage.XStorage.PluginName #>",
+  "description": "<#= XStorage.XStorage.PluginDescription #>",
+  "version_number": "<#= XStorage.XStorage.PluginVersion #>",
+  "website_url": "<#= XStorage.XStorage.PluginWebsiteUrl #>",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.1901",
+    "ValheimModding-Jotunn-<#= XStorage.XStorage.PluginJotunnVersion #>"
+  ]
+}
