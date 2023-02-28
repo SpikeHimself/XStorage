@@ -5,14 +5,14 @@ XStorage is a Valheim mod that lets you open multiple chests at once. You can al
 
 # Download and installation instructions (for players)
 
-XStorage is a [BepInEx](https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/) plugin. As such, you must have BepInEx installed. Most other Valheim mods are also BepInEx plugins, so chances are you already have this. If you use [Vortex](https://www.nexusmods.com/site/mods/1), you can't even get rid of BepInEx - it forces you to use it. I recommend using Vortex for many reasons and this is one of them.
+XStorage is a [BepInEx](https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/) plugin. As such, you must have BepInEx installed.
 
 XStorage makes use of the [Jotunn](https://www.nexusmods.com/valheim/mods/1138) library, so you must install that before installing XStorage. If you do not install Jotunn, XStorage will simply not be loaded by your game and it will not work.
 
-1. Install [url=https://www.nexusmods.com/site/mods/1]Vortex[/url]
+1. Install [Vortex](https://www.nexusmods.com/site/mods/1)
 2. Click "Mod manager download" on XStorage's [Files](https://www.nexusmods.com/valheim/mods/2290?tab=files) page on Nexus Mods
 
-# Bugs, Feature Requests and Translations
+# Bugs and Feature Requests
 
 To report a bug, please navigate to the [Issues page](https://github.com/SpikeHimself/XStorage/issues), click [New issue](https://github.com/SpikeHimself/XStorage/issues/new/choose), choose `Bug report`, and fill out the template.
 
