@@ -1,6 +1,6 @@
 # XStorage
 
-XStorage is a Valheim mod that lets you open multiple chests at once. You can also give your chests names!
+XStorage is a Valheim mod that lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest. 
 
 
 # Download and installation instructions (for players)
