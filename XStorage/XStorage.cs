@@ -9,13 +9,11 @@ namespace XStorage
 {
     [BepInDependency(Jotunn.Main.ModGuid)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
-    [BepInProcess(PluginProcess)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Patch)]
     public class XStorage : BaseUnityPlugin
     {
         #region Plugin info
         // This is *the* place to edit plugin details. Everywhere else will be generated based on this info.
-        public const string PluginProcess = "valheim.exe";
         public const string PluginGUID = "yay.spikehimself.xstorage";
         public const string PluginName = "XStorage";
         public const string PluginVersion = "1.0.0";
