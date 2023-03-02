@@ -15,9 +15,14 @@ namespace XStorage
         public static ContainersPanel Instance { get { return lazy.Value; } }
         ////////////////////////////
 
-        GameObject rootPanel;
-        Transform rootPanelContent;
-        List<ContainerGui> containerPanels;
+        private Vector2 singlePanelSize = new Vector2(650, 340f);
+        private float padding = 20f;
+
+        public int MaxVisiblePanels = 3;
+
+        public GameObject RootPanel;
+        public ScrollablePanel ScrollablePanel;
+        private List<ContainerGui> containerPanels;
 
         int VisiblePanelsCount
         {
@@ -38,42 +43,49 @@ namespace XStorage
             containerPanels.Clear();
         }
 
+        public bool IsVisible()
+        {
+            return RootPanel && RootPanel.activeSelf && VisiblePanelsCount > 0;
+        }
+
         public void Show(Container container)
         {
             CreateRoot();
+
+            if (!IsVisible())
+            {
+                Jotunn.Logger.LogDebug("Opening ContainersPanel, resetting scroll view");
+                ScrollablePanel.ScrollUp();
+            }
 
             var newContainerPanel = AddOrEnablePanel(container);
             newContainerPanel.Show(container);
 
             UpdateHeight();
-            rootPanel.SetActive(true);
+            RootPanel.SetActive(true);
         }
 
         public void Hide()
         {
-            if (!rootPanel)
+            if (!RootPanel)
             {
                 return;
             }
 
             Jotunn.Logger.LogDebug("ContainersPanel.Hide");
             containerPanels.ForEach(c => c.Hide());
-            rootPanel.SetActive(false);
+            RootPanel.SetActive(false);
         }
 
         private void UpdateHeight()
         {
             // Visible containers, constrained to a minimum of 1 and a maximum of 3
-            var visiblePanelsCount = Math.Min(3, Math.Max(1, VisiblePanelsCount));
+            var visiblePanelsCount = Math.Min(MaxVisiblePanels, Math.Max(1, VisiblePanelsCount));
 
-            var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root/Container");
-            var singlePanelHeight = vanillaContainerPanel.GetComponent<RectTransform>().rect.height;
-
-            var padding = 8f;
-            var totalHeight = visiblePanelsCount * (padding + singlePanelHeight);
+            var totalHeight = (2f * padding) + (visiblePanelsCount * singlePanelSize.y);
 
             Jotunn.Logger.LogDebug($"Setting root panel height: {totalHeight}");
-            rootPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
+            RootPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
         }
 
         public void AddPanel()
@@ -138,7 +150,7 @@ namespace XStorage
 
         private void CreateRoot()
         {
-            if (rootPanel)
+            if (RootPanel)
             {
                 // root panel was already created, nothing to do
                 return;
@@ -154,51 +166,21 @@ namespace XStorage
                 return;
             }
 
-            rootPanel = GUIManager.Instance.CreateWoodpanel(
+            RootPanel = GUIManager.Instance.CreateWoodpanel(
                 parent: inventoryScreenRoot.transform,
                 anchorMin: new Vector2(0.5f, 0.5f),
                 anchorMax: new Vector2(0.5f, 0.5f),
                 position: new Vector2(0f, 0f),
-                width: 700f,
-                height: 1000f,
+                width: singlePanelSize.x + (2f * padding),
+                height: singlePanelSize.y + (2f * padding),
                 draggable: true);
-            rootPanel.name = "XStorage Root Panel";
-
-            var canvas = GUIManager.Instance.CreateScrollView(
-                parent: rootPanel.transform,
-                showHorizontalScrollbar: false,
-                showVerticalScrollbar: true,
-                handleSize: 10f,
-                handleDistanceToBorder: 10f,
-                handleColors: GUIManager.Instance.ValheimScrollbarHandleColorBlock,
-                slidingAreaBackgroundColor: Color.grey,
-                width: 700f,
-                height: 992f);
-
-            var canvasRt = canvas.GetComponent<RectTransform>();
-            //canvasRt.pivot = new Vector2(0f, 0f);
-            canvasRt.anchorMin = new Vector2(0f, 0f);
-            canvasRt.anchorMax = new Vector2(1f, 1f);
-            canvasRt.pivot = new Vector2(0.5f, 0.5f);
-            canvasRt.localPosition = new Vector3(0f, 0f, 0f);
-            canvasRt.position = new Vector3(0f, -4f, 0f);
-            canvasRt.anchoredPosition = new Vector2(0f, 0f);
-            canvasRt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 700f);
-            canvasRt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 992f);
-
-            var canvasScrollRect = canvas.transform.GetComponentInChildren<ScrollRect>();
-            canvasScrollRect.movementType = ScrollRect.MovementType.Clamped;
-
-            rootPanelContent = canvasScrollRect.content.transform;
-
-            var layoutGroup = rootPanelContent.gameObject.GetComponent<VerticalLayoutGroup>();
-            layoutGroup.childControlWidth = false;
-            layoutGroup.childControlHeight = false;
-            layoutGroup.childForceExpandWidth = false;
-            layoutGroup.childAlignment = TextAnchor.UpperCenter;
+            RootPanel.name = "XStorage Root Panel";
 
             // Disable the root panel, for now
-            rootPanel.SetActive(false);
+            RootPanel.SetActive(false);
+
+
+            ScrollablePanel = new ScrollablePanel(RootPanel.transform, padding);
         }
 
         private ContainerGui CloneContainerPanel()
@@ -207,7 +189,7 @@ namespace XStorage
 
             var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root/Container");
 
-            var containerClone = GameObject.Instantiate(vanillaContainerPanel, rootPanelContent);
+            var containerClone = GameObject.Instantiate(vanillaContainerPanel, ScrollablePanel.Content.transform);
             containerClone.name = "XStorage Container" + containerPanels.Count;
             containerClone.SetActive(false); // Hide for now
 
