@@ -58,14 +58,16 @@ For feature requests, choose `Feature request` on the [New issue](https://github
 
 # Changelogs
 
-* **v1.0.0** (2023-02-28)
+* **v1.0.1** (2023-02-28)
 
-	* Initial release
+	* Remove "valheim.exe" check as it stops dedicated servers from loading the mod.
 
 <details>
 <summary>Click to view previous versions</summary>
 
-* Nothing to see here (yet!)
+* **v1.0.0** (2023-02-28)
+
+	* Initial release
 
 </details>
 
