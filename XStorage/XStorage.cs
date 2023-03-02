@@ -16,7 +16,7 @@ namespace XStorage
         // This is *the* place to edit plugin details. Everywhere else will be generated based on this info.
         public const string PluginGUID = "yay.spikehimself.xstorage";
         public const string PluginName = "XStorage";
-        public const string PluginVersion = "1.0.1";
+        public const string PluginVersion = "1.0.2";
         public const string PluginDescription = "Open multiple chests at once, rename them, and move items/stacks to the most suitable chest.";
         public const string PluginWebsiteUrl = "https://github.com/SpikeHimself/XStorage";
         public const int PluginNexusId = 2290;

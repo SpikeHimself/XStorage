@@ -214,7 +214,7 @@ namespace XStorage
                     ___m_tooltip.transform.parent == ContainersPanel.Instance.ScrollablePanel.Content.transform)
                 {
                     // Problem 1: The tooltip is only half visible because it's inside a scrollrect
-                    //      This is fixed by changing the tooltip's parent to something that's outside of the scrollrect, for exmaple the XStorage root panel
+                    //      This is fixed by changing the tooltip's parent to something that's outside of the scrollrect, for example the XStorage root panel
 
                     // Problem 2: The further you scroll the scrollrect down, the further the tooltip will be from the mouse pointer
                     //      This is fixed by re-instantiating the tooltip.

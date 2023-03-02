@@ -20,8 +20,8 @@ Also on the roadmap are config options that let you configure the distance and m
 
 ### Moving items/stacks to the most suitable chest
 
-When you auto-move an item from your inventory (by Ctrl+clicking it), XStorage tries to find the most suitable chest to put the item/stack in. It does so by picking the chest containing the highest quantity of the item you are moving, from all opened chests that still have free space.
-So if you have a wooden chest with 499 stone in it, ctrl+clicking on a stack of stone in your inventory will move 1 stone to that chest. You have to then ctrl+click it again to make the rest go to the next most suitable chest.
+When you auto-move an item from your inventory (via `Ctrl + Click`), XStorage tries to find the most suitable chest to put the item/stack in. It does so by picking the chest containing the highest quantity of the item you are moving, from all opened chests that still have free space.
+So if you have a wooden chest with 499 stone in it, and you `Ctrl + Click` on a stack of stone in your inventory, 1 stone will be moved to that chest. You have to then `Ctrl + Click` it again to make the rest go to the next most suitable chest.
 
 Ctrl+clicking an item or stack in any of the chests will always make it go to the player inventory.
 
@@ -58,12 +58,20 @@ For feature requests, choose `Feature request` on the [New issue](https://github
 
 # Changelogs
 
-* **v1.0.1** (2023-02-28)
+* **v1.0.2** (2023-03-02)
 
-	* Remove "valheim.exe" check as it stops dedicated servers from loading the mod.
+	* Fix tooltips not always being fully visible
+
+	* Fix tooltips sometimes escaping the mouse pointer
+
+	* Reworked a large portion of the containers panel UI
 
 <details>
 <summary>Click to view previous versions</summary>
+
+* **v1.0.1** (2023-02-28)
+
+	* Remove "valheim.exe" check as it stops dedicated servers from loading the mod.
 
 * **v1.0.0** (2023-02-28)
 
