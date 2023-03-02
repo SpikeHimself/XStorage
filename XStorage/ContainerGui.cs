@@ -34,7 +34,7 @@ namespace XStorage
             m_rect = GetComponent<RectTransform>();
             m_grid = GetComponentInChildren<InventoryGrid>();
 
-            m_grid.m_onSelected  += OnGridItemSelected;
+            m_grid.m_onSelected += OnGridItemSelected;
             m_grid.m_onRightClick += OnGridItemRightClick;
 
             m_takeAllButton = m_rect.GetComponentInChildren<Button>();
@@ -56,7 +56,7 @@ namespace XStorage
 
             if (m_grid)
             {
-                m_grid.m_onSelected  -= OnGridItemSelected;
+                m_grid.m_onSelected -= OnGridItemSelected;
                 m_grid.m_onRightClick -= OnGridItemRightClick;
             }
         }

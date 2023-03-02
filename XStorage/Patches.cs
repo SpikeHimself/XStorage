@@ -104,6 +104,8 @@ namespace XStorage
         {
             static void Postfix(Container __instance)
             {
+                // TODO: don't apply this to the ghost item 
+
                 // Ideally we'd check if this is a container placed by a player, but it appears that during Awake(), the .m_piece property is not initialised yet
 
                 // Add the ContainerTextReceiver component
