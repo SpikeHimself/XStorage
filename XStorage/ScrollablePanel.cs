@@ -55,7 +55,7 @@ namespace XStorage
             var scrollView = new GameObject("Scroll View", typeof(Image), typeof(ScrollRect), typeof(Mask));
             scrollView.transform.SetParent(parent.transform, false);
             scrollView.FillParent(padding);
-            
+
             scrollView.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
             scrollView.GetComponent<Mask>().showMaskGraphic = false;
             scrollView.GetComponent<ScrollRect>().horizontal = false;

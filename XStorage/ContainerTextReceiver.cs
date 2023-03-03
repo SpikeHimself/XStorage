@@ -19,7 +19,7 @@ namespace XStorage
 
         public void SetText(string text)
         {
-            XStorage.RenameContainerAndInventory(m_Container, text);
+            XStorage.UpdateContainerAndInventoryName(m_Container, text);
             RPC.SendRenameRequestToServer(m_Container.GetZDOID(), text);
         }
 

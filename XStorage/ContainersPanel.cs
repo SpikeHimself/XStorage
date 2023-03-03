@@ -72,7 +72,7 @@ namespace XStorage
                 return;
             }
 
-            Jotunn.Logger.LogDebug("ContainersPanel.Hide");
+            Jotunn.Logger.LogDebug("Hiding");
             containerPanels.ForEach(c => c.Hide());
             RootPanel.SetActive(false);
         }

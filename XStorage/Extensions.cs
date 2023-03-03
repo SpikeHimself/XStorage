@@ -49,11 +49,8 @@ namespace XStorage
 
         internal static bool HasRoomFor(this Container container, string itemName)
         {
-            return container.GetInventory().FindFreeStackSpace(itemName) > 0 ||
-                   (
-                     //container.GetInventory().HaveItem(itemName) &&
-                     container.GetInventory().HaveEmptySlot()
-                   );
+            var inv = container.GetInventory();
+            return inv.FindFreeStackSpace(itemName) > 0 || inv.HaveEmptySlot();
         }
 
         internal static bool IsPlacedByPlayer(this Container container)

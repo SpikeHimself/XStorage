@@ -98,15 +98,13 @@ namespace XStorage
 
         public void UpdateContainer()
         {
-            if (IsContainerOpen()) // && currentContainer.IsOwner())
+            if (IsContainerOpen())
             {
                 m_currentContainer.SetInUse(true);
-                //myRect.gameObject.SetActive(value: true);
                 m_grid.UpdateInventory(m_currentContainer.GetInventory(), null, null);
                 m_containerName.text = Localization.instance.Localize(m_currentContainer.GetInventory().GetName());
                 if (firstGridUpdate)
                 {
-                    Jotunn.Logger.LogDebug("first grid update");
                     m_grid.ResetView();
                     firstGridUpdate = false;
                 }

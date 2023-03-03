@@ -131,12 +131,13 @@ namespace XStorage
 
             if (!container.m_name.Equals(newName) || !container.GetInventory().m_name.Equals(newName))
             {
-                RenameContainerAndInventory(container, newName);
+                UpdateContainerAndInventoryName(container, newName);
             }
         }
 
-        public static void RenameContainerAndInventory(Container container, string newName)
+        public static void UpdateContainerAndInventoryName(Container container, string newName)
         {
+            Jotunn.Logger.LogDebug($"Updating `{container.m_name}`: `{newName}`");
             container.m_name = newName;
             container.GetInventory().m_name = newName;
         }
