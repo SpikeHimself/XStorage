@@ -62,6 +62,40 @@ namespace XStorage
         }
         #endregion
 
+        #region UI
+        public static void FillParent(this GameObject go, float padding = 0)
+        {
+            go.GetComponent<RectTransform>().FillParent(padding);
+        }
+
+        public static void FillParent(this RectTransform rt, float padding = 0)
+        {
+            rt.anchorMin = new Vector2(0, 0);
+            rt.anchorMax = new Vector2(1, 1);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = new Vector2(0, 0);
+
+            float sizeDelta = -(2f * padding);
+            rt.sizeDelta = new Vector2(sizeDelta, sizeDelta);
+        }
+
+        public static void AnchorToRightEdge(this GameObject go, float width, float padding = 0)
+        {
+            go.GetComponent<RectTransform>().AnchorToRightEdge(width, padding);
+        }
+
+        public static void AnchorToRightEdge(this RectTransform rt, float width, float padding = 0)
+        {
+            rt.anchorMin = new Vector2(1f, 0);
+            rt.anchorMax = new Vector2(1f, 1);
+            rt.pivot = new Vector2(1f, 0.5f);
+            rt.anchoredPosition = new Vector2(0, -(width / 2f));
+
+            var heightDelta = (2f * padding) - width;
+            rt.sizeDelta = new Vector2(width, heightDelta);
+        }
+        #endregion
+
         #region Vector3
         internal static float Distance(this Vector3 a, Vector3 b)
         {

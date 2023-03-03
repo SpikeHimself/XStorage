@@ -54,8 +54,8 @@ namespace XStorage
         {
             var scrollView = new GameObject("Scroll View", typeof(Image), typeof(ScrollRect), typeof(Mask));
             scrollView.transform.SetParent(parent.transform, false);
-
-            FillParent(scrollView.GetComponent<RectTransform>(), padding);
+            scrollView.FillParent(padding);
+            
             scrollView.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
             scrollView.GetComponent<Mask>().showMaskGraphic = false;
             scrollView.GetComponent<ScrollRect>().horizontal = false;
@@ -73,8 +73,8 @@ namespace XStorage
         {
             var contentPanel = new GameObject("Content", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(Canvas), typeof(GraphicRaycaster), typeof(ContentSizeFitter));
             contentPanel.transform.SetParent(parent, false);
+            contentPanel.FillParent();
 
-            FillParent(contentPanel.GetComponent<RectTransform>());
             contentPanel.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 1f);
             contentPanel.GetComponent<VerticalLayoutGroup>().childAlignment = TextAnchor.UpperLeft;
             contentPanel.GetComponent<VerticalLayoutGroup>().childForceExpandWidth = false;
@@ -91,8 +91,8 @@ namespace XStorage
         {
             var viewPort = new GameObject("Viewport", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
             viewPort.transform.SetParent(parent, false);
+            viewPort.FillParent();
 
-            FillParent(viewPort.GetComponent<RectTransform>());
             viewPort.GetComponent<Image>().color = new Color(0, 0, 0, 0);
 
             return viewPort;
@@ -102,8 +102,8 @@ namespace XStorage
         {
             GameObject verticalScrollbar = new GameObject("Scrollbar Vertical", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Scrollbar));
             verticalScrollbar.transform.SetParent(parent, false);
+            verticalScrollbar.AnchorToRightEdge(handleSize, handleDistanceToBorder);
 
-            AnchorToRightEdge(verticalScrollbar.GetComponent<RectTransform>(), handleSize, handleDistanceToBorder);
             verticalScrollbar.GetComponent<Image>().color = GUIManager.Instance.ValheimScrollbarHandleColorBlock.disabledColor;
             verticalScrollbar.GetComponent<Scrollbar>().colors = GUIManager.Instance.ValheimScrollbarHandleColorBlock;
             verticalScrollbar.GetComponent<Scrollbar>().size = 0.4f;
@@ -140,33 +140,12 @@ namespace XStorage
         {
             GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
             slidingArea.transform.SetParent(parent, false);
-
-            AnchorToRightEdge(slidingArea.GetComponent<RectTransform>(), handleSize, handleDistanceToBorder);
+            slidingArea.AnchorToRightEdge(handleSize, handleDistanceToBorder);
 
             return slidingArea;
         }
 
-        private void FillParent(RectTransform rt, float padding = 0)
-        {
-            rt.anchorMin = new Vector2(0, 0);
-            rt.anchorMax = new Vector2(1, 1);
-            rt.pivot = new Vector2(0.5f, 0.5f);
-            rt.anchoredPosition = new Vector2(0, 0);
 
-            float sizeDelta = -(2f * padding);
-            rt.sizeDelta = new Vector2(sizeDelta, sizeDelta);
-        }
-
-        private void AnchorToRightEdge(RectTransform rt, float width, float padding = 0)
-        {
-            rt.anchorMin = new Vector2(1f, 0);
-            rt.anchorMax = new Vector2(1f, 1);
-            rt.pivot = new Vector2(1f, 0.5f);
-            rt.anchoredPosition = new Vector2(0, -(width / 2f));
-
-            var heightDelta = (2f * padding) - width;
-            rt.sizeDelta = new Vector2(width, heightDelta);
-        }
         #endregion
 
     }
