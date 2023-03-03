@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Jotunn;
 using UnityEngine;
 
 namespace XStorage
@@ -104,14 +105,11 @@ namespace XStorage
         {
             static void Postfix(Container __instance)
             {
-                // TODO: don't apply this to the ghost item 
-
-                // Ideally we'd check if this is a container placed by a player, but it appears that during Awake(), the .m_piece property is not initialised yet
-
-                // Add the ContainerTextReceiver component
-                if (!__instance.GetComponent<ContainerTextReceiver>())
+                if (!__instance.m_piece)
                 {
-                    __instance.gameObject.AddComponent<ContainerTextReceiver>();
+                    // Don't do anything if this container has no Piece property (i.e. ghost items).
+                    Jotunn.Logger.LogDebug($"Ignoring `{__instance.m_name}` (this is fine)");
+                    return;
                 }
 
                 XStorage.UpdateContainerAndInventoryName(__instance);
@@ -152,7 +150,7 @@ namespace XStorage
             [HarmonyPatch(typeof(Container), nameof(Container.Interact))]
             static class Container_Interact
             {
-                static bool Prefix(Container __instance, bool alt)
+                static bool Prefix(Container __instance, Humanoid character, bool alt)
                 {
                     if (!alt)
                     {
@@ -162,13 +160,25 @@ namespace XStorage
 
                     if (!__instance.IsPlacedByPlayer())
                     {
-                        // Don't do anything to containers that weren't placed by a player
+                        // Container was not placed by a player, ignore
                         return true;
                     }
 
-                    // TODO: check ward access
+                    if (__instance.m_checkGuardStone && !PrivateArea.CheckAccess(__instance.transform.position))
+                    {
+                        // Ward is blocking access, abort!
+                        return false;
+                    }
 
-                    var containerTextReceiver = __instance.GetComponent<ContainerTextReceiver>();
+                    long playerID = Game.instance.GetPlayerProfile().GetPlayerID();
+                    if (!__instance.CheckAccess(playerID))
+                    {
+                        // Player does not have access, abort!
+                        character.Message(MessageHud.MessageType.Center, "$msg_cantopen");
+                        return false;
+                    }
+
+                    var containerTextReceiver = __instance.gameObject.GetOrAddComponent<ContainerTextReceiver>();
                     TextInput.instance.RequestText((TextReceiver)containerTextReceiver, "$hud_rename", sbyte.MaxValue);
                     return false;
                 }
