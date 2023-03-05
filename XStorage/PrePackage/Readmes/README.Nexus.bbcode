@@ -1,0 +1,78 @@
+[size=6][b][color=#FFA03C]XStorage[/color][/b][/size]
+
+XStorage lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
+
+[img]https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-small.png[/img]
+
+
+[size=6][b][color=#FFA03C]Features[/color][/b][/size]
+
+[size=3][b][color=#FFA03C]Name your chests[/color][/b][/size]
+
+By pressing alt-interact ([b]"Shift + E"[/b] by default), you can give your chests a name. This name is shown when you hover over the chest, and also in the panel above the inventory when a chest is opened.
+
+Chest names will be permanently stored in your world file. Uninstalling XStorage makes them go away, but after reinstalling they will be recovered.
+
+[size=3][b][color=#FFA03C]Open many chests[/color][/b][/size]
+
+To display multiple chests, XStorage creates a new panel in the UI. Sadly there aren't enough pixels on the screen to make everything fit nicely, so there is a small overlap with existing UI panels. Hopefully I can address this in the future.
+
+In theory there is no limit to how many chests XStorage can display. When the UI panel is full, XStorage makes the panel scrollable. In a future version, I might impose a restriction on how many chests can be opened though, as this could cause performance issues.
+
+Also on the roadmap are config options that let you configure the distance and methods that decide which chests are opened. One such method I have in mind is chest linking, i.e. every opened chests searches for other chests near it, so that you could open an entire row of chests from either end. For now, XStorage opens any chest that is within 5 meters of the player (again, with no maximum amount of chests).
+
+[size=3][b][color=#FFA03C]Moving items/stacks to the most suitable chest[/color][/b][/size]
+
+When you auto-move an item from your inventory (via [b]"Ctrl + Click"[/b]), XStorage tries to find the most suitable chest to put the item/stack in. It does so by picking the chest containing the highest quantity of the item you are moving, from all opened chests that still have free space.
+So if you have a wooden chest with 499 stone in it, and you `Ctrl + Click` on a stack of stone in your inventory, 1 stone will be moved to that chest. You have to then [b]"Ctrl + Click"[/b] it again to make the rest go to the next most suitable chest.
+
+[b]"Ctrl + Click"[/b]-ing an item or stack in any of the chests will always make it go to the player inventory.
+
+[size=3][b][color=#FFA03C]Multiplayer[/color][/b][/size]
+
+In multiplayer games, all players need to have XStorage installed, or it will not work. If you play on a dedicated server, the server also has to have XStorage installed.
+
+[size=3][b][color=#FFA03C]Known shortcomings[/color][/b][/size]
+
+There are a few things that, at this stage, XStorage does not do well, or at all:
+[list]
+[*][b]Gamepad input[/b]: XStorage does not deal with gamepad input at all. That is to say, the UI kind of breaks when you use a gamepad. I will look into this in the future, but for now this mod is pretty much mouse/keyboard only.
+[*][b]The panel does not fit[/b]: The XStorage UI panel does not fit within the vanilla UI very well. I am considering alternative ways of displaying the container panels (for example by overlapping or even removing the crafting panel. Does anyone even use that while opening a chest?)
+[/list]
+
+XStorage looks best when playing at a 16:9 ratio with a UI scaling of 95% or smaller.
+
+
+[size=6][b][color=#FFA03C]Installation instructions[/color][/b][/size]
+
+XStorage is a [url=https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/]BepInEx[/url] plugin. As such, you must have BepInEx installed. Most other Valheim mods are also BepInEx plugins, so chances are you already have this.
+
+XStorage makes use of the [url=https://www.nexusmods.com/valheim/mods/1138]Jotunn[/url] library, so you must install that before installing XStorage. If you do not install Jotunn, XStorage will simply not be loaded by your game and it will not work.
+
+I very strongly recommend using a mod manager such as [url=https://www.nexusmods.com/site/mods/1]Vortex[/url] or [url=https://valheim.thunderstore.io/package/ebkr/r2modman/]r2modman[/url]. They will take care of everything for you and you don't have to worry about which files go where. I recommend against manual installation.
+[list=1]
+[*]Make sure you have [url=https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/]BepInEx[/url] installed.
+[*]Install [url=https://www.nexusmods.com/valheim/mods/1138]Jotunn[/url].
+[*]On [url=https://www.nexusmods.com/valheim/mods/2290]Nexus Mods[/url] click 'Mod manager download', or on [url=https://valheim.thunderstore.io/package/SpikeHimself/XStorage/]Thunderstore[/url] click 'Install with Mod Manager'.
+[/list]
+
+
+[size=6][b][color=#FFA03C]Bugs, Feature Requests and Translations[/color][/b][/size]
+
+[size=4][b]If you have issues or feedback, please use XStorage's [url=https://github.com/SpikeHimself/XStorage]GitHub page[/url].[/b][/size]
+
+To report a bug, please navigate to the [url=https://github.com/SpikeHimself/XStorage/issues]Issues page[/url], click [url=https://github.com/SpikeHimself/XStorage/issues/new/choose]New issue[/url], choose [b]"Bug report"[/b], and fill out the template.
+
+For feature requests, choose [b]"Feature request"[/b] on the [url=https://github.com/SpikeHimself/XStorage/issues/new/choose]New issue[/url] page.
+
+
+[size=6][b][color=#FFA03C]I did more too![/color][/b][/size]
+
+Please have a look at my other mod too! [url=https://www.nexusmods.com/valheim/mods/2239]XPortal[/url] lets you select a portal destination from a list of existing portals, so that you don't have to match portal tags anymore.
+
+
+[size=6][b][color=#FFA03C]Support me[/color][/b][/size]
+
+My mods are free and will remain free, for everyone to use, edit or learn from. I lovingly poured many hours of hard work into these projects. If you enjoy my mods and want to support my work, don't forget to click the Endorse button, and please consider buying me a coffee :)
+
+[url=https://www.buymeacoffee.com/SpikeHimself][img]https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png[/img][/url]

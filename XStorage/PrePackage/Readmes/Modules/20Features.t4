@@ -1,0 +1,38 @@
+<#= mf.Heading("Features") #>
+
+<#= mf.Heading("Name your chests", size: HeadingSize.Small) #>
+
+By pressing alt-interact (<#= mf.Code("Shift + E") #> by default), you can give your chests a name. This name is shown when you hover over the chest, and also in the panel above the inventory when a chest is opened.
+
+Chest names will be permanently stored in your world file. Uninstalling XStorage makes them go away, but after reinstalling they will be recovered.
+
+<#= mf.Heading("Open many chests", size: HeadingSize.Small) #>
+
+To display multiple chests, XStorage creates a new panel in the UI. Sadly there aren't enough pixels on the screen to make everything fit nicely, so there is a small overlap with existing UI panels. Hopefully I can address this in the future.
+
+In theory there is no limit to how many chests XStorage can display. When the UI panel is full, XStorage makes the panel scrollable. In a future version, I might impose a restriction on how many chests can be opened though, as this could cause performance issues.
+
+Also on the roadmap are config options that let you configure the distance and methods that decide which chests are opened. One such method I have in mind is chest linking, i.e. every opened chests searches for other chests near it, so that you could open an entire row of chests from either end. For now, XStorage opens any chest that is within 5 meters of the player (again, with no maximum amount of chests).
+
+<#= mf.Heading("Moving items/stacks to the most suitable chest", size: HeadingSize.Small) #>
+
+When you auto-move an item from your inventory (via <#= mf.Code("Ctrl + Click") #>), XStorage tries to find the most suitable chest to put the item/stack in. It does so by picking the chest containing the highest quantity of the item you are moving, from all opened chests that still have free space.
+So if you have a wooden chest with 499 stone in it, and you `Ctrl + Click` on a stack of stone in your inventory, 1 stone will be moved to that chest. You have to then <#= mf.Code("Ctrl + Click") #> it again to make the rest go to the next most suitable chest.
+
+<#= mf.Code("Ctrl + Click") #>-ing an item or stack in any of the chests will always make it go to the player inventory.
+
+<#= mf.Heading("Multiplayer", size: HeadingSize.Small) #>
+
+In multiplayer games, all players need to have XStorage installed, or it will not work. If you play on a dedicated server, the server also has to have XStorage installed.
+
+<#= mf.Heading("Known shortcomings", size: HeadingSize.Small) #>
+
+There are a few things that, at this stage, XStorage does not do well, or at all:
+<#= 
+	mf.List(ListBullets.Asterisk, items: new string[] {
+		$"{mf.Bold("Gamepad input")}: XStorage does not deal with gamepad input at all. That is to say, the UI kind of breaks when you use a gamepad. I will look into this in the future, but for now this mod is pretty much mouse/keyboard only.",
+		$"{mf.Bold("The panel does not fit")}: The XStorage UI panel does not fit within the vanilla UI very well. I am considering alternative ways of displaying the container panels (for example by overlapping or even removing the crafting panel. Does anyone even use that while opening a chest?)"
+	})
+#>
+
+XStorage looks best when playing at a 16:9 ratio with a UI scaling of 95% or smaller.

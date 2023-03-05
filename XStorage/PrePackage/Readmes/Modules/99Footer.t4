@@ -1,0 +1,16 @@
+<#= mf.Heading("I did more too!") #>
+
+Please have a look at my other mod too! <#= linkXPortal #> lets you select a portal destination from a list of existing portals, so that you don't have to match portal tags anymore.
+
+
+<#= mf.Heading("Support me") #>
+
+<# 
+var endorseButton = "Endorse";
+if (Target == Targets.Thunderstore) endorseButton = "Like";
+var endorseMe = $" don't forget to click the {endorseButton} button, and";
+if (Target == Targets.GitHub) endorseMe = "";
+#>
+My mods are free and will remain free, for everyone to use, edit or learn from. I lovingly poured many hours of hard work into these projects. If you enjoy my mods and want to support my work,<#= endorseMe #> please consider buying me a coffee :)
+
+<#= mf.Link( mf.Image("https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png", height: 40, align: "right"), "https://www.buymeacoffee.com/SpikeHimself" ) #>

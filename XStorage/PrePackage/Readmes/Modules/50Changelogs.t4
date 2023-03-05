@@ -1,0 +1,22 @@
+<#= mf.Heading("Changelogs") #>
+
+* **v1.0.2** (2023-03-02)
+
+	* Fix tooltips not always being fully visible
+
+	* Fix tooltips sometimes escaping the mouse pointer
+
+	* Reworked a large portion of the containers panel UI
+
+<details>
+<summary>Click to view previous versions</summary>
+
+* **v1.0.1** (2023-02-28)
+
+	* Remove "valheim.exe" check as it stops dedicated servers from loading the mod.
+
+* **v1.0.0** (2023-02-28)
+
+	* Initial release
+
+</details>

@@ -1,0 +1,18 @@
+<#=
+(Target == Targets.GitHub) 
+	? mf.Heading("Download and installation instructions (for players)") 
+	: mf.Heading("Installation instructions") 
+#>
+
+<#= thisModName #> is a <#= linkBepInEx #> plugin. As such, you must have BepInEx installed. Most other Valheim mods are also BepInEx plugins, so chances are you already have this.
+
+<#= thisModName #> makes use of the <#= linkJotunn #> library, so you must install that before installing <#= thisModName #>. If you do not install Jotunn, <#= thisModName #> will simply not be loaded by your game and it will not work.
+
+I very strongly recommend using a mod manager such as <#= linkVortex #> or <#= linkR2modman #>. They will take care of everything for you and you don't have to worry about which files go where. I recommend against manual installation.
+<#=
+mf.List(ListBullets.Number, items: new string[] {
+	$"Make sure you have {linkBepInEx} installed.",
+	$"Install {linkJotunn}.",
+	$"On {mf.Link("Nexus Mods", urlThisModNexus)} click 'Mod manager download', or on {mf.Link("Thunderstore", urlThisModThunderstore)} click 'Install with Mod Manager'."
+})
+#>

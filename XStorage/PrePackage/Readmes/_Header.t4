@@ -1,0 +1,23 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" visibility="internal" #>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="false" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ assembly name="$(SolutionDir)\libraries\ManyFormats.dll" #>
+<#@ import namespace="XStorage" #>
+<#@ import namespace="XStorage.PrePackage.Readmes" #>
+<#@ import namespace="ManyFormats" #>
+<#@ import namespace="ManyFormats.Formats" #>
+<#
+	var thisModName = XStorage.PluginName;
+	var thisModNexusId = XStorage.PluginNexusId;
+	var thisModPackageName = $"{XStorage.PluginAuthor}/{XStorage.PluginName}";
+	var thisModGitHubRepo = XStorage.PluginGitHubRepo;
+	
+	var urlThisModNexus = $"https://www.nexusmods.com/valheim/mods/{thisModNexusId}";
+	var urlThisModThunderstore = $"https://valheim.thunderstore.io/package/{thisModPackageName}/";
+	var urlThisModGitHub = $"https://github.com/{thisModGitHubRepo}";
+
+	var urlThisModGitHubReleases = $"{urlThisModGitHub}/releases";
+	var urlThisModGitHubIssues = $"{urlThisModGitHub}/issues";
+	var urlThisModGitHubNewIssue = $"{urlThisModGitHub}/issues/new/choose";
+#>
