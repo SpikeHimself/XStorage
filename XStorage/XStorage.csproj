@@ -104,8 +104,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>manifest.tt</DependentUpon>
     </None>
-    <None Include="PrePackage\README.bbcode" />
-    <None Include="PrePackage\README.md" />
     <None Include="PrePackage\Readmes\Modules\00Urls.t4" />
     <None Include="PrePackage\Readmes\Modules\10Header.t4" />
     <None Include="PrePackage\Readmes\Modules\11HeaderGitHub.t4" />
