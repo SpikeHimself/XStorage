@@ -69,6 +69,9 @@ if ($Target.Equals("Debug"))
 
 if($Target.Equals("Release")) 
 {
+    Write-Host "Copying GitHub readme to SolutionDir... "
+    Copy-Item -Path "$PrePackagePath\Readmes\README.GitHub.md" -Destination "$(Get-Location)\README.md" -Force
+
     Write-Host "Packaging for ThunderStore..."
     $Package="Package"
     $PackagePath="$ProjectPath\$Package"
@@ -80,7 +83,7 @@ if($Target.Equals("Release"))
 
     Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$PackagePluginsPath\" -Force
     Copy-Item -Path "$PrePackagePath\Translations" -Destination "$PackagePluginsPath\" -Recurse -Force
-    Copy-Item -Path "$PrePackagePath\README.md" -Destination "$PackagePath\" -Force
+    Copy-Item -Path "$PrePackagePath\Readmes\README.Thunderstore.md" -Destination "$PackagePath\README.md" -Force
     Copy-Item -Path "$PrePackagePath\manifest.json" -Destination "$PackagePath\" -Force
     Copy-Item -Path "$ProjectPath\..\Images\icon.png" -Destination "$PackagePath\" -Force
     
