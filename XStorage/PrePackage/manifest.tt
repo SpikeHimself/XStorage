@@ -1,14 +1,15 @@
-﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="System.Core" #>
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>
 <#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="XStorage" #>
 <#@ output extension=".json" #>
 {
-  "name": "<#= XStorage.XStorage.PluginName #>",
-  "description": "<#= XStorage.XStorage.PluginDescription #>",
-  "version_number": "<#= XStorage.XStorage.PluginVersion #>",
-  "website_url": "<#= XStorage.XStorage.PluginWebsiteUrl #>",
+  "name": "<#= XStorage.PluginName #>",
+  "description": "<#= XStorage.PluginDescription #>",
+  "version_number": "<#= XStorage.PluginVersion #>",
+  "website_url": "<#= XStorage.PluginWebsiteUrl #>",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.1901",
-    "ValheimModding-Jotunn-<#= XStorage.XStorage.PluginJotunnVersion #>"
+    "ValheimModding-Jotunn-<#= XStorage.PluginJotunnVersion #>"
   ]
 }
