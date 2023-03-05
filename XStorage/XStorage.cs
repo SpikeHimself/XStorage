@@ -15,10 +15,12 @@ namespace XStorage
         #region Plugin info
         // This is *the* place to edit plugin details. Everywhere else will be generated based on this info.
         public const string PluginGUID = "yay.spikehimself.xstorage";
+        public const string PluginAuthor = "SpikeHimself";
         public const string PluginName = "XStorage";
+        public const string PluginGitHubRepo = "SpikeHimself/XStorage";
         public const string PluginVersion = "1.0.2";
         public const string PluginDescription = "Open multiple chests at once, rename them, and move items/stacks to the most suitable chest.";
-        public const string PluginWebsiteUrl = "https://github.com/SpikeHimself/XStorage";
+        public const string PluginWebsiteUrl = "https://github.com/" + PluginGitHubRepo;
         public const int PluginNexusId = 2290;
         //public const string PluginBepInVersion = ??
         public const string PluginJotunnVersion = Jotunn.Main.Version;
