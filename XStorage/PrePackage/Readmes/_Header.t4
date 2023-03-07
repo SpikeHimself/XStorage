@@ -1,17 +1,15 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" visibility="internal" #>
-<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="false" #>
-<#@ assembly name="System.Core" #>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>
 <#@ assembly name="$(TargetPath)" #>
 <#@ assembly name="$(SolutionDir)\libraries\ManyFormats.dll" #>
-<#@ import namespace="XStorage" #>
-<#@ import namespace="XStorage.PrePackage.Readmes" #>
+<#@ import namespace="PrePackage.Readmes" #>
 <#@ import namespace="ManyFormats" #>
 <#@ import namespace="ManyFormats.Formats" #>
 <#
-	var thisModName = XStorage.PluginName;
-	var thisModNexusId = XStorage.PluginNexusId;
-	var thisModPackageName = $"{XStorage.PluginAuthor}/{XStorage.PluginName}";
-	var thisModGitHubRepo = XStorage.PluginGitHubRepo;
+	var thisModName = Mod.Info.Name;
+	var thisModNexusId = Mod.Info.NexusId;
+	var thisModPackageName = $"{Mod.Info.Author}/{Mod.Info.Name}";
+	var thisModGitHubRepo = Mod.Info.GitHubRepo;
 	
 	var urlThisModNexus = $"https://www.nexusmods.com/valheim/mods/{thisModNexusId}";
 	var urlThisModThunderstore = $"https://valheim.thunderstore.io/package/{thisModPackageName}/";

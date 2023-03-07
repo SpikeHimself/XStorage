@@ -8,24 +8,10 @@ using UnityEngine;
 namespace XStorage
 {
     [BepInDependency(Jotunn.Main.ModGuid)]
-    [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
+    [BepInPlugin(Mod.Info.GUID, Mod.Info.Name, Mod.Info.Version)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Patch)]
     public class XStorage : BaseUnityPlugin
     {
-        #region Plugin info
-        // This is *the* place to edit plugin details. Everywhere else will be generated based on this info.
-        public const string PluginGUID = "yay.spikehimself.xstorage";
-        public const string PluginAuthor = "SpikeHimself";
-        public const string PluginName = "XStorage";
-        public const string PluginGitHubRepo = "SpikeHimself/XStorage";
-        public const string PluginVersion = "1.0.2";
-        public const string PluginDescription = "Open multiple chests at once, rename them, and move items/stacks to the most suitable chest.";
-        public const string PluginWebsiteUrl = "https://github.com/" + PluginGitHubRepo;
-        public const int PluginNexusId = 2290;
-        //public const string PluginBepInVersion = ??
-        public const string PluginJotunnVersion = Jotunn.Main.Version;
-        #endregion
-
         public const string ZdoProperty_ContainerName = "XStorage_Name";
 
         #region Determine Environment
@@ -59,7 +45,7 @@ namespace XStorage
             Jotunn.Logger.LogDebug("oooh chesty!");
 
             // Add Nexus ID to config for Nexus Update Check (https://www.nexusmods.com/valheim/mods/102)
-            Config.Bind<int>("General", "NexusID", PluginNexusId, "Nexus mod ID for updates (do not change)");
+            Config.Bind<int>("General", "NexusID", Mod.Info.NexusId, "Nexus mod ID for updates (do not change)");
 
             // Apply the Harmony patches
             Patches.Patch();

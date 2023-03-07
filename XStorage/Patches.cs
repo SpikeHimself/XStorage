@@ -11,7 +11,7 @@ namespace XStorage
 
         static Patches()
         {
-            patcher = new Harmony(XStorage.PluginGUID + ".harmony");
+            patcher = new Harmony(Mod.Info.HarmonyGUID);
         }
         public static void Patch()
         {
