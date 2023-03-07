@@ -62,11 +62,7 @@ namespace XStorage
         #region UI
         public static void FillParent(this GameObject go, float padding = 0)
         {
-            go.GetComponent<RectTransform>().FillParent(padding);
-        }
-
-        public static void FillParent(this RectTransform rt, float padding = 0)
-        {
+            var rt = (RectTransform)go.transform;
             rt.anchorMin = new Vector2(0, 0);
             rt.anchorMax = new Vector2(1, 1);
             rt.pivot = new Vector2(0.5f, 0.5f);
@@ -78,11 +74,7 @@ namespace XStorage
 
         public static void AnchorToRightEdge(this GameObject go, float width, float padding = 0)
         {
-            go.GetComponent<RectTransform>().AnchorToRightEdge(width, padding);
-        }
-
-        public static void AnchorToRightEdge(this RectTransform rt, float width, float padding = 0)
-        {
+            var rt = (RectTransform)go.transform;
             rt.anchorMin = new Vector2(1f, 0);
             rt.anchorMax = new Vector2(1f, 1);
             rt.pivot = new Vector2(1f, 0.5f);

@@ -31,7 +31,7 @@ namespace XStorage
             Jotunn.Logger.LogDebug("ContainerGui.Awake");
             //firstGridUpdate = true;
 
-            m_rect = GetComponent<RectTransform>();
+            m_rect = (RectTransform)transform;
             m_grid = GetComponentInChildren<InventoryGrid>();
 
             m_grid.m_onSelected += OnGridItemSelected;

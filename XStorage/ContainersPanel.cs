@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using XStorage.GUI;
 
 namespace XStorage
 {
@@ -15,10 +16,14 @@ namespace XStorage
         public static ContainersPanel Instance { get { return lazy.Value; } }
         ////////////////////////////
 
-        private Vector2 singlePanelSize = new Vector2(650, 340f);
-        private float padding = 20f;
+        private Vector2 singlePanelSize = new Vector2(570f, 340f);
+        private float weightPanelWidth = 60f;
 
-        public int MaxVisiblePanels = 3;
+        private float padding = 15f;
+
+        public int MaxRows = 3;
+        public int PreferredColumns = 1;
+        public int MaxColumns = 2;
 
         public GameObject RootPanel;
         public ScrollablePanel ScrollablePanel;
@@ -61,7 +66,7 @@ namespace XStorage
             var newContainerPanel = AddOrEnablePanel(container);
             newContainerPanel.Show(container);
 
-            UpdateHeight();
+            UpdateSize();
             RootPanel.SetActive(true);
         }
 
@@ -72,20 +77,64 @@ namespace XStorage
                 return;
             }
 
+            SaveLocation();
             Jotunn.Logger.LogDebug("Hiding");
             containerPanels.ForEach(c => c.Hide());
             RootPanel.SetActive(false);
         }
 
-        private void UpdateHeight()
+        private void UpdateSize()
         {
-            // Visible containers, constrained to a minimum of 1 and a maximum of 3
-            var visiblePanelsCount = Math.Min(MaxVisiblePanels, Math.Max(1, VisiblePanelsCount));
+            var singlePanelWidth = singlePanelSize.x + weightPanelWidth;
+            var singlePanelHeight = singlePanelSize.y;
 
-            var totalHeight = (2f * padding) + (visiblePanelsCount * singlePanelSize.y);
+            var columns = Math.Min(VisiblePanelsCount, PreferredColumns);
+            if (VisiblePanelsCount / columns > MaxRows)
+            {
+                columns = MaxColumns;
+            }
 
-            Jotunn.Logger.LogDebug($"Setting root panel height: {totalHeight}");
-            RootPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
+            // Visible rows, constrained to a minimum of 1 and a maximum of MaxRows
+            var rows = (int)Math.Ceiling(Math.Min((float)MaxRows, Math.Max(1, VisiblePanelsCount / columns)));
+
+
+            var rootPanelWidth = (2f * padding) + (columns * singlePanelWidth);
+            var rootPanelHeight = (2f * padding) + (rows * singlePanelHeight);
+
+            Jotunn.Logger.LogDebug($"Setting size: {columns} x {rows}");
+
+            var rt = (RectTransform)RootPanel.transform;
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rootPanelWidth);
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rootPanelHeight);
+
+            ScrollablePanel.GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            ScrollablePanel.GridLayoutGroup.constraintCount = columns;
+            RestoreSavedLocation();
+        }
+
+        private Dictionary<Vector2, Vector2> savedLocations = new Dictionary<Vector2, Vector2>();
+        private void SaveLocation()
+        {
+            var rt = (RectTransform)RootPanel.transform;
+            var size = rt.rect.size;
+            var location = rt.localPosition;
+            if (!savedLocations.ContainsKey(size))
+            {
+                savedLocations.Add(size, location);
+            }
+            else
+            {
+                savedLocations[size] = location;
+            }
+        }
+        private void RestoreSavedLocation()
+        {
+            var rt = (RectTransform)RootPanel.transform;
+            var size = rt.rect.size;
+            if (savedLocations.ContainsKey(size))
+            {
+                rt.localPosition = savedLocations[size];
+            }
         }
 
         public void AddPanel()
@@ -171,16 +220,17 @@ namespace XStorage
                 anchorMin: new Vector2(0.5f, 0.5f),
                 anchorMax: new Vector2(0.5f, 0.5f),
                 position: new Vector2(0f, 0f),
-                width: singlePanelSize.x + (2f * padding),
-                height: singlePanelSize.y + (2f * padding),
-                draggable: true);
+                width: 100,
+                height: 50,
+                draggable: false);
+            RootPanel.AddComponent<XDragWindowControl>();
             RootPanel.name = "XStorage Root Panel";
 
-            // Disable the root panel, for now
-            RootPanel.SetActive(false);
-
-
-            ScrollablePanel = new ScrollablePanel(RootPanel.transform, padding);
+            ScrollablePanel = new ScrollablePanel(
+                parent: RootPanel.transform,
+                padding,
+                singlePanelSize,
+                gridSpacing: weightPanelWidth);
         }
 
         private ContainerGui CloneContainerPanel()
@@ -215,7 +265,7 @@ namespace XStorage
             //weightBkgCanvasGroup.alpha = 0.15f;
             containerClone.transform.Find("Weight/bkg").gameObject.AddComponent<CanvasGroup>().alpha = 0.2f;
 
-            var containerCloneRt = containerClone.GetComponent<RectTransform>();
+            var containerCloneRt = (RectTransform)containerClone.transform;
             containerCloneRt.anchorMin = new Vector2(0.5f, 0.5f);
             containerCloneRt.anchorMax = new Vector2(0.5f, 0.5f);
             containerCloneRt.pivot = new Vector2(0.5f, 0.5f);

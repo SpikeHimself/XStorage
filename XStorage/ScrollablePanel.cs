@@ -14,16 +14,26 @@ namespace XStorage
             }
         }
 
+        public GridLayoutGroup GridLayoutGroup
+        {
+            get
+            {
+                return Content.GetComponent<GridLayoutGroup>();
+            }
+        }
+
         private RectTransform m_content;
         private ScrollRect m_scrollrect;
 
-        public ScrollablePanel(Transform parent, float padding)
+        public ScrollablePanel(Transform parent, float padding, Vector2 singlePanelSize, float gridSpacing)
         {
             CreateScrollablePanel(
-                parent: parent,
+                parent,
                 handleSize: 8f,
                 handleDistanceToBorder: 1f,
-                padding: padding);
+                padding,
+                singlePanelSize,
+                gridSpacing);
         }
 
         public void ScrollUp()
@@ -35,17 +45,17 @@ namespace XStorage
         }
 
         #region Pain
-        private void CreateScrollablePanel(Transform parent, float handleSize, float handleDistanceToBorder, float padding)
+        private void CreateScrollablePanel(Transform parent, float handleSize, float handleDistanceToBorder, float padding, Vector2 singlePanelSize, float gridSpacing)
         {
             var scrollView = CreateScrollView(parent, padding);
             var viewPort = CreateViewPort(scrollView.transform);
             var scrollbar = CreateScrollbar(scrollView.transform, handleSize, handleDistanceToBorder);
 
-            var content = CreateContentPanel(viewPort.transform);
-            m_content = content.GetComponent<RectTransform>();
+            var content = CreateContentPanel(viewPort.transform, singlePanelSize, gridSpacing);
+            m_content = (RectTransform)content.transform;
 
             m_scrollrect = scrollView.GetComponent<ScrollRect>();
-            m_scrollrect.viewport = viewPort.GetComponent<RectTransform>();
+            m_scrollrect.viewport = (RectTransform)viewPort.transform;
             m_scrollrect.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
             m_scrollrect.content = Content;
         }
@@ -69,18 +79,25 @@ namespace XStorage
             return scrollView;
         }
 
-        private GameObject CreateContentPanel(Transform parent)
+        private GameObject CreateContentPanel(Transform parent, Vector2 singlePanelSize, float gridSpacing)
         {
-            var contentPanel = new GameObject("Content", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(Canvas), typeof(GraphicRaycaster), typeof(ContentSizeFitter));
+            var contentPanel = new GameObject("Content", typeof(RectTransform), typeof(GridLayoutGroup), typeof(Canvas), typeof(GraphicRaycaster), typeof(ContentSizeFitter));
             contentPanel.transform.SetParent(parent, false);
             contentPanel.FillParent();
 
-            contentPanel.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 1f);
-            contentPanel.GetComponent<VerticalLayoutGroup>().childAlignment = TextAnchor.UpperLeft;
-            contentPanel.GetComponent<VerticalLayoutGroup>().childForceExpandWidth = false;
-            contentPanel.GetComponent<VerticalLayoutGroup>().childForceExpandHeight = false;
-            contentPanel.GetComponent<VerticalLayoutGroup>().childControlHeight = false;
-            contentPanel.GetComponent<VerticalLayoutGroup>().childControlWidth = false;
+            var rt = (RectTransform)contentPanel.transform;
+            rt.pivot = new Vector2(0.5f, 1f);
+            //contentPanel.GetComponent<VerticalLayoutGroup>().childAlignment = TextAnchor.UpperLeft;
+            //contentPanel.GetComponent<VerticalLayoutGroup>().childForceExpandWidth = false;
+            //contentPanel.GetComponent<VerticalLayoutGroup>().childForceExpandHeight = false;
+            //contentPanel.GetComponent<VerticalLayoutGroup>().childControlHeight = false;
+            //contentPanel.GetComponent<VerticalLayoutGroup>().childControlWidth = false;
+            contentPanel.GetComponent<GridLayoutGroup>().cellSize = singlePanelSize;
+            contentPanel.GetComponent<GridLayoutGroup>().spacing = new Vector2(gridSpacing, 0);
+            contentPanel.GetComponent<GridLayoutGroup>().constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            contentPanel.GetComponent<GridLayoutGroup>().constraintCount = 2;
+            contentPanel.GetComponent<GridLayoutGroup>().startAxis = GridLayoutGroup.Axis.Horizontal;
+            contentPanel.GetComponent<GridLayoutGroup>().startCorner = GridLayoutGroup.Corner.UpperLeft;
             contentPanel.GetComponent<Canvas>().planeDistance = 5.2f;
             contentPanel.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
@@ -114,7 +131,7 @@ namespace XStorage
             var slidingArea = CreateSlidingArea(verticalScrollbar.transform, handleSize, handleDistanceToBorder);
             var handle = CreateHandle(slidingArea.transform, handleSize);
 
-            verticalScrollbar.GetComponent<Scrollbar>().handleRect = handle.GetComponent<RectTransform>();
+            verticalScrollbar.GetComponent<Scrollbar>().handleRect = (RectTransform)handle.transform;
             verticalScrollbar.GetComponent<Scrollbar>().targetGraphic = handle.GetComponent<Image>();
 
             return verticalScrollbar;
@@ -125,11 +142,12 @@ namespace XStorage
             GameObject handle = new GameObject("Handle", typeof(RectTransform), typeof(Image));
             handle.transform.SetParent(parent, false);
 
-            handle.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
-            handle.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
-            handle.GetComponent<RectTransform>().anchoredPosition = new Vector2(handleSize / 2f, 0);
-            handle.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, handleSize / 2f);
-            handle.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, handleSize / 2f);
+            var rt = (RectTransform)handle.transform;
+            rt.anchorMin = new Vector2(0.5f, 0.5f);
+            rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = new Vector2(handleSize / 2f, 0);
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, handleSize / 2f);
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, handleSize / 2f);
             handle.GetComponent<Image>().sprite = GUIManager.Instance.GetSprite("UISprite");
             handle.GetComponent<Image>().type = Image.Type.Sliced;
 
