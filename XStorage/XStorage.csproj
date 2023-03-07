@@ -88,7 +88,6 @@
     <Compile Include="ContainersPanel.cs" />
     <Compile Include="ContainerTextReceiver.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="GUI\XDragWindowControl.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="PrePackage\Readmes\ReadmeHelper.cs" />
