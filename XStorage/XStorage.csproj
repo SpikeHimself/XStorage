@@ -131,33 +131,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>README.Thunderstore.tt</DependentUpon>
     </None>
-    <None Include="PrePackage\Readmes\_Header.t4">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_Header.tt</DependentUpon>
-    </None>
+    <None Include="PrePackage\Readmes\_Header.t4" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PrePackage\manifest.tt">
+    <None Include="PrePackage\manifest.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>manifest.json</LastGenOutput>
-    </Content>
-    <Content Include="PrePackage\Readmes\README.GitHub.tt">
+    </None>
+    <None Include="PrePackage\Readmes\README.GitHub.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>README.GitHub.md</LastGenOutput>
-    </Content>
-    <Content Include="PrePackage\Readmes\README.Nexus.tt">
+    </None>
+    <None Include="PrePackage\Readmes\README.Nexus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>README.Nexus.bbcode</LastGenOutput>
-    </Content>
-    <Content Include="PrePackage\Readmes\README.Thunderstore.tt">
+    </None>
+    <None Include="PrePackage\Readmes\README.Thunderstore.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>README.Thunderstore.md</LastGenOutput>
-    </Content>
-    <Content Include="PrePackage\Readmes\_Header.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>_Header.t4</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

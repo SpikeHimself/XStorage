@@ -1,7 +1,7 @@
 <#= mf.Heading("Bugs, Feature Requests and Translations") #>
 
 <#
-if (Target == Targets.NexusMods)
+if (target == Targets.NexusMods)
 {
 	WriteLine( mf.Size(mf.Bold($"If you have issues or feedback, please use {thisModName}'s {mf.Link("GitHub page", urlThisModGitHub)}."), FontSize.Four) );
 	Write( mf.Preferences.NewLine );
