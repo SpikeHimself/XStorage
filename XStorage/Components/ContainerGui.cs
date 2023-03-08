@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace XStorage
+namespace XStorage.Components
 {
     /// <summary>
     /// The ContainerGui component is responsible for visualising the contents of a container. It mimics some of the Container 
     /// related behaviour found in InventoryGui. ContainerGui assumes that it will be added to the gameobject which has
-    /// InventoryGrid as a component in one of its children, such that: myGrid = GetComponentInChildren<InventoryGrid>() 
-    /// yields the InventoryGrid component.
+    /// InventoryGrid as a component in one of its children, such that: GetComponentInChildren<InventoryGrid>() yields the 
+    /// InventoryGrid component.
     /// </summary>
     public class ContainerGui : MonoBehaviour
     {
@@ -23,13 +23,11 @@ namespace XStorage
         private Button m_takeAllButton;
 
         // Used to reset the InventoryGrid view on the first update
-        private bool firstGridUpdate = true;
-
+        private bool m_firstGridUpdate = true;
 
         public void Awake()
         {
             Jotunn.Logger.LogDebug("ContainerGui.Awake");
-            //firstGridUpdate = true;
 
             m_rect = (RectTransform)transform;
             m_grid = GetComponentInChildren<InventoryGrid>();
@@ -37,7 +35,7 @@ namespace XStorage
             m_grid.m_onSelected += OnGridItemSelected;
             m_grid.m_onRightClick += OnGridItemRightClick;
 
-            m_takeAllButton = m_rect.GetComponentInChildren<Button>();
+            m_takeAllButton = GetComponentInChildren<Button>();
             m_takeAllButton.onClick.AddListener(OnTakeAll);
 
             m_containerName = transform.Find("container_name").GetComponent<Text>();
@@ -63,6 +61,7 @@ namespace XStorage
 
         private void OnGridItemRightClick(InventoryGrid grid, ItemDrop.ItemData item, Vector2i pos)
         {
+            // Let InventoryGui handle this event
             InventoryGui.instance.OnRightClickItem(grid, item, pos);
         }
 
@@ -70,12 +69,11 @@ namespace XStorage
         {
             // By default, ctrl+click-ing (i.e. moving) an item, takes the item from the Player inventory and adds it to the currently active (vanilla) chest
             // Since the current item isn't coming from the Player inventory, this would create a bug through which items are duplicated, so we need to handle it manually
-            if (mod == InventoryGrid.Modifier.Move && !item.m_shared.m_questItem)
+            if (mod == InventoryGrid.Modifier.Move)
             {
                 Player localPlayer = Player.m_localPlayer;
-                //localPlayer.RemoveEquipAction(item);
-                //localPlayer.UnequipItem(item);
                 localPlayer.GetInventory().MoveItemToThis(grid.GetInventory(), item);
+                InventoryGui.instance.UpdateCraftingPanel();
                 InventoryGui.instance.m_moveItemEffects.Create(InventoryGui.instance.transform.position, Quaternion.identity);
                 return;
             }
@@ -103,10 +101,10 @@ namespace XStorage
                 m_currentContainer.SetInUse(true);
                 m_grid.UpdateInventory(m_currentContainer.GetInventory(), null, null);
                 m_containerName.text = Localization.instance.Localize(m_currentContainer.GetInventory().GetName());
-                if (firstGridUpdate)
+                if (m_firstGridUpdate)
                 {
                     m_grid.ResetView();
-                    firstGridUpdate = false;
+                    m_firstGridUpdate = false;
                 }
             }
             else
@@ -119,15 +117,15 @@ namespace XStorage
         {
             if (IsContainerOpen())
             {
-                int num = Mathf.CeilToInt(m_currentContainer.GetInventory().GetTotalWeight());
-                m_containerWeight.text = num.ToString();
+                int weightCeiled = Mathf.CeilToInt(m_currentContainer.GetInventory().GetTotalWeight());
+                m_containerWeight.text = weightCeiled.ToString();
             }
         }
 
         public void Show(Container container)
         {
+            m_firstGridUpdate = true;
             m_currentContainer = container;
-            firstGridUpdate = true;
             gameObject.SetActive(true);
         }
 
@@ -141,7 +139,7 @@ namespace XStorage
                 m_currentContainer = null;
             }
 
-            firstGridUpdate = true;
+            m_firstGridUpdate = true;
         }
 
         public bool IsContainerOpen()

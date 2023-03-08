@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
-namespace XStorage
+namespace XStorage.Components
 {
     public class ContainerTextReceiver : MonoBehaviour, TextReceiver
     {
+        
+
         public Container m_Container;
-        //private ZDO m_Zdo;
 
         public void Awake()
         {
@@ -19,7 +20,10 @@ namespace XStorage
 
         public void SetText(string text)
         {
+            // Preemptively set the new name locally, assuming the server will do so too in just a moment
             XStorage.UpdateContainerAndInventoryName(m_Container, text);
+
+            // Ask the server to rename this container
             RPC.SendRenameRequestToServer(m_Container.GetZDOID(), text);
         }
 

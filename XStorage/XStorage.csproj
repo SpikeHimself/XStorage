@@ -84,18 +84,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContainerGui.cs" />
-    <Compile Include="ContainersPanel.cs" />
-    <Compile Include="ContainerTextReceiver.cs" />
+    <Compile Include="Components\ContainerGui.cs" />
+    <Compile Include="Environment.cs" />
+    <Compile Include="PanelManager.cs" />
+    <Compile Include="Components\ContainerTextReceiver.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="GUI\ContainerGridPanel.cs" />
+    <Compile Include="GUI\ContainerPanel.cs" />
+    <Compile Include="GUI\GridSize.cs" />
+    <Compile Include="GUI\XUIPanel.cs" />
+    <Compile Include="GUI\RootPanel.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="PrePackage\Readmes\ReadmeHelper.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="RPC.cs" />
-    <Compile Include="ScrollablePanel.cs" />
+    <Compile Include="GUI\ScrollablePanel.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="XStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Config.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

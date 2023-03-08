@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Jotunn;
 using UnityEngine;
+using XStorage.Components;
 
 namespace XStorage
 {
@@ -67,21 +68,23 @@ namespace XStorage
         {
             static bool Prefix(Container __instance, bool granted)
             {
+                var containerName = __instance.GetXStorageNameOrDefault();
+
                 if (!InventoryGui.instance.m_currentContainer)
                 {
                     // InventoryGui does not have a container yet, so this one must be the one it's trying to show
-                    Jotunn.Logger.LogDebug($"Opening container `{__instance.GetXStorageNameOrDefault()}` into the vanilla UI");
+                    Jotunn.Logger.LogDebug($"Opening container `{containerName}` into the vanilla UI");
                     return true;
                 }
 
                 if (!granted)
                 {
-                    Jotunn.Logger.LogDebug($"No access to `{__instance.GetXStorageNameOrDefault()}`");
+                    Jotunn.Logger.LogDebug($"No access to container `{containerName}`");
                     return false;
                 }
 
-                Jotunn.Logger.LogDebug($"Opening `{__instance.GetXStorageNameOrDefault()}` into XStorage panel");
-                ContainersPanel.Instance.Show(__instance);
+                Jotunn.Logger.LogDebug($"Opening container `{containerName}` into XStorage panel");
+                PanelManager.Instance.Show(__instance);
                 return false;
             }
         }
@@ -96,7 +99,7 @@ namespace XStorage
                     return;
                 }
 
-                ContainersPanel.Instance.Hide();
+                PanelManager.Instance.Hide();
             }
         }
 
@@ -220,8 +223,8 @@ namespace XStorage
         {
             static void Postfix(ref GameObject ___m_tooltip)
             {
-                if (___m_tooltip && ___m_tooltip.transform.parent && ContainersPanel.Instance.IsVisible() &&
-                    ___m_tooltip.transform.parent == ContainersPanel.Instance.ScrollablePanel.Content.transform)
+                if (___m_tooltip && ___m_tooltip.transform.parent && PanelManager.Instance.IsVisible() &&
+                    ___m_tooltip.transform.parent == PanelManager.Instance.RootPanel.ContentPanel.Transform)
                 {
                     // Problem 1: The tooltip is only half visible because it's inside a scrollrect
                     //      This is fixed by changing the tooltip's parent to something that's outside of the scrollrect, for example the XStorage root panel
@@ -231,7 +234,7 @@ namespace XStorage
                     //      Yes, you read that correctly: literally copying the exact same object with the exact same properties will not have that same problem.
                     //      It's Valheim magic. Fifteen hours of my life that I will never get back.
 
-                    var newTooltip = Object.Instantiate(___m_tooltip, ContainersPanel.Instance.RootPanel.transform);
+                    var newTooltip = Object.Instantiate(___m_tooltip, PanelManager.Instance.RootPanel.Transform);
                     GameObject.Destroy(___m_tooltip);
                     ___m_tooltip = newTooltip;
                 }

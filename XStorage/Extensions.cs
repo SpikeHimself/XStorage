@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XStorage.Components;
 
 namespace XStorage
 {
@@ -39,12 +40,12 @@ namespace XStorage
 
         internal static string GetXStorageName(this Container container)
         {
-            return container.GetZDO().GetString(XStorage.ZdoProperty_ContainerName, string.Empty);
+            return container.GetZDO().GetString(Config.ZdoProperty_ContainerName, string.Empty);
         }
 
         internal static string GetXStorageNameOrDefault(this Container container)
         {
-            return container.GetZDO().GetString(XStorage.ZdoProperty_ContainerName, Localization.instance.Localize(container.m_name));
+            return container.GetZDO().GetString(Config.ZdoProperty_ContainerName, Localization.instance.Localize(container.m_name));
         }
 
         internal static bool HasRoomFor(this Container container, string itemName)
@@ -60,6 +61,12 @@ namespace XStorage
         #endregion
 
         #region UI
+        /// <summary>
+        /// Set pivot to middle-centre and stretch to the parent by anchoring it to all corners.
+        /// Warning: This assumes the GameObject has a RectTransform component. No checks are carried out.
+        /// </summary>
+        /// <param name="go">The GameObject of which the RectTransform should fill its parent</param>
+        /// <param name="padding">The size difference (offset) from the parent's edges</param>
         public static void FillParent(this GameObject go, float padding = 0)
         {
             var rt = (RectTransform)go.transform;
@@ -72,6 +79,13 @@ namespace XStorage
             rt.sizeDelta = new Vector2(sizeDelta, sizeDelta);
         }
 
+        /// <summary>
+        /// Anchor this GameObject to its parent's right edge.
+        /// Warning: This assumes the GameObject has a RectTransform component. No checks are carried out.
+        /// </summary>
+        /// <param name="go">The GameObject of which the RectTransform should be anchored to its parent</param>
+        /// <param name="width">The width of this GameObject's RectTransform</param>
+        /// <param name="padding">The room to leave at the top and bottom of this GameObject's RectTransform</param>
         public static void AnchorToRightEdge(this GameObject go, float width, float padding = 0)
         {
             var rt = (RectTransform)go.transform;

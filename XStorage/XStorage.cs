@@ -12,28 +12,6 @@ namespace XStorage
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Patch)]
     public class XStorage : BaseUnityPlugin
     {
-        public const string ZdoProperty_ContainerName = "XStorage_Name";
-
-        #region Determine Environment
-        /// <summary>
-        /// Are we the Server?
-        /// </summary>
-        /// <returns>True if ZNet says we are a server</returns>
-        public static bool IsServer()
-        {
-            return ZNet.instance != null && ZNet.instance.IsServer();
-        }
-
-        /// <summary>
-        /// Are we Headless? (dedicated server)
-        /// </summary>
-        /// <returns>True if SystemInfo.graphicsDeviceType is not set</returns>
-        public static bool IsHeadless()
-        {
-            return GUIManager.IsHeadless();
-        }
-        #endregion
-
         #region Unity Events
         /// <summary>
         /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html
@@ -51,7 +29,6 @@ namespace XStorage
             Patches.Patch();
         }
 
-
         /// <summary>
         /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html
         /// </summary>
@@ -66,7 +43,7 @@ namespace XStorage
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "MonoBehaviour.OnDestroy occurs when a Scene or game ends.")]
         private void OnDestroy()
         {
-            ContainersPanel.Instance.Clear();
+            PanelManager.Instance.Clear();
             Patches.Unpatch();
         }
         #endregion
@@ -74,7 +51,7 @@ namespace XStorage
         #region Game
         public static void GameStarted()
         {
-            ContainersPanel.Instance.Clear();
+            PanelManager.Instance.Clear();
             RPC.RegisterRPCs();
         }
         #endregion
@@ -159,7 +136,7 @@ namespace XStorage
             {
                 InventoryGui.instance.m_currentContainer
             };
-            allContainers.AddRange(ContainersPanel.Instance.GetContainers());
+            allContainers.AddRange(PanelManager.Instance.GetContainerList());
 
             var candidates = allContainers
                 .Where(c => c.HasRoomFor(itemName))
