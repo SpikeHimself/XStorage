@@ -4,7 +4,7 @@ namespace XStorage.Components
 {
     public class ContainerTextReceiver : MonoBehaviour, TextReceiver
     {
-        
+
 
         public Container m_Container;
 

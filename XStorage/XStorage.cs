@@ -1,5 +1,4 @@
 ﻿using BepInEx;
-using Jotunn.Managers;
 using Jotunn.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace XStorage
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "MonoBehaviour.Awake is called when the script instance is being loaded.")]
         private void Awake()
         {
-                // Hello, world!
+            // Hello, world!
             Jotunn.Logger.LogDebug("oooh chesty!");
 
             // Load config

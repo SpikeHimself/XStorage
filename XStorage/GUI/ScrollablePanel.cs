@@ -36,7 +36,7 @@ namespace XStorage.GUI
             GameObject.FillParent(padding);
             Parent = parent;
 
-            GameObject.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
+            GameObject.GetComponent<Image>().color = new Color(0, 0, 0, 1);
             GameObject.GetComponent<Mask>().showMaskGraphic = false;
 
             ScrollRect.horizontal = false;
@@ -58,7 +58,7 @@ namespace XStorage.GUI
         {
             if (ScrollRect)
             {
-                ScrollRect.verticalNormalizedPosition = 1f;
+                ScrollRect.verticalNormalizedPosition = 1;
             }
         }
 

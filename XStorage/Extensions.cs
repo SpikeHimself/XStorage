@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using XStorage.Components;
 
 namespace XStorage
 {

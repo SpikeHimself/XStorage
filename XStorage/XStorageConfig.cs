@@ -1,8 +1,5 @@
 ﻿using BepInEx.Configuration;
 using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SocialPlatforms;
 using XStorage.GUI;
 
 namespace XStorage

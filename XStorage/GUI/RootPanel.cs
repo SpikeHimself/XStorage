@@ -112,7 +112,7 @@ namespace XStorage.GUI
             Jotunn.Logger.LogDebug($"Saving position: `{key}` = `{value}`");
 
             var customData = Player.m_localPlayer.m_customData;
-            if( !customData.ContainsKey(key) )
+            if (!customData.ContainsKey(key))
             {
                 customData.Add(key, value);
             }
@@ -128,7 +128,7 @@ namespace XStorage.GUI
 
             var key = $"{XStorageConfig.ZdoProperty_GridSize}_{GridSize}";
             var customData = Player.m_localPlayer.m_customData;
-            if(customData.TryGetValue(key, out var value))
+            if (customData.TryGetValue(key, out var value))
             {
                 Jotunn.Logger.LogDebug($"Restoring position: `{key}` = `{value}`");
                 Transform.localPosition = Util.StringToVector3(value);
