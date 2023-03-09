@@ -6,24 +6,25 @@ namespace XStorage.GUI
 {
     public class RootPanel : XUIPanel
     {
-        private const float Padding = 15f;
+        private const int Padding = 15;
+        private const int PaddingTop = 40;
 
         public ScrollablePanel ScrollablePanel;
         public ContainerGridPanel ContentPanel;
 
-        private GridSize size;
-        public GridSize Size
+        private GridSize gridSize;
+        public GridSize GridSize
         {
             get
             {
-                return size;
+                return gridSize;
             }
             set
             {
-                if (size != value)
+                if (gridSize != value)
                 {
-                    size = value;
-                    UpdateSize(size);
+                    gridSize = value;
+                    UpdatePanelSize();
                 }
             }
         }
@@ -32,16 +33,39 @@ namespace XStorage.GUI
         {
             Jotunn.Logger.LogDebug("Creating root panel");
 
+            var initialSize = new Vector2(
+                Padding * 2f + gridCellSize.x,
+                PaddingTop + Padding * 2f + gridCellSize.y);
+
             GameObject = GUIManager.Instance.CreateWoodpanel(
                 parent,
                 anchorMin: new Vector2(0.5f, 0.5f),
                 anchorMax: new Vector2(0.5f, 0.5f),
-                position: new Vector2(0f, 0f),
-                width: 100,
-                height: 50,
+                position: new Vector2(0, 0),
+                width: initialSize.x,
+                height: initialSize.y,
                 draggable: true);
 
             Name = "XStorage Root Panel";
+
+            var headerText = GUIManager.Instance.CreateText(
+                "[XStorage] Did you know you can drag this window?",
+                parent: Transform,
+                anchorMin: new Vector2(0, 1),
+                anchorMax: new Vector2(1, 1),
+                position: new Vector2(0, 0),
+                font: GUIManager.Instance.AveriaSerifBold,
+                fontSize: 18,
+                color: GUIManager.Instance.ValheimOrange,
+                outline: true,
+                outlineColor: Color.black,
+                width: initialSize.x,
+                height: PaddingTop,
+                addContentSizeFitter: false);
+
+            var headerTextRt = (RectTransform)headerText.transform;
+            headerTextRt.pivot = new Vector2(0, 1);
+            headerTextRt.anchoredPosition = new Vector2(24, -12);
 
             ScrollablePanel = new ScrollablePanel(
                 parent: Transform,
@@ -50,26 +74,37 @@ namespace XStorage.GUI
             ContentPanel = new ContainerGridPanel(
                 parent: ScrollablePanel.ViewPort.transform,
                 cellSize: gridCellSize,
-                //gridSpacing: ContainerPanel.WeightPanelWidth);
-                gridSpacing: 1f);
+                gridSpacing: ContainerPanel.WeightPanelWidth);
 
             ScrollablePanel.ScrollRectContent = ContentPanel;
         }
 
-        private void UpdateSize(GridSize newSize)
+        private Vector2 CalculatePanelSize()
         {
-            var newWidth = (2f * RootPanel.Padding) + (newSize.Columns * ContainerPanel.SinglePanelSize.x);
-            var newHeight = (2f * RootPanel.Padding) + (newSize.Rows * ContainerPanel.SinglePanelSize.y);
+            var width =
+                (2f * Padding)
+                + (GridSize.Columns * ContainerPanel.SinglePanelWithWeightPanelSize.x);
 
-            Jotunn.Logger.LogDebug($"Setting size: {newSize}");
+            var height =
+                PaddingTop
+                + Padding
+                + (GridSize.Rows * ContainerPanel.SinglePanelWithWeightPanelSize.y);
 
-            RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
-            RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newHeight);
+            return new Vector2(width, height);
+        }
+
+        private void UpdatePanelSize()
+        {
+            Jotunn.Logger.LogDebug($"Setting size: {GridSize}");
+
+            var newPanelSize = CalculatePanelSize();
+            RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newPanelSize.x);
+            RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newPanelSize.y);
 
             ContentPanel.GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            ContentPanel.GridLayoutGroup.constraintCount = newSize.Columns;
+            ContentPanel.GridLayoutGroup.constraintCount = GridSize.Columns;
         }
-        
+
         public void SavePosition()
         {
             var key = $"{XStorageConfig.ZdoProperty_GridSize}_{GridSize}";

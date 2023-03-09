@@ -70,13 +70,15 @@ namespace XStorage
         internal static void FillParent(this GameObject go, RectOffset padding)
         {
             var rt = (RectTransform)go.transform;
+            rt.pivot = new Vector2(0.5f, 0.5f);
             rt.anchorMin = new Vector2(0, 0);
             rt.anchorMax = new Vector2(1, 1);
-            rt.pivot = new Vector2(0.5f, 0.5f);
             rt.anchoredPosition = new Vector2(0, 0);
 
-            float sizeDelta = -(2f * padding);
-            rt.sizeDelta = new Vector2(sizeDelta, sizeDelta);
+            //float sizeDelta = -(2f * padding);
+            //rt.sizeDelta = new Vector2(sizeDelta, sizeDelta);
+            rt.offsetMin = new Vector2(padding.left, padding.bottom);   // distance from bottom left corner
+            rt.offsetMax = new Vector2(padding.right, -padding.top);   // distance from top right corner
         }
 
         /// <summary>
@@ -93,16 +95,17 @@ namespace XStorage
         /// <param name="go">The GameObject of which the RectTransform should be anchored to its parent</param>
         /// <param name="width">The width of this GameObject's RectTransform</param>
         /// <param name="padding">The room to leave at the top and bottom of this GameObject's RectTransform</param>
-        public static void AnchorToRightEdge(this GameObject go, float width, float padding = 0)
+        internal static void AnchorToRightEdge(this GameObject go, float width, float padding = 0)
         {
             var rt = (RectTransform)go.transform;
-            rt.anchorMin = new Vector2(1f, 0);
-            rt.anchorMax = new Vector2(1f, 1);
-            rt.pivot = new Vector2(1f, 0.5f);
-            rt.anchoredPosition = new Vector2(0, -(width / 2f));
+            rt.pivot = new Vector2(1, 0.5f);
+            rt.anchorMin = new Vector2(1, 0);
+            rt.anchorMax = new Vector2(1, 1);
 
-            var heightDelta = (2f * padding) - width;
-            rt.sizeDelta = new Vector2(width, heightDelta);
+            float doubleWidth = width * 2;
+            rt.offsetMin = new Vector2(-doubleWidth, padding);   // distance from bottom left corner
+            rt.offsetMax = new Vector2(-width, -padding);        // distance from top right corner
+            rt.anchoredPosition = new Vector2(-doubleWidth, 0);
         }
         #endregion
 

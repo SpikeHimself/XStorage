@@ -6,8 +6,9 @@ namespace XStorage.GUI
 {
     public class ContainerPanel : XUIPanel
     {
-        private static readonly float WeightPanelWidth = 75f;
-        public static readonly Vector2 SinglePanelSize = new Vector2(570f + WeightPanelWidth, 340f);
+        public static readonly float WeightPanelWidth = 75;
+        public static readonly Vector2 SinglePanelSize = new Vector2(570, 340);
+        public static readonly Vector2 SinglePanelWithWeightPanelSize = new Vector2(SinglePanelSize.x + WeightPanelWidth, SinglePanelSize.y);
 
         public ContainerGui ContainerGui
         {

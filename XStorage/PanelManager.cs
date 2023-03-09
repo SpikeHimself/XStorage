@@ -47,7 +47,7 @@ namespace XStorage
 
         public void Show(Container container)
         {
-            CreateRoot();
+            CreateRootPanel();
 
             if (!IsVisible())
             {
@@ -152,7 +152,7 @@ namespace XStorage
             return containerPanels.Where(c => c.IsContainerOpen()).Select(c => c.m_currentContainer).ToList();
         }
 
-        private void CreateRoot()
+        private void CreateRootPanel()
         {
             if (RootPanel != null)
             {
@@ -169,29 +169,9 @@ namespace XStorage
                 return;
             }
 
-            RootPanel = new RootPanel(inventoryScreenRoot.transform, ContainerPanel.SinglePanelSize);
-
-            //RootPanel = GUIManager.Instance.CreateWoodpanel(
-            //    parent: inventoryScreenRoot.transform,
-            //    anchorMin: new Vector2(0.5f, 0.5f),
-            //    anchorMax: new Vector2(0.5f, 0.5f),
-            //    position: new Vector2(0f, 0f),
-            //    width: 100,
-            //    height: 50,
-            //    draggable: true);
-            //RootPanel.name = "XStorage Root Panel";
-
-
-            //ScrollablePanel = new ScrollablePanel(
-            //    parent: RootPanel.transform,
-            //    padding);
-
-            //ContentPanel = new ContainerGridPanel(
-            //    parent: ScrollablePanel.Panel.transform, 
-            //    cellSize: singlePanelSize, 
-            //    gridSpacing: ContainerPanel.WeightPanelWidth);
-
-            //ScrollablePanel.Content = ContentPanel;
+            RootPanel = new RootPanel(
+                parent: inventoryScreenRoot.transform,
+                gridCellSize: ContainerPanel.SinglePanelSize);
         }
     }
 }

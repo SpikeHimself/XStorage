@@ -30,12 +30,12 @@ namespace XStorage.GUI
             GameObject.FillParent();
             Parent = parent;
 
-            RectTransform.pivot = new Vector2(0.5f, 1f);
+            RectTransform.pivot = new Vector2(0.5f, 1);
             ContentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
             GridLayoutGroup.cellSize = cellSize;
             GridLayoutGroup.spacing = new Vector2(gridSpacing, 0);
             GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            GridLayoutGroup.constraintCount = 2;
+            GridLayoutGroup.constraintCount = 1;
             GridLayoutGroup.startAxis = GridLayoutGroup.Axis.Horizontal;
             GridLayoutGroup.startCorner = GridLayoutGroup.Corner.UpperLeft;
         }

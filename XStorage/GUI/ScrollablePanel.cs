@@ -33,8 +33,8 @@ namespace XStorage.GUI
         public ScrollablePanel(Transform parent, RectOffset padding)
         {
             GameObject = new GameObject("Scroll View", typeof(Image), typeof(ScrollRect), typeof(Mask));
-            GameObject.transform.SetParent(parent.transform, false);
             GameObject.FillParent(padding);
+            Parent = parent;
 
             GameObject.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
             GameObject.GetComponent<Mask>().showMaskGraphic = false;
@@ -50,7 +50,7 @@ namespace XStorage.GUI
             ViewPort = CreateViewPort(GameObject.transform);
             ScrollRect.viewport = (RectTransform)ViewPort.transform;
 
-            var goScrollbar = CreateScrollbar(GameObject.transform, handleSize: 8f, handleDistanceToBorder: 1f);
+            var goScrollbar = CreateScrollbar(GameObject.transform, handleSize: 8f, handleDistanceToBorder: 8f);
             ScrollRect.verticalScrollbar = goScrollbar.GetComponent<Scrollbar>();
         }
 
@@ -83,14 +83,13 @@ namespace XStorage.GUI
 
             var scrollBar = goScrollbar.GetComponent<Scrollbar>();
             scrollBar.colors = GUIManager.Instance.ValheimScrollbarHandleColorBlock;
-            scrollBar.size = 0.4f;
             scrollBar.size = handleSize;
             scrollBar.direction = Scrollbar.Direction.BottomToTop;
-            scrollBar.SetValueWithoutNotify(1f);
+            scrollBar.SetValueWithoutNotify(1);
 
             var goSlidingArea = new GameObject("Sliding Area", typeof(RectTransform));
             goSlidingArea.transform.SetParent(goScrollbar.transform, false);
-            goSlidingArea.AnchorToRightEdge(handleSize, handleDistanceToBorder);
+            goSlidingArea.FillParent();
 
             var goHandle = CreateHandle(goSlidingArea.transform, handleSize);
             scrollBar.handleRect = (RectTransform)goHandle.transform;
@@ -103,14 +102,7 @@ namespace XStorage.GUI
         {
             GameObject goHandle = new GameObject("Handle", typeof(RectTransform), typeof(Image));
             goHandle.transform.SetParent(parent, false);
-
-            var rt = (RectTransform)goHandle.transform;
-            rt.anchorMin = new Vector2(0.5f, 0.5f);
-            rt.anchorMax = new Vector2(0.5f, 0.5f);
-            rt.anchoredPosition = new Vector2(handleSize / 2f, 0);
-
-            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, handleSize / 2f);
-            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, handleSize / 2f);
+            goHandle.FillParent();
 
             var image = goHandle.GetComponent<Image>();
             image.sprite = GUIManager.Instance.GetSprite("UISprite");
