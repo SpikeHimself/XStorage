@@ -40,12 +40,12 @@ namespace XStorage
 
         internal static string GetXStorageName(this Container container)
         {
-            return container.GetZDO().GetString(Config.ZdoProperty_ContainerName, string.Empty);
+            return container.GetZDO().GetString(XStorageConfig.ZdoProperty_ContainerName, string.Empty);
         }
 
         internal static string GetXStorageNameOrDefault(this Container container)
         {
-            return container.GetZDO().GetString(Config.ZdoProperty_ContainerName, Localization.instance.Localize(container.m_name));
+            return container.GetZDO().GetString(XStorageConfig.ZdoProperty_ContainerName, Localization.instance.Localize(container.m_name));
         }
 
         internal static bool HasRoomFor(this Container container, string itemName)

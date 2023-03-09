@@ -19,11 +19,11 @@ namespace XStorage
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "MonoBehaviour.Awake is called when the script instance is being loaded.")]
         private void Awake()
         {
-            // Hello, world!
+                // Hello, world!
             Jotunn.Logger.LogDebug("oooh chesty!");
 
-            // Add Nexus ID to config for Nexus Update Check (https://www.nexusmods.com/valheim/mods/102)
-            Config.Bind<int>("General", "NexusID", Mod.Info.NexusId, "Nexus mod ID for updates (do not change)");
+            // Load config
+            XStorageConfig.Instance.LoadLocalConfig(Config);
 
             // Apply the Harmony patches
             Patches.Patch();

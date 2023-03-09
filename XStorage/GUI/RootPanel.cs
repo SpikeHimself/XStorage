@@ -72,7 +72,7 @@ namespace XStorage.GUI
         
         public void SavePosition()
         {
-            var key = $"{Config.ZdoProperty_GridSize}_{Size}";
+            var key = $"{XStorageConfig.ZdoProperty_GridSize}_{GridSize}";
             var value = Transform.localPosition.ToString();
             Jotunn.Logger.LogDebug($"Saving position: `{key}` = `{value}`");
 
@@ -89,16 +89,15 @@ namespace XStorage.GUI
 
         public void RestorePosition()
         {
-            var key = $"{Config.ZdoProperty_GridSize}_{Size}";
+            Transform.localPosition = Vector3.zero;
 
+            var key = $"{XStorageConfig.ZdoProperty_GridSize}_{GridSize}";
             var customData = Player.m_localPlayer.m_customData;
-            if( customData.ContainsKey(key))
+            if(customData.TryGetValue(key, out var value))
             {
-                Vector3 value = Util.StringToVector3(customData[key]);
                 Jotunn.Logger.LogDebug($"Restoring position: `{key}` = `{value}`");
-                Transform.localPosition = value;
+                Transform.localPosition = Util.StringToVector3(value);
             }
         }
-
     }
 }

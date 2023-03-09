@@ -79,11 +79,11 @@ namespace XStorage
         private void UpdateSize()
         {
             // Don't go outside the screen bounds
-            int maxColumns = (int)Math.Min(Config.MaxSize.Columns, Screen.width / ContainerPanel.SinglePanelSize.x);
-            int maxRows = (int)Math.Min(Config.MaxSize.Rows, Screen.height / ContainerPanel.SinglePanelSize.y);
+            int maxColumns = (int)Math.Min(XStorageConfig.Instance.MaxSize.Columns, Screen.width / ContainerPanel.SinglePanelWithWeightPanelSize.x);
+            int maxRows = (int)Math.Min(XStorageConfig.Instance.MaxSize.Rows, Screen.height / ContainerPanel.SinglePanelWithWeightPanelSize.y);
 
-            var newSize = GridSize.CalculateSquare(maxColumns, maxRows, VisiblePanelsCount, GridSize.ExpandPreference.ColumnsFirst);
-            RootPanel.Size = newSize;
+            var newSize = GridSize.CalculateSquare(maxColumns, maxRows, VisiblePanelsCount, XStorageConfig.Instance.ExpandPreference.Value);
+            RootPanel.GridSize = newSize;
 
             RootPanel.RestorePosition();
         }
