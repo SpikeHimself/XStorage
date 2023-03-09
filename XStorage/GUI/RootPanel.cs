@@ -45,7 +45,7 @@ namespace XStorage.GUI
 
             ScrollablePanel = new ScrollablePanel(
                 parent: Transform,
-                RootPanel.Padding);
+                padding: new RectOffset(Padding, Padding, PaddingTop, Padding));
 
             ContentPanel = new ContainerGridPanel(
                 parent: ScrollablePanel.ViewPort.transform,

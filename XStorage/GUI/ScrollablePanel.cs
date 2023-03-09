@@ -30,7 +30,7 @@ namespace XStorage.GUI
             }
         }
 
-        public ScrollablePanel(Transform parent, float padding)
+        public ScrollablePanel(Transform parent, RectOffset padding)
         {
             GameObject = new GameObject("Scroll View", typeof(Image), typeof(ScrollRect), typeof(Mask));
             GameObject.transform.SetParent(parent.transform, false);

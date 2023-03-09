@@ -67,7 +67,7 @@ namespace XStorage
         /// </summary>
         /// <param name="go">The GameObject of which the RectTransform should fill its parent</param>
         /// <param name="padding">The size difference (offset) from the parent's edges</param>
-        public static void FillParent(this GameObject go, float padding = 0)
+        internal static void FillParent(this GameObject go, RectOffset padding)
         {
             var rt = (RectTransform)go.transform;
             rt.anchorMin = new Vector2(0, 0);
@@ -78,6 +78,13 @@ namespace XStorage
             float sizeDelta = -(2f * padding);
             rt.sizeDelta = new Vector2(sizeDelta, sizeDelta);
         }
+
+        /// <summary>
+        /// Set pivot to middle-centre and stretch to the parent by anchoring it to all corners.
+        /// Warning: This assumes the GameObject has a RectTransform component. No checks are carried out.
+        /// </summary>
+        /// <param name="go">The GameObject of which the RectTransform should fill its parent</param>
+        internal static void FillParent(this GameObject go) => FillParent(go, new RectOffset());
 
         /// <summary>
         /// Anchor this GameObject to its parent's right edge.
