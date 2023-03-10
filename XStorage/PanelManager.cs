@@ -105,12 +105,14 @@ namespace XStorage
         {
             Jotunn.Logger.LogDebug("ContainersPanel.AddOrEnablePanel");
 
+            // If this container is already being displayed, return its panel instead of adding a new one
             var activePanel = FindPanel(container);
             if (activePanel)
             {
                 return activePanel;
             }
 
+            // Find a panel that was previously created but is not currently in use
             var inactivePanel = FindInactivePanel();
             if (inactivePanel != null)
             {

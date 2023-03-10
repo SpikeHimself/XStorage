@@ -4,6 +4,9 @@ using XStorage.Components;
 
 namespace XStorage.GUI
 {
+    /// <summary>
+    /// This panel displays the contents, name and weight of a single container. It is created by cloning the vanilla Container panel.
+    /// </summary>
     public class ContainerPanel : XUIPanel
     {
         public static readonly float WeightPanelWidth = 75;
