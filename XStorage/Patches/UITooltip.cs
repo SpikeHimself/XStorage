@@ -9,7 +9,7 @@ namespace XStorage.Patches
         static void Postfix(ref GameObject ___m_tooltip)
         {
             if (___m_tooltip && ___m_tooltip.transform.parent && PanelManager.Instance.IsVisible() &&
-                ___m_tooltip.transform.parent == PanelManager.Instance.RootPanel.ContentPanel.Transform)
+                ___m_tooltip.transform.parent == PanelManager.Instance.ContentPanel.Transform)
             {
                 // Problem 1: The tooltip is only half visible because it's inside a scrollrect
                 //      This is fixed by changing the tooltip's parent to something that's outside of the scrollrect, for example the XStorage root panel

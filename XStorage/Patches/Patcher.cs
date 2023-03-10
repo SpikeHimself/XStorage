@@ -1,7 +1,4 @@
 ﻿using HarmonyLib;
-using Jotunn;
-using UnityEngine;
-using XStorage.Components;
 
 namespace XStorage.Patches
 {

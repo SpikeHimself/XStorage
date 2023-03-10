@@ -16,6 +16,13 @@ namespace XStorage
         ////////////////////////////
 
         public RootPanel RootPanel;
+        public ContainerGridPanel ContentPanel
+        {
+            get
+            {
+                return RootPanel.ContentPanel;
+            }
+        }
 
         private List<ContainerGui> containerPanels;
 
@@ -111,15 +118,6 @@ namespace XStorage
             // Recurse - this time i will find the disabled panel that was just added
             return AddOrEnablePanel(container);
         }
-
-        //public void HidePanel(Container container)
-        //{
-        //    var panel = containerPanels.Where(c => c.currentContainer == container).FirstOrDefault();
-        //    if (panel)
-        //    {
-        //        panel.Hide();
-        //    }
-        //}
 
         public bool ContainsPanel(Container container)
         {
