@@ -20,7 +20,8 @@ namespace XStorage.GUI
 
         public ContainerPanel(ContainerGridPanel parent, string name)
         {
-            GameObject = CloneContainerPanel(parent);
+            GameObject = ClonePrefab(parent.Transform);
+            SetActive(false);
 
             Name = name;
 
@@ -31,37 +32,43 @@ namespace XStorage.GUI
             RectTransform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
         }
 
-        private static GameObject CloneContainerPanel(ContainerGridPanel parent)
+        private static GameObject ClonePrefab(Transform parent)
         {
-            Jotunn.Logger.LogDebug("ContainersPanel.CloneContainerPanel");
-
-            var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root/Container");
-
-            var containerClone = UnityEngine.Object.Instantiate(vanillaContainerPanel, parent.Transform);
-            containerClone.SetActive(false); // Hide for now
-
-            CleanupContainerClone(containerClone);
-
-            containerClone.transform.Find("Bkg").gameObject.AddComponent<CanvasGroup>().alpha = 0.2f;
-            containerClone.transform.Find("Weight/bkg").gameObject.AddComponent<CanvasGroup>().alpha = 0.2f;
-
-            containerClone.AddComponent<ContainerGui>();
-            return containerClone;
+            CreatePanelPrefab(parent);
+            return UnityEngine.Object.Instantiate(panelPrefab, parent);
         }
 
-        private static void CleanupContainerClone(GameObject clone)
+        #region Panel Prefab
+        private static GameObject panelPrefab;
+        private static void CreatePanelPrefab(Transform parent)
         {
-            var containerScroll = clone.transform.Find("ContainerScroll");
+            if(panelPrefab )
+            {
+                return;
+            }
+
+            var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root/Container");
+            
+            panelPrefab = UnityEngine.Object.Instantiate(vanillaContainerPanel, parent);
+            panelPrefab.SetActive(false); // Hide for now
+
+            var containerScroll = panelPrefab.transform.Find("ContainerScroll");
             containerScroll.gameObject.SetActive(false);
 
-            var containerGridScrollRect = clone.transform.Find("ContainerGrid").GetComponent<ScrollRect>();
+            var containerGridScrollRect = panelPrefab.transform.Find("ContainerGrid").GetComponent<ScrollRect>();
             GameObject.Destroy(containerGridScrollRect);
 
-            var gridElements = clone.transform.Find("ContainerGrid/Root").transform;
+            var gridElements = panelPrefab.transform.Find("ContainerGrid/Root").transform;
             foreach (Transform element in gridElements)
             {
                 GameObject.Destroy(element.gameObject);
             }
+
+            panelPrefab.transform.Find("Bkg").gameObject.AddComponent<CanvasGroup>().alpha = 0.2f;
+            panelPrefab.transform.Find("Weight/bkg").gameObject.AddComponent<CanvasGroup>().alpha = 0.2f;
+
+            panelPrefab.AddComponent<ContainerGui>();
         }
+        #endregion
     }
 }
