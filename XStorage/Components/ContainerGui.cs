@@ -144,7 +144,7 @@ namespace XStorage.Components
 
         public bool IsContainerOpen()
         {
-            return m_currentContainer;
+            return (bool)m_currentContainer;
         }
 
         public void CancelDrag()

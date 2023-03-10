@@ -79,15 +79,16 @@ namespace XStorage
         private void UpdateSize()
         {
             // Don't go outside the screen bounds
-            int maxColumns = (int)Math.Min(XStorageConfig.Instance.MaxSize.Columns, Screen.width / ContainerPanel.SinglePanelWithWeightPanelSize.x);
-            int maxRows = (int)Math.Min(XStorageConfig.Instance.MaxSize.Rows, Screen.height / ContainerPanel.SinglePanelWithWeightPanelSize.y);
+            int maxColsOnScreen = Mathf.FloorToInt(Screen.width / ContainerPanel.SinglePanelWithWeightPanelSize.x);
+            int maxRowsOnScreen = Mathf.FloorToInt(Screen.height / ContainerPanel.SinglePanelWithWeightPanelSize.y);
+            int maxCols = (int)Math.Min(XStorageConfig.Instance.MaxSize.Columns, maxColsOnScreen);
+            int maxRows = (int)Math.Min(XStorageConfig.Instance.MaxSize.Rows, maxRowsOnScreen);
 
-            var newSize = GridSize.CalculateSquare(maxColumns, maxRows, VisiblePanelsCount, XStorageConfig.Instance.ExpandPreference.Value);
+            var newSize = GridSize.CalculateSquare(maxCols, maxRows, VisiblePanelsCount, XStorageConfig.Instance.ExpandPreference.Value);
+            
             RootPanel.GridSize = newSize;
-
             RootPanel.RestorePosition();
         }
-
 
         public void AddPanel()
         {
@@ -134,7 +135,7 @@ namespace XStorage
 
         public bool ContainsPanel(Container container)
         {
-            return (bool)FindPanel(container);
+            return containerPanels.Where(c => c.m_currentContainer == container).Any();
         }
 
         public ContainerGui FindPanel(Container container)

@@ -10,11 +10,16 @@ namespace XStorage.GUI
         public static readonly Vector2 SinglePanelSize = new Vector2(570, 340);
         public static readonly Vector2 SinglePanelWithWeightPanelSize = new Vector2(SinglePanelSize.x + WeightPanelWidth, SinglePanelSize.y);
 
+        private ContainerGui containerGui;
         public ContainerGui ContainerGui
         {
             get
             {
-                return GameObject.GetComponent<ContainerGui>();
+                if(!containerGui)
+                {
+                    containerGui = GameObject.GetComponent<ContainerGui>();
+                }
+                return containerGui;
             }
         }
 

@@ -38,11 +38,16 @@ namespace XStorage.GUI
             }
         }
 
+        private RectTransform rt;
         public RectTransform RectTransform
         {
             get
             {
-                return (RectTransform)Transform;
+                if (!rt)
+                {
+                    rt = Transform as RectTransform;
+                }
+                return rt;
             }
         }
 
