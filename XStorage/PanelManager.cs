@@ -98,12 +98,12 @@ namespace XStorage
 
             containerPanels.Add(newPanel.ContainerGui);
 
-            Jotunn.Logger.LogDebug($"[ContainersPanel.AddPanel] Total container panels: {containerPanels.Count}");
+            Jotunn.Logger.LogDebug($"[AddPanel] Total container panels: {containerPanels.Count}");
         }
 
         private ContainerGui AddOrEnablePanel(Container container)
         {
-            Jotunn.Logger.LogDebug("ContainersPanel.AddOrEnablePanel");
+            Jotunn.Logger.LogDebug("AddOrEnablePanel");
 
             // If this container is already being displayed, return its panel instead of adding a new one
             var activePanel = FindPanel(container);

@@ -32,8 +32,6 @@ namespace XStorage.GUI
 
         public RootPanel(Transform parent, Vector2 gridCellSize)
         {
-            Jotunn.Logger.LogDebug("Creating root panel");
-
             var initialSize = new Vector2(
                 Padding.left + gridCellSize.x + Padding.right,
                 Padding.top + gridCellSize.y + Padding.bottom);
