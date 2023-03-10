@@ -18,7 +18,6 @@ namespace XStorage
         //private ConfigFile configFile;
         public ConfigEntry<int> MaxColumns;
         public ConfigEntry<int> MaxRows;
-        public ConfigEntry<GridSize.ExpandPreference> ExpandPreference;
         //public ConfigEntry<bool> ChestChaining;
 
         public GridSize MaxSize
@@ -42,7 +41,6 @@ namespace XStorage
 
             MaxColumns = configFile.Bind("UI", "MaxColumns", 2, "The maximum amount of columns XStorage can expand the containers panel to.");
             MaxRows = configFile.Bind("UI", "MaxRows", 3, "The maximum amount of rows XStorage can expand the containers panel to.");
-            ExpandPreference = configFile.Bind("UI", "ExpandPreference", GridSize.ExpandPreference.ColumnsFirst, "Determines how XStorage expands the containers panel.");
             //ChestChaining = configFile.Bind("Algorithm", "ChestChaining", true, "Recursively open chests near the chest that was opened.");
 
             //this.configFile.ConfigReloaded += LocalConfigChanged;

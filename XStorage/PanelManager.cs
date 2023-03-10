@@ -58,7 +58,7 @@ namespace XStorage
             var newContainerPanel = AddOrEnablePanel(container);
             newContainerPanel.Show(container);
 
-            UpdateSize();
+            RootPanel.UpdateSize(VisiblePanelsCount);
             RootPanel.SetActive(true);
         }
 
@@ -76,24 +76,10 @@ namespace XStorage
             RootPanel.SetActive(false);
         }
 
-        private void UpdateSize()
-        {
-            // Don't go outside the screen bounds
-            int maxColsOnScreen = Mathf.FloorToInt(Screen.width / ContainerPanel.SinglePanelWithWeightPanelSize.x);
-            int maxRowsOnScreen = Mathf.FloorToInt(Screen.height / ContainerPanel.SinglePanelWithWeightPanelSize.y);
-            int maxCols = (int)Math.Min(XStorageConfig.Instance.MaxSize.Columns, maxColsOnScreen);
-            int maxRows = (int)Math.Min(XStorageConfig.Instance.MaxSize.Rows, maxRowsOnScreen);
-
-            var newSize = GridSize.CalculateSquare(maxCols, maxRows, VisiblePanelsCount, XStorageConfig.Instance.ExpandPreference.Value);
-
-            RootPanel.GridSize = newSize;
-            RootPanel.RestorePosition();
-        }
-
         public void AddPanel()
         {
             var newPanel = new ContainerPanel(
-                parent: RootPanel.ContentPanel,
+                parent: ContentPanel,
                 name: "XStorage Container" + containerPanels.Count);
 
             containerPanels.Add(newPanel.ContainerGui);

@@ -1,4 +1,6 @@
 ﻿using Jotunn.Managers;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,22 +15,7 @@ namespace XStorage.GUI
         public ScrollablePanel ScrollablePanel;
         public ContainerGridPanel ContentPanel;
 
-        private GridSize gridSize;
-        public GridSize GridSize
-        {
-            get
-            {
-                return gridSize;
-            }
-            set
-            {
-                if (gridSize != value)
-                {
-                    gridSize = value;
-                    UpdatePanelSize();
-                }
-            }
-        }
+        public GridSize GridSize { get; private set; }
 
         public RootPanel(Transform parent, Vector2 gridCellSize)
         {
@@ -78,6 +65,23 @@ namespace XStorage.GUI
             ScrollablePanel.ScrollRectContent = ContentPanel;
         }
 
+        public void UpdateSize(int visiblePanelCount)
+        {
+            // Don't go outside the screen bounds
+            var scale = GuiScaler.m_scalers[0].GetScreenSizeFactor();
+            int maxColsOnScreen = Mathf.FloorToInt(Screen.width / scale / ContainerPanel.SinglePanelWithWeightPanelSize.x);
+            int maxRowsOnScreen = Mathf.FloorToInt(Screen.height / scale / ContainerPanel.SinglePanelWithWeightPanelSize.y);
+
+            // Restrict to configured maximums
+            int maxCols = (int)Math.Min(XStorageConfig.Instance.MaxSize.Columns, maxColsOnScreen);
+            int maxRows = (int)Math.Min(XStorageConfig.Instance.MaxSize.Rows, maxRowsOnScreen);
+
+            GridSize = GridSize.Calculate(maxCols, maxRows, visiblePanelCount);
+
+            UpdatePanelSize();
+            RestorePosition();
+        }
+
         private Vector2 CalculatePanelSize()
         {
             var width =
@@ -95,7 +99,7 @@ namespace XStorage.GUI
 
         private void UpdatePanelSize()
         {
-            Jotunn.Logger.LogDebug($"Setting size: {GridSize}");
+            Jotunn.Logger.LogDebug($"Setting size based on {GridSize}");
 
             var newPanelSize = CalculatePanelSize();
             RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newPanelSize.x);
