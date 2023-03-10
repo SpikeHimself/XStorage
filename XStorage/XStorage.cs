@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using HarmonyLib;
 using Jotunn.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace XStorage
             XStorageConfig.Instance.LoadLocalConfig(Config);
 
             // Apply the Harmony patches
-            Patches.Patch();
+            Patches.Patcher.Patch();
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace XStorage
         private void OnDestroy()
         {
             PanelManager.Instance.Clear();
-            Patches.Unpatch();
+            Patches.Patcher.Unpatch();
         }
         #endregion
 

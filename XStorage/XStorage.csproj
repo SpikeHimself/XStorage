@@ -92,7 +92,11 @@
     <Compile Include="GUI\XUIPanel.cs" />
     <Compile Include="GUI\RootPanel.cs" />
     <Compile Include="ModInfo.cs" />
-    <Compile Include="Patches.cs" />
+    <Compile Include="Patches\Container.cs" />
+    <Compile Include="Patches\Game.cs" />
+    <Compile Include="Patches\InventoryGui.cs" />
+    <Compile Include="Patches\Patcher.cs" />
+    <Compile Include="Patches\UITooltip.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="RPC.cs" />
     <Compile Include="GUI\ScrollablePanel.cs" />
