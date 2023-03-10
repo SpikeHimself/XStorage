@@ -111,15 +111,18 @@ namespace XStorage.GUI
             var value = Transform.localPosition.ToString();
             Jotunn.Logger.LogDebug($"Saving position: `{key}` = `{value}`");
 
-            var customData = Player.m_localPlayer.m_customData;
-            if (!customData.ContainsKey(key))
-            {
-                customData.Add(key, value);
-            }
-            else
-            {
-                customData[key] = value;
-            }
+            PlayerPrefs.SetString(key, value);
+            PlayerPrefs.Save();
+
+            //var customData = Player.m_localPlayer.m_customData;
+            //if (!customData.ContainsKey(key))
+            //{
+            //    customData.Add(key, value);
+            //}
+            //else
+            //{
+            //    customData[key] = value;
+            //}
         }
 
         public void RestorePosition()
@@ -127,12 +130,18 @@ namespace XStorage.GUI
             Transform.localPosition = Vector3.zero;
 
             var key = $"{XStorageConfig.ZdoProperty_GridSize}_{GridSize}";
-            var customData = Player.m_localPlayer.m_customData;
-            if (customData.TryGetValue(key, out var value))
+            if (PlayerPrefs.HasKey(key))
             {
-                Jotunn.Logger.LogDebug($"Restoring position: `{key}` = `{value}`");
+                var value = PlayerPrefs.GetString(key);
                 Transform.localPosition = Util.StringToVector3(value);
             }
+
+            //var customData = Player.m_localPlayer.m_customData;
+            //if (customData.TryGetValue(key, out var value))
+            //{
+            //    Jotunn.Logger.LogDebug($"Restoring position: `{key}` = `{value}`");
+            //    Transform.localPosition = Util.StringToVector3(value);
+            //}
         }
     }
 }
