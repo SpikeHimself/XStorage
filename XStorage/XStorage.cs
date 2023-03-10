@@ -56,10 +56,16 @@ namespace XStorage
         #endregion
 
         #region Container functions
-        public static void OpenNearbyContainers(Container container)
+        //public enum ContainerSearchMethod
+        //{
+        //    NearPlayer,
+        //    NearContainer
+        //}
+
+        public static void OpenNearbyContainers(Container container) //, ContainerSearchMethod method = ContainerSearchMethod.NearPlayer)
         {
             var player = Player.m_localPlayer;
-            var nearbyContainers = FindNearbyContainers(container);
+            var nearbyContainers = FindNearbyContainers(container); //, method);
 
             Jotunn.Logger.LogDebug($"Found {nearbyContainers.Count} extra container(s)");
             foreach (Container nearbyContainer in nearbyContainers)
@@ -69,14 +75,29 @@ namespace XStorage
             }
         }
 
-        public static List<Container> FindNearbyContainers(Container container)
+        public static List<Container> FindNearbyContainers(Container container) //, ContainerSearchMethod method)
         {
             var player = Player.m_localPlayer;
+            
+            //if ( method == ContainerSearchMethod.NearContainer)
+            //{
+            //    return GameObject.FindObjectsOfType<Container>()
+            //    .Where(c =>
+            //            c != container &&
+            //            c.IsPlacedByPlayer() &&
+            //            !c.IsInUse() &&
+            //            c.Distance(container) <= 2f
+            //        )
+            //        .OrderBy(c => c.Distance(player))
+            //        .ToList();
+            //}
+
             return GameObject.FindObjectsOfType<Container>()
             .Where(c =>
                     c != container &&
                     c.IsPlacedByPlayer() &&
-                    c.Distance(player) < 5f
+                    !c.IsInUse() &&
+                    c.Distance(player) <= 4f
                 )
                 .OrderBy(c => c.Distance(player))
                 .ToList();

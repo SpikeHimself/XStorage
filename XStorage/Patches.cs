@@ -55,7 +55,7 @@ namespace XStorage
         {
             static void Postfix(Container container)
             {
-                if (container)
+                if (container) // && !XStorageConfig.Instance.ChestChaining.Value)
                 {
                     Jotunn.Logger.LogDebug($"Showing container `{container.GetXStorageNameOrDefault()}`");
                     XStorage.OpenNearbyContainers(container);
@@ -87,6 +87,19 @@ namespace XStorage
                 PanelManager.Instance.Show(__instance);
                 return false;
             }
+
+            //static void Postfix(Container __instance, bool granted)
+            //{
+            //    if(!granted)
+            //    {
+            //        return;
+            //    }
+
+            //    if (XStorageConfig.Instance.ChestChaining.Value)
+            //    {
+            //        XStorage.OpenNearbyContainers(__instance, XStorage.ContainerSearchMethod.NearContainer);
+            //    }
+            //}
         }
 
         [HarmonyPatch(typeof(InventoryGui), nameof(InventoryGui.Hide))]
