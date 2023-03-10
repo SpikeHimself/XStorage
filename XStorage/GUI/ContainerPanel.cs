@@ -37,7 +37,7 @@ namespace XStorage.GUI
             RectTransform.anchorMax = new Vector2(0.5f, 0.5f);
             RectTransform.pivot = new Vector2(0.5f, 0.5f);
             RectTransform.localPosition = new Vector2(0, 0);
-            RectTransform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
+            RectTransform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
         }
 
         private static GameObject ClonePrefab(Transform parent)

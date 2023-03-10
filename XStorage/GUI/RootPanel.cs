@@ -35,19 +35,22 @@ namespace XStorage.GUI
             Name = "XStorage Root Panel";
 
             var headerText = GUIManager.Instance.CreateText(
-                "[XStorage] Did you know you can drag this window?",
+                "[ XStorage ]  (you can drag this window!)",
                 parent: Transform,
                 anchorMin: new Vector2(0, 1),
                 anchorMax: new Vector2(1, 1),
                 position: new Vector2(0, 0),
-                font: GUIManager.Instance.AveriaSerifBold,
+                //font: GUIManager.Instance.AveriaSerifBold,
+                font: Resources.FindObjectsOfTypeAll<Font>().Where(f => f.name == "Norsebold").First(),
                 fontSize: 18,
-                color: GUIManager.Instance.ValheimOrange,
+                color: new Color(0.8529f, 0.725f, 0.5331f, 1),
+                //color: GUIManager.Instance.ValheimOrange,
                 outline: true,
                 outlineColor: Color.black,
                 width: initialSize.x,
                 height: Padding.top,
                 addContentSizeFitter: false);
+
 
             var headerTextRt = (RectTransform)headerText.transform;
             headerTextRt.pivot = new Vector2(0, 1);
