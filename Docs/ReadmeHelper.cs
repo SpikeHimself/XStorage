@@ -1,6 +1,6 @@
 using ManyFormats;
 
-namespace PrePackage.Readmes
+namespace Docs
 {
     public enum Targets
     {

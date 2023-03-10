@@ -1,8 +1,9 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" visibility="internal" #>
 <#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>
 <#@ assembly name="$(TargetPath)" #>
+<#@ assembly name="$(TargetDir)$(SolutionName).dll" #>
 <#@ assembly name="$(SolutionDir)\libraries\ManyFormats.dll" #>
-<#@ import namespace="PrePackage.Readmes" #>
+<#@ import namespace="Docs" #>
 <#@ import namespace="ManyFormats" #>
 <#@ import namespace="ManyFormats.Formats" #>
 <#

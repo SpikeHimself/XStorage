@@ -23,7 +23,7 @@ if ($DeployPath.Equals("") -Or $DeployPath.Equals("Build")){
     $DeployPath = "$ValheimPath\BepInEx\plugins"
 }
 
-$PrePackagePath = "$ProjectPath\Prepackage"
+$DocsPath = "$ProjectPath\..\Docs"
 
 Write-Host "Target:          $Target"
 Write-Host "TargetPath:      $TargetPath"
@@ -31,7 +31,7 @@ Write-Host "TargetAssembly:  $TargetAssembly"
 Write-Host "ValheimPath:     $ValheimPath"
 Write-Host "ProjectPath:     $ProjectPath"
 Write-Host "DeployPath:      $DeployPath"
-Write-Host "PrePackagePath:  $PrePackagePath"
+Write-Host "DocsPath:        $DocsPath"
 
 # Make sure Get-Location is the script path
 Push-Location -Path (Split-Path -Parent $MyInvocation.MyCommand.Path)
@@ -64,27 +64,25 @@ if ($Target.Equals("Debug"))
     Copy-Item -Path "$TargetPath\$name.dll" -Destination "$PluginPath" -Force
     Copy-Item -Path "$TargetPath\$name.pdb" -Destination "$PluginPath" -Force
     Copy-Item -Path "$TargetPath\$name.dll.mdb" -Destination "$PluginPath" -Force
-    Copy-Item -Path "$PrePackagePath\Translations" -Destination "$PluginPath\" -Recurse -Force
+    #Copy-Item -Path "$DocsPath\Translations" -Destination "$PluginPath\" -Recurse -Force
 }
 
 if($Target.Equals("Release")) 
 {
     Write-Host "Copying GitHub readme to SolutionDir... "
-    Copy-Item -Path "$PrePackagePath\Readmes\README.GitHub.md" -Destination "$(Get-Location)\README.md" -Force
+    Copy-Item -Path "$DocsPath\README.GitHub.md" -Destination "$(Get-Location)\README.md" -Force
 
     Write-Host "Packaging for ThunderStore..."
-    $Package="Package"
-    $PackagePath="$ProjectPath\$Package"
+    $PackagePath="$ProjectPath\Package"
 
-    Write-Host "$PackagePath\$TargetAssembly"
+
     $PackagePluginsPath = New-Item -Type Directory -Path "$PackagePath\plugins\$name" -Force
     $PackageReleasePath = New-Item -Type Directory -Path "$ProjectPath\Release" -Force
-    
 
     Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$PackagePluginsPath\" -Force
-    Copy-Item -Path "$PrePackagePath\Translations" -Destination "$PackagePluginsPath\" -Recurse -Force
-    Copy-Item -Path "$PrePackagePath\Readmes\README.Thunderstore.md" -Destination "$PackagePath\README.md" -Force
-    Copy-Item -Path "$PrePackagePath\manifest.json" -Destination "$PackagePath\" -Force
+    #Copy-Item -Path "$DocsPath\Translations" -Destination "$PackagePluginsPath\" -Recurse -Force
+    Copy-Item -Path "$DocsPath\README.Thunderstore.md" -Destination "$PackagePath\README.md" -Force
+    Copy-Item -Path "$DocsPath\manifest.json" -Destination "$PackagePath\" -Force
     Copy-Item -Path "$ProjectPath\..\Images\icon.png" -Destination "$PackagePath\" -Force
     
     $CompressedOutputFilename = "$PackageReleasePath\$name-new.zip"

@@ -1,6 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>
-<#@ assembly name="$(TargetPath)" #>
+<#@ assembly name="$(TargetDir)$(SolutionName).dll" #>
 <#@ output extension=".json" #>
 {
   "name": "<#= Mod.Info.Name #>",
