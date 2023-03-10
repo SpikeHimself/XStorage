@@ -6,8 +6,9 @@ namespace XStorage.GUI
 {
     public class RootPanel : XUIPanel
     {
-        private const int Padding = 15;
-        private const int PaddingTop = 40;
+        //private const int Padding = 15;
+        //private const int PaddingTop = 40;
+        private static readonly RectOffset Padding = new RectOffset(left: 15, right: 15, top: 40, bottom: 15);
 
         public ScrollablePanel ScrollablePanel;
         public ContainerGridPanel ContentPanel;
@@ -34,8 +35,8 @@ namespace XStorage.GUI
             Jotunn.Logger.LogDebug("Creating root panel");
 
             var initialSize = new Vector2(
-                Padding * 2f + gridCellSize.x,
-                PaddingTop + Padding * 2f + gridCellSize.y);
+                Padding.left + gridCellSize.x + Padding.right,
+                Padding.top + gridCellSize.y + Padding.bottom);
 
             GameObject = GUIManager.Instance.CreateWoodpanel(
                 parent,
@@ -60,7 +61,7 @@ namespace XStorage.GUI
                 outline: true,
                 outlineColor: Color.black,
                 width: initialSize.x,
-                height: PaddingTop,
+                height: Padding.top,
                 addContentSizeFitter: false);
 
             var headerTextRt = (RectTransform)headerText.transform;
@@ -69,7 +70,7 @@ namespace XStorage.GUI
 
             ScrollablePanel = new ScrollablePanel(
                 parent: Transform,
-                padding: new RectOffset(Padding, Padding, PaddingTop, Padding));
+                padding: Padding);
 
             ContentPanel = new ContainerGridPanel(
                 parent: ScrollablePanel.ViewPort.transform,
@@ -82,13 +83,14 @@ namespace XStorage.GUI
         private Vector2 CalculatePanelSize()
         {
             var width =
-                (2f * Padding)
-                + (GridSize.Columns * ContainerPanel.SinglePanelWithWeightPanelSize.x);
+                Padding.left
+                + GridSize.Columns * ContainerPanel.SinglePanelWithWeightPanelSize.x
+                + Padding.right;
 
             var height =
-                PaddingTop
-                + Padding
-                + (GridSize.Rows * ContainerPanel.SinglePanelWithWeightPanelSize.y);
+                Padding.top
+                + GridSize.Rows * ContainerPanel.SinglePanelWithWeightPanelSize.y
+                + Padding.bottom;
 
             return new Vector2(width, height);
         }
