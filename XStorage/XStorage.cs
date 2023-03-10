@@ -78,7 +78,7 @@ namespace XStorage
         public static List<Container> FindNearbyContainers(Container container) //, ContainerSearchMethod method)
         {
             var player = Player.m_localPlayer;
-            
+
             //if ( method == ContainerSearchMethod.NearContainer)
             //{
             //    return GameObject.FindObjectsOfType<Container>()

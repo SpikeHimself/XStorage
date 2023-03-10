@@ -85,7 +85,7 @@ namespace XStorage
             int maxRows = (int)Math.Min(XStorageConfig.Instance.MaxSize.Rows, maxRowsOnScreen);
 
             var newSize = GridSize.CalculateSquare(maxCols, maxRows, VisiblePanelsCount, XStorageConfig.Instance.ExpandPreference.Value);
-            
+
             RootPanel.GridSize = newSize;
             RootPanel.RestorePosition();
         }

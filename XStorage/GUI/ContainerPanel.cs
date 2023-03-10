@@ -18,7 +18,7 @@ namespace XStorage.GUI
         {
             get
             {
-                if(!containerGui)
+                if (!containerGui)
                 {
                     containerGui = GameObject.GetComponent<ContainerGui>();
                 }
@@ -50,13 +50,13 @@ namespace XStorage.GUI
         private static GameObject panelPrefab;
         private static void CreatePanelPrefab(Transform parent)
         {
-            if(panelPrefab )
+            if (panelPrefab)
             {
                 return;
             }
 
             var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root/Container");
-            
+
             panelPrefab = UnityEngine.Object.Instantiate(vanillaContainerPanel, parent);
             panelPrefab.SetActive(false); // Hide for now
 
