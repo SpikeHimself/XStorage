@@ -141,7 +141,7 @@ namespace XStorage
 
         private void CreateRootPanel()
         {
-            if (RootPanel != null)
+            if (RootPanel != null && RootPanel.GameObject)
             {
                 // root panel was already created, nothing to do
                 return;
