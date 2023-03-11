@@ -87,7 +87,7 @@ namespace XStorage
         {
             var newPanel = new ContainerPanel(
                 parent: ContentPanel,
-                name: "XStorage Container" + containerPanels.Count);
+                name: $"{Mod.Info.Name} Container{containerPanels.Count}");
 
             containerPanels.Add(newPanel.ContainerGui);
 

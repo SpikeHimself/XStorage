@@ -32,19 +32,19 @@ namespace XStorage.GUI
                 height: initialSize.y,
                 draggable: true);
 
-            Name = "XStorage Root Panel";
+            Name = $"{Mod.Info.Name} Root Panel";
 
             var headerText = GUIManager.Instance.CreateText(
-                "[ XStorage ]  (you can drag this window!)",
+                $"[ {Mod.Info.Name} ]  (you can drag this window!)",
                 parent: Transform,
                 anchorMin: new Vector2(0, 1),
                 anchorMax: new Vector2(1, 1),
                 position: new Vector2(0, 0),
-                //font: GUIManager.Instance.AveriaSerifBold,
                 font: Resources.FindObjectsOfTypeAll<Font>().Where(f => f.name == "Norsebold").First(),
+                //font: GUIManager.Instance.NorseBold, // This will be available in the next version of Jotunn
                 fontSize: 18,
                 color: new Color(0.8529f, 0.725f, 0.5331f, 1),
-                //color: GUIManager.Instance.ValheimOrange,
+                //color: GUIManager.Instance.ValheimBeige, // This will be available in the next version of Jotunn
                 outline: true,
                 outlineColor: Color.black,
                 width: initialSize.x,
@@ -56,15 +56,20 @@ namespace XStorage.GUI
             headerTextRt.pivot = new Vector2(0, 1);
             headerTextRt.anchoredPosition = new Vector2(24, -12);
 
+            // Create the scrollable panel
+            //   This contains the ViewPort through which we view the container grid panel
             ScrollablePanel = new ScrollablePanel(
                 parent: Transform,
                 padding: Padding);
 
+            // Create the container grid panel
+            //   This panel contains a GridLayoutGroup which lays out all the containers
             ContentPanel = new ContainerGridPanel(
                 parent: ScrollablePanel.ViewPort.transform,
                 cellSize: gridCellSize,
                 gridSpacing: ContainerPanel.WeightPanelWidth);
 
+            // Set the ScrollablePanel's ScrollRect's content to be the ContainerGridPanel we just created
             ScrollablePanel.ScrollRectContent = ContentPanel;
         }
 

@@ -5,7 +5,7 @@ namespace XStorage
     internal static class RPC
     {
         #region RPC Names
-        private const string RPC_RENAMEREQUEST = "XStorage_RenameRequest";
+        private const string RPC_RENAMEREQUEST = Mod.Info.Name + "_RenameRequest";
         #endregion
 
         private static long GetServerPeerId()

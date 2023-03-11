@@ -4,8 +4,6 @@ namespace XStorage.Components
 {
     public class ContainerTextReceiver : MonoBehaviour, TextReceiver
     {
-
-
         public Container m_Container;
 
         public void Awake()
@@ -26,6 +24,5 @@ namespace XStorage.Components
             // Ask the server to rename this container
             RPC.SendRenameRequestToServer(m_Container.GetZDOID(), text);
         }
-
     }
 }

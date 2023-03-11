@@ -111,6 +111,5 @@ namespace XStorage.GUI
             return goHandle;
         }
         #endregion
-
     }
 }
