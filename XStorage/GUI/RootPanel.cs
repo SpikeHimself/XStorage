@@ -76,8 +76,8 @@ namespace XStorage.GUI
             int maxRowsOnScreen = Mathf.FloorToInt(Screen.height / scale / ContainerPanel.SinglePanelWithWeightPanelSize.y);
 
             // Restrict to configured maximums
-            int maxCols = (int)Math.Min(XStorageConfig.Instance.MaxSize.Columns, maxColsOnScreen);
-            int maxRows = (int)Math.Min(XStorageConfig.Instance.MaxSize.Rows, maxRowsOnScreen);
+            int maxCols = (int)Math.Min(XConfig.Instance.MaxSize.Columns, maxColsOnScreen);
+            int maxRows = (int)Math.Min(XConfig.Instance.MaxSize.Rows, maxRowsOnScreen);
 
             GridSize = GridSize.Calculate(maxCols, maxRows, visiblePanelCount);
 
@@ -114,24 +114,27 @@ namespace XStorage.GUI
 
         public void SavePosition()
         {
-            var key = $"{XStorageConfig.ZdoProperty_GridSize}_{GridSize}";
+            var key = $"{XConfig.Key_GridSize}_{GridSize}";
             var value = Transform.localPosition.ToString();
-            Jotunn.Logger.LogDebug($"Saving position: `{key}` = `{value}`");
 
+            Jotunn.Logger.LogDebug($"Saving panel position: {key} = {value}");
             PlayerPrefs.SetString(key, value);
             PlayerPrefs.Save();
         }
 
         public void RestorePosition()
         {
-            Transform.localPosition = Vector3.zero;
+            var key = $"{XConfig.Key_GridSize}_{GridSize}";
+            var value = Vector3.zero;
 
-            var key = $"{XStorageConfig.ZdoProperty_GridSize}_{GridSize}";
             if (PlayerPrefs.HasKey(key))
             {
-                var value = PlayerPrefs.GetString(key);
-                Transform.localPosition = Util.StringToVector3(value);
+                var sValue = PlayerPrefs.GetString(key);
+                value = Util.StringToVector3(sValue);
             }
+
+            Jotunn.Logger.LogDebug($"Restoring panel position: {key} = {value}");
+            Transform.localPosition = value;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace XStorage
             Jotunn.Logger.LogDebug("oooh chesty!");
 
             // Load config
-            XStorageConfig.Instance.LoadLocalConfig(Config);
+            XConfig.Instance.LoadLocalConfig(Config);
 
             // Apply the Harmony patches
             Patches.Patcher.Patch();

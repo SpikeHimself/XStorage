@@ -4,15 +4,15 @@ using XStorage.GUI;
 
 namespace XStorage
 {
-    public class XStorageConfig
+    public class XConfig
     {
-        public const string ZdoProperty_ContainerName = "XStorage_Name";
-        public const string ZdoProperty_GridSize = "XStorage_Size";
+        public const string Key_ContainerName = Mod.Info.Name + "_Name";
+        public const string Key_GridSize = Mod.Info.Name + "_Size";
 
         ////////////////////////////
         //// Singleton instance ////
-        private static readonly Lazy<XStorageConfig> lazy = new Lazy<XStorageConfig>(() => new XStorageConfig());
-        public static XStorageConfig Instance { get { return lazy.Value; } }
+        private static readonly Lazy<XConfig> lazy = new Lazy<XConfig>(() => new XConfig());
+        public static XConfig Instance { get { return lazy.Value; } }
         ////////////////////////////
 
         //private ConfigFile configFile;

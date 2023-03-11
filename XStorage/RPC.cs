@@ -47,7 +47,7 @@ namespace XStorage
             }
 
             Jotunn.Logger.LogDebug($"{sender} wants to rename container `{containerId}` to `{newName}`");
-            ZDOMan.instance.GetZDO(containerId).Set(XStorageConfig.ZdoProperty_ContainerName, newName);
+            ZDOMan.instance.GetZDO(containerId).Set(XConfig.Key_ContainerName, newName);
         }
     }
 }
