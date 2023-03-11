@@ -1,5 +1,5 @@
 <#= mf.Heading(thisModName) #>
 
-XStorage lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
+XStorage <#= (target == Targets.GitHub) ? "is a Valheim mod that " : "" #>lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
 
-<#= mf.Image("https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-small.png", height: 500) #>
+<#= mf.Image("https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-v1.1.0-small.png", height: 480) #>

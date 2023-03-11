@@ -1,8 +1,8 @@
 # XStorage
 
-XStorage is a Valheim mod lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
+XStorage is a Valheim mod that lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
 
-<img src="https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-small.png" height="500" />
+<img src="https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-v1.1.0-small.png" height="480" />
 
 
 # Download and installation instructions (for players)
@@ -27,7 +27,7 @@ For feature requests, choose `Feature request` on the [New issue](https://github
 
 # Installation instructions (for developers)
 
-I will soon write a guide to get XStorage working in your development environment. For now, you can probably figure some stuff out by having a look at the [J?tunnModStub](https://github.com/Valheim-Modding/JotunnModStub) project that XStorage is based on. Please bear in mind that the information there might have changed since XStorage was created, and that XStorage itself may over time have diverted from the steps laid out there. Again, a guide will follow soon!
+I will soon write a guide to get XStorage working in your development environment. For now, you can probably figure some stuff out by having a look at the [JotunnModStub](https://github.com/Valheim-Modding/JotunnModStub) project that XStorage is based on. Please bear in mind that the information there might have changed since XStorage was created, and that XStorage itself may over time have diverted from the steps laid out there. Again, a guide will follow soon!
 
 
 # I did more too!

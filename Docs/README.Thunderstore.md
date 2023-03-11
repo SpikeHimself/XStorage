@@ -2,7 +2,7 @@
 
 XStorage lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
 
-<img src="https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-small.png" height="500" />
+<img src="https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-v1.1.0-small.png" height="480" />
 
 
 # Features
@@ -11,22 +11,17 @@ XStorage lets you open multiple chests at once, rename them, and move items/stac
 
 By pressing alt-interact (`Shift + E` by default), you can give your chests a name. This name is shown when you hover over the chest, and also in the panel above the inventory when a chest is opened.
 
-Chest names will be permanently stored in your world file. Uninstalling XStorage makes them go away, but after reinstalling they will be recovered.
-
 #### Open many chests
 
-To display multiple chests, XStorage creates a new panel in the UI. Sadly there aren't enough pixels on the screen to make everything fit nicely, so there is a small overlap with existing UI panels. Hopefully I can address this in the future.
+To display multiple chests, XStorage creates a new panel in the UI. The panel will automatically expand to fit in as many chests as it can. You can restrict the width and height in XStorage's config.
 
-In theory there is no limit to how many chests XStorage can display. When the UI panel is full, XStorage makes the panel scrollable. In a future version, I might impose a restriction on how many chests can be opened though, as this could cause performance issues.
-
-Also on the roadmap are config options that let you configure the distance and methods that decide which chests are opened. One such method I have in mind is chest linking, i.e. every opened chests searches for other chests near it, so that you could open an entire row of chests from either end. For now, XStorage opens any chest that is within 5 meters of the player (again, with no maximum amount of chests).
+When you open more chests than XStorage can display on the screen, this panel will become scrollable.
 
 #### Moving items/stacks to the most suitable chest
 
 When you auto-move an item from your inventory (via `Ctrl + Click`), XStorage tries to find the most suitable chest to put the item/stack in. It does so by picking the chest containing the highest quantity of the item you are moving, from all opened chests that still have free space.
-So if you have a wooden chest with 499 stone in it, and you `Ctrl + Click` on a stack of stone in your inventory, 1 stone will be moved to that chest. You have to then `Ctrl + Click` it again to make the rest go to the next most suitable chest.
 
-`Ctrl + Click`-ing an item or stack in any of the chests will always make it go to the player inventory.
+`Ctrl + Click`-ing an item or stack in any of the chests will always make it go to the player inventory (equal to vanilla behaviour).
 
 #### Multiplayer
 
@@ -36,7 +31,6 @@ In multiplayer games, all players need to have XStorage installed, or it will no
 
 There are a few things that, at this stage, XStorage does not do well, or at all:
 * **Gamepad input**: XStorage does not deal with gamepad input at all. That is to say, the UI kind of breaks when you use a gamepad. I will look into this in the future, but for now this mod is pretty much mouse/keyboard only.
-* **The panel does not fit**: The XStorage UI panel does not fit within the vanilla UI very well. I am considering alternative ways of displaying the container panels (for example by overlapping or even removing the crafting panel. Does anyone even use that while opening a chest?)
 
 
 XStorage looks best when playing at a 16:9 ratio with a UI scaling of 95% or smaller.
@@ -57,6 +51,27 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 
 # Changelogs
 
+* **v1.1.0** (2023-03-11)
+
+	* Fix error when placing a new chest
+
+	* Fix a HarmonyX warning that occurs when loading XStorage; this was caused by a library I use locally to manage documentation, but XStorage does not ship with this library.
+
+	* Fix being able to rename chests that are protected by a ward
+
+	* UI overhaul: 
+	
+		* You can now drag the XStorage panel 
+
+		* You can set the maximum panel size in XStorage's config file using MaxColumns and MaxRows. Default value is 2 columns by 3 rows. XStorage will still restrict the size by what fits on your screen.
+
+		* XStorage will store the position of the panel per grid size when you close the panel, so that next time you open a panel of the same size, it will be restored to that position on the screen.
+
+	* Many code improvements and optimisations
+
+<details>
+<summary>Click to view previous versions</summary>
+
 * **v1.0.2** (2023-03-02)
 
 	* Fix tooltips not always being fully visible
@@ -64,9 +79,6 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 	* Fix tooltips sometimes escaping the mouse pointer
 
 	* Reworked a large portion of the containers panel UI
-
-<details>
-<summary>Click to view previous versions</summary>
 
 * **v1.0.1** (2023-02-28)
 

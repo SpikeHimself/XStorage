@@ -1,5 +1,0 @@
-<#= mf.Heading(thisModName) #>
-
-XStorage is a Valheim mod that lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
-
-<#= mf.Image("https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-small.png", height: 500) #>
