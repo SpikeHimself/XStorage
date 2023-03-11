@@ -365,9 +365,10 @@ FodyWeavers.xsd
 *.csproj.user
 
 # automated build output
-XStorage/[Pp]ackage
+[Pp]ackage
+[Rr]elease
 
-# not the libraries folder
+# Keep the libraries folder
 !libraries/*
 
 # the valheim paths config

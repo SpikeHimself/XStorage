@@ -23,18 +23,26 @@ if ($DeployPath.Equals("") -Or $DeployPath.Equals("Build")){
     $DeployPath = "$ValheimPath\BepInEx\plugins"
 }
 
-$DocsPath = "$ProjectPath\..\Docs"
-
-Write-Host "Target:          $Target"
-Write-Host "TargetPath:      $TargetPath"
-Write-Host "TargetAssembly:  $TargetAssembly"
-Write-Host "ValheimPath:     $ValheimPath"
-Write-Host "ProjectPath:     $ProjectPath"
-Write-Host "DeployPath:      $DeployPath"
-Write-Host "DocsPath:        $DocsPath"
-
 # Make sure Get-Location is the script path
 Push-Location -Path (Split-Path -Parent $MyInvocation.MyCommand.Path)
+
+# Add some more locations
+$SolutionPath = $(Get-Location)
+$PackagePath = New-Item -Type Directory -Path "$SolutionPath\Package\$Target" -Force
+$ReleasePath = New-Item -Type Directory -Path "$SolutionPath\Release" -Force
+$DocsPath = "$SolutionPath\Docs"
+
+# Print an overview of variables
+Write-Host "Target:             $Target"
+Write-Host "TargetPath:         $TargetPath"
+Write-Host "TargetAssembly:     $TargetAssembly"
+Write-Host "ValheimPath:        $ValheimPath"
+Write-Host "ProjectPath:        $ProjectPath"
+Write-Host "DeployPath:         $DeployPath"
+Write-Host "SolutionPath:       $SolutionPath"
+Write-Host "PackagePath:        $PackagePath"
+Write-Host "ReleasePath:        $ReleasePath"
+Write-Host "DocsPath:           $DocsPath"
 
 # Test some preliminaries
 ("$TargetPath",
@@ -51,7 +59,7 @@ $name = "$TargetAssembly" -Replace('.dll')
 $pdb = "$TargetPath\$name.pdb"
 if (Test-Path -Path "$pdb") {
     Write-Host "Create mdb file for plugin $name"
-    Invoke-Expression "& `"$(Get-Location)\libraries\Debug\pdb2mdb.exe`" `"$TargetPath\$TargetAssembly`""
+    Invoke-Expression "& `"$SolutionPath\libraries\Debug\pdb2mdb.exe`" `"$TargetPath\$TargetAssembly`""
 }
 
 # Main Script
@@ -65,27 +73,35 @@ if ($Target.Equals("Debug"))
     Copy-Item -Path "$TargetPath\$name.pdb" -Destination "$PluginPath" -Force
     Copy-Item -Path "$TargetPath\$name.dll.mdb" -Destination "$PluginPath" -Force
     #Copy-Item -Path "$DocsPath\Translations" -Destination "$PluginPath\" -Recurse -Force
+
+    Write-Host "Packaging debug release..."
+    
+    Copy-Item -Path "$TargetPath\$name.dll" -Destination "$PackagePath\" -Force
+    Copy-Item -Path "$TargetPath\$name.pdb" -Destination "$PackagePath\" -Force
+    Copy-Item -Path "$TargetPath\$name.dll.mdb" -Destination "$PackagePath\" -Force
+
+    $CompressedOutputFilename = "$ReleasePath\$name-debug-new.zip"
+    Compress-Archive -Path "$PackagePath\*" -DestinationPath "$CompressedOutputFilename" -Force
+    Write-Host "Debug package ready: $CompressedOutputFilename"
 }
 
 if($Target.Equals("Release")) 
 {
     Write-Host "Copying GitHub readme to SolutionDir... "
-    Copy-Item -Path "$DocsPath\README.GitHub.md" -Destination "$(Get-Location)\README.md" -Force
+    Copy-Item -Path "$DocsPath\README.GitHub.md" -Destination "$SolutionPath\README.md" -Force
 
     Write-Host "Packaging for ThunderStore..."
-    $PackagePath="$ProjectPath\Package"
+    $PackagePath = New-Item -Type Directory -Path "$SolutionPath\Package\Release" -Force
 
+    $PackagePluginPath = New-Item -Type Directory -Path "$PackagePath\plugins\$name" -Force
 
-    $PackagePluginsPath = New-Item -Type Directory -Path "$PackagePath\plugins\$name" -Force
-    $PackageReleasePath = New-Item -Type Directory -Path "$ProjectPath\Release" -Force
-
-    Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$PackagePluginsPath\" -Force
-    #Copy-Item -Path "$DocsPath\Translations" -Destination "$PackagePluginsPath\" -Recurse -Force
+    Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$PackagePluginPath\" -Force
+    #Copy-Item -Path "$DocsPath\Translations" -Destination "$PackagePluginPath\" -Recurse -Force
     Copy-Item -Path "$DocsPath\README.Thunderstore.md" -Destination "$PackagePath\README.md" -Force
     Copy-Item -Path "$DocsPath\manifest.json" -Destination "$PackagePath\" -Force
-    Copy-Item -Path "$ProjectPath\..\Images\icon.png" -Destination "$PackagePath\" -Force
+    Copy-Item -Path "$SolutionPath\Images\icon.png" -Destination "$PackagePath\" -Force
     
-    $CompressedOutputFilename = "$PackageReleasePath\$name-new.zip"
+    $CompressedOutputFilename = "$ReleasePath\$name-new.zip"
     Compress-Archive -Path "$PackagePath\*" -DestinationPath "$CompressedOutputFilename" -Force
     Write-Host "Package ready: $CompressedOutputFilename"
 }
