@@ -7,7 +7,6 @@ namespace XStorage
     public class XConfig
     {
         public const string Key_ContainerName = Mod.Info.Name + "_Name";
-        public const string Key_GridSize = Mod.Info.Name + "_Size";
 
         ////////////////////////////
         //// Singleton instance ////
@@ -15,7 +14,7 @@ namespace XStorage
         public static XConfig Instance { get { return lazy.Value; } }
         ////////////////////////////
 
-        //private ConfigFile configFile;
+        private ConfigFile configFile;
         public ConfigEntry<int> MaxColumns;
         public ConfigEntry<int> MaxRows;
         //public ConfigEntry<bool> ChestChaining;
@@ -34,7 +33,7 @@ namespace XStorage
         /// <param name="configFile">The config file being loaded</param>
         public void LoadLocalConfig(ConfigFile configFile)
         {
-            //this.configFile = configFile;
+            this.configFile = configFile;
 
             // Add Nexus ID to config for Nexus Update Check (https://www.nexusmods.com/valheim/mods/102)
             configFile.Bind("General", "NexusID", Mod.Info.NexusId, "Nexus mod ID for updates (do not change)");
@@ -46,5 +45,26 @@ namespace XStorage
             //this.configFile.ConfigReloaded += LocalConfigChanged;
             //this.configFile.SettingChanged += LocalConfigChanged;
         }
+
+        #region Panel Position
+        private ConfigEntry<Vector3> BindPanelPosition(GridSize gridSize)
+        {
+            var key = $"Position_{gridSize}";
+            return configFile.Bind("Panel Position", key, Vector3.zero, $"The position on the screen when the panel is sized `{gridSize}`");
+        }
+
+        public void SavePanelPosition(GridSize gridSize, Vector3 position)
+        {
+            var panelPosition = BindPanelPosition(gridSize);
+            panelPosition.Value = position;
+            configFile.Save();
+        }
+
+        public Vector3 GetPanelPosition(GridSize gridSize)
+        {
+            var panelPosition = BindPanelPosition(gridSize);
+            return panelPosition.Value;
+        }
+        #endregion
     }
 }

@@ -117,29 +117,34 @@ namespace XStorage.GUI
             ContentPanel.GridLayoutGroup.constraintCount = GridSize.Columns;
         }
 
+        #region Save/Restore panel position
         public void SavePosition()
         {
-            var key = $"{XConfig.Key_GridSize}_{GridSize}";
-            var value = Transform.localPosition.ToString();
-
-            Jotunn.Logger.LogDebug($"Saving panel position: {key} = {value}");
-            PlayerPrefs.SetString(key, value);
-            PlayerPrefs.Save();
+            XConfig.Instance.SavePanelPosition(GridSize, Transform.position);
         }
 
         public void RestorePosition()
         {
-            var key = $"{XConfig.Key_GridSize}_{GridSize}";
-            var value = Vector3.zero;
-
-            if (PlayerPrefs.HasKey(key))
-            {
-                var sValue = PlayerPrefs.GetString(key);
-                value = Util.StringToVector3(sValue);
-            }
-
-            Jotunn.Logger.LogDebug($"Restoring panel position: {key} = {value}");
-            Transform.localPosition = value;
+            Transform.position = XConfig.Instance.GetPanelPosition(GridSize);
+            ClampToScreen();
         }
+
+        private void ClampToScreen()
+        {
+            Vector2 pos = Transform.position;
+            Rect rect = RectTransform.rect;
+            //Vector2 lossyScale = RectTransform.lossyScale;
+
+            float minX = rect.width / 2f; // * lossyScale.x;
+            float maxX = Screen.width - minX;
+            float minY = rect.height / 2f; // * lossyScale.y;
+            float maxY = Screen.height - minY;
+
+            pos.x = Mathf.Clamp(pos.x, minX, maxX);
+            pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+            Transform.position = pos;
+        }
+        #endregion
     }
 }
