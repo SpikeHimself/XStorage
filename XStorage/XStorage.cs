@@ -100,7 +100,7 @@ namespace XStorage
                     !c.IsInUse() &&
                     c.Distance(container) <= 4f
                 )
-                .OrderBy(c => c.Distance(player))
+                .OrderByDescending(c => c.GetInventory().GetTotalWeight())
                 .ToList();
         }
         #endregion
