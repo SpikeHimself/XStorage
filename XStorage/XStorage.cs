@@ -95,6 +95,7 @@ namespace XStorage
             return GameObject.FindObjectsOfType<Container>()
             .Where(c =>
                     c != container &&
+                    !PanelManager.Instance.ContainsPanel(c) &&
                     c.IsPlacedByPlayer() &&
                     !c.IsInUse() &&
                     c.Distance(container) <= 4f
