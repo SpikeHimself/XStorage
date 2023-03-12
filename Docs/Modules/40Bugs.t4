@@ -1,4 +1,4 @@
-<#= mf.Heading("Bugs, Feature Requests and Translations") #>
+<#= mf.Heading("Bugs and Feature Requests") #>
 
 <#
 if (target == Targets.NexusMods)
