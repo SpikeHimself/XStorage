@@ -26,6 +26,12 @@ namespace XStorage.Patches
     {
         static void Prefix(Container __instance)
         {
+            if (Environment.ShuttingDown)
+            {
+                Jotunn.Logger.LogDebug("Shutting down, ignoring hover");
+                return;
+            }
+
             if (!__instance.IsPlacedByPlayer())
             {
                 // Don't do anything to containers that weren't placed by a player

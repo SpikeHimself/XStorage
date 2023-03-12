@@ -40,7 +40,7 @@ namespace XStorage
         /// <param name="newName">The new name of the container</param>
         private static void RPC_RenameRequest(long sender, ZDOID containerId, string newName)
         {
-            if (!Environment.IsServer())
+            if (!Environment.IsServer)
             {
                 Jotunn.Logger.LogDebug($"{sender} wants to rename container `{containerId}` to `{newName}`, but I am not the server");
                 return;
