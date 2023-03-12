@@ -97,7 +97,7 @@ namespace XStorage
                     c != container &&
                     c.IsPlacedByPlayer() &&
                     !c.IsInUse() &&
-                    c.Distance(player) <= 4f
+                    c.Distance(container) <= 4f
                 )
                 .OrderBy(c => c.Distance(player))
                 .ToList();
