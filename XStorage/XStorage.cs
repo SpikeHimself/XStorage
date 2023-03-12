@@ -77,28 +77,15 @@ namespace XStorage
 
         public static List<Container> FindNearbyContainers(Container container) //, ContainerSearchMethod method)
         {
-            var player = Player.m_localPlayer;
-
-            //if ( method == ContainerSearchMethod.NearContainer)
-            //{
-            //    return GameObject.FindObjectsOfType<Container>()
-            //    .Where(c =>
-            //            c != container &&
-            //            c.IsPlacedByPlayer() &&
-            //            !c.IsInUse() &&
-            //            c.Distance(container) <= 2f
-            //        )
-            //        .OrderBy(c => c.Distance(player))
-            //        .ToList();
-            //}
-
+            var maxDistance = XConfig.Instance.NearbyChestRadius.Value;
+            
             return GameObject.FindObjectsOfType<Container>()
             .Where(c =>
                     c != container &&
                     !PanelManager.Instance.ContainsPanel(c) &&
                     c.IsPlacedByPlayer() &&
                     !c.IsInUse() &&
-                    c.Distance(container) <= 4f
+                    c.Distance(container) <= maxDistance
                 )
                 .OrderByDescending(c => c.GetInventory().GetTotalWeight())
                 .ToList();

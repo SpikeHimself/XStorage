@@ -18,6 +18,7 @@ namespace XStorage
         private ConfigFile configFile;
         public ConfigEntry<int> MaxColumns;
         public ConfigEntry<int> MaxRows;
+        public ConfigEntry<int> NearbyChestRadius;
         //public ConfigEntry<bool> ChestChaining;
 
         public GridSize MaxSize
@@ -42,6 +43,7 @@ namespace XStorage
             MaxColumns = configFile.Bind("UI", "MaxColumns", 2, "The maximum amount of columns XStorage can expand the containers panel to.");
             MaxRows = configFile.Bind("UI", "MaxRows", 3, "The maximum amount of rows XStorage can expand the containers panel to.");
             //ChestChaining = configFile.Bind("Algorithm", "ChestChaining", true, "Recursively open chests near the chest that was opened.");
+            NearbyChestRadius = configFile.Bind("Algorithm", "NearbyChestRange", 4, "The radius in meters within which to look for nearby chests. Setting this too high will cause performance issues.");
 
             //this.configFile.ConfigReloaded += LocalConfigChanged;
             //this.configFile.SettingChanged += LocalConfigChanged;
