@@ -35,7 +35,7 @@ namespace XStorage.Components
             m_grid.m_onSelected += OnGridItemSelected;
             m_grid.m_onRightClick += OnGridItemRightClick;
 
-            m_takeAllButton = GetComponentInChildren<Button>();
+            m_takeAllButton = transform.Find("TakeAll").GetComponent<Button>();
             m_takeAllButton.onClick.AddListener(OnTakeAll);
 
             m_containerName = transform.Find("container_name").GetComponent<Text>();
