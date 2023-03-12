@@ -36,8 +36,13 @@ namespace XStorage
 
         private PanelManager()
         {
-            //CreateRoot();
             containerPanels = new List<ContainerGui>();
+        }
+
+        internal void Reset()
+        {
+            Clear();
+            RootPanel = null;
         }
 
         public void Clear()

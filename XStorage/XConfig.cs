@@ -1,5 +1,6 @@
 ﻿using BepInEx.Configuration;
 using System;
+using UnityEngine;
 using XStorage.GUI;
 
 namespace XStorage

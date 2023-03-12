@@ -50,7 +50,7 @@ namespace XStorage
         #region Game
         public static void GameStarted()
         {
-            PanelManager.Instance.Clear();
+            PanelManager.Instance.Reset();
             RPC.RegisterRPCs();
         }
         #endregion
