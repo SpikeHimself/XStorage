@@ -69,7 +69,7 @@ namespace XStorage.Components
         {
             // By default, ctrl+click-ing (i.e. moving) an item, takes the item from the Player inventory and adds it to the currently active (vanilla) chest
             // Since the current item isn't coming from the Player inventory, this would create a bug through which items are duplicated, so we need to handle it manually
-            if (mod == InventoryGrid.Modifier.Move)
+            if (mod == InventoryGrid.Modifier.Move && item != null)
             {
                 Player localPlayer = Player.m_localPlayer;
                 localPlayer.GetInventory().MoveItemToThis(grid.GetInventory(), item);

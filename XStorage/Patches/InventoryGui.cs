@@ -47,7 +47,7 @@ namespace XStorage.Patches
                 return true;
             }
 
-            if (mod == InventoryGrid.Modifier.Move && !item.m_shared.m_questItem)
+            if (mod == InventoryGrid.Modifier.Move && item != null && !item.m_shared.m_questItem)
             {
                 bool itemMoved = XStorage.MoveItemToSuitableContainer(grid, item);
                 if (itemMoved)
