@@ -79,7 +79,7 @@ namespace XStorage
         public static List<Container> FindNearbyContainers(Container container) //, ContainerSearchMethod method)
         {
             var maxDistance = XConfig.Instance.NearbyChestRadius.Value;
-            
+
             return GameObject.FindObjectsOfType<Container>()
             .Where(c =>
                     c != container &&

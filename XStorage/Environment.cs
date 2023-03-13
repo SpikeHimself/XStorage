@@ -8,7 +8,7 @@ namespace XStorage
         /// Are we the Server?
         /// </summary>
         /// <returns>True if ZNet says we are a server</returns>
-        public static bool IsServer
+        internal static bool IsServer
         {
             get
             {
@@ -20,7 +20,7 @@ namespace XStorage
         /// Are we Headless? (dedicated server)
         /// </summary>
         /// <returns>True if SystemInfo.graphicsDeviceType is not set</returns>
-        public static bool IsHeadless
+        internal static bool IsHeadless
         {
             get
             {
@@ -36,7 +36,7 @@ namespace XStorage
         /// <summary>
         /// Is the Game shutting down? This happens on logout and on quit.
         /// </summary>
-        public static bool ShuttingDown
+        internal static bool ShuttingDown
         {
             get
             {
