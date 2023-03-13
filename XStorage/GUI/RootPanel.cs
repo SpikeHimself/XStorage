@@ -133,11 +133,11 @@ namespace XStorage.GUI
         {
             Vector2 pos = Transform.position;
             Rect rect = RectTransform.rect;
-            //Vector2 lossyScale = RectTransform.lossyScale;
+            Vector2 lossyScale = RectTransform.lossyScale;
 
-            float minX = rect.width / 2f; // * lossyScale.x;
+            float minX = rect.width / 2f * lossyScale.x;
             float maxX = Screen.width - minX;
-            float minY = rect.height / 2f; // * lossyScale.y;
+            float minY = rect.height / 2f * lossyScale.y;
             float maxY = Screen.height - minY;
 
             pos.x = Mathf.Clamp(pos.x, minX, maxX);
