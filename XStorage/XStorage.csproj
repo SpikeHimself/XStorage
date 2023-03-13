@@ -100,6 +100,9 @@
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="RPC.cs" />
     <Compile Include="GUI\ScrollablePanel.cs" />
+    <Compile Include="RPC\RPCManager.cs" />
+    <Compile Include="RPC\SendToServer.cs" />
+    <Compile Include="RPC\ServerEvents.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="XStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

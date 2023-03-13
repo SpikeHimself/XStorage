@@ -22,6 +22,7 @@ namespace XStorage.Patches
         /// </summary>
         static void Postfix()
         {
+            Environment.GameStarted = true;
             XStorage.GameStarted();
         }
     }

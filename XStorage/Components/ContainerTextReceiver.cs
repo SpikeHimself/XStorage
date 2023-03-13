@@ -22,7 +22,7 @@ namespace XStorage.Components
             XStorage.UpdateContainerAndInventoryName(m_Container, text);
 
             // Ask the server to rename this container
-            RPC.SendRenameRequestToServer(m_Container.GetZDOID(), text);
+            RPC.SendToServer.RenameRequest(m_Container.GetZDOID(), text);
         }
     }
 }

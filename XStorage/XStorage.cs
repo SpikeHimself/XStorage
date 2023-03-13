@@ -3,6 +3,7 @@ using Jotunn.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using XStorage.RPC;
 
 namespace XStorage
 {
@@ -51,7 +52,7 @@ namespace XStorage
         public static void GameStarted()
         {
             PanelManager.Instance.Reset();
-            RPC.RegisterRPCs();
+            RPCManager.Register();
         }
         #endregion
 
@@ -93,6 +94,10 @@ namespace XStorage
         #endregion
 
         #region Name functions
+        public static void SetXStorageName(ZDOID containerId, string newName)
+        {
+            ZDOMan.instance.GetZDO(containerId).Set(XConfig.Key_ContainerName, newName);
+        }
 
         public static void UpdateContainerAndInventoryName(Container container)
         {

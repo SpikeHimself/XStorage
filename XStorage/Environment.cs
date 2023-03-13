@@ -29,6 +29,11 @@ namespace XStorage
         }
 
         /// <summary>
+        /// Has the Game shutting started? Set via a patch on Game.Start
+        /// </summary>
+        internal static bool GameStarted { get; set; } = false;
+
+        /// <summary>
         /// Is the Game shutting down? This happens on logout and on quit.
         /// </summary>
         public static bool ShuttingDown
@@ -36,6 +41,17 @@ namespace XStorage
             get
             {
                 return Game.instance.m_shuttingDown;
+            }
+        }
+
+        /// <summary>
+        /// The PeerID of the server
+        /// </summary>
+        internal static long ServerPeerId
+        {
+            get
+            {
+                return ZRoutedRpc.instance.GetServerPeerID();
             }
         }
     }
