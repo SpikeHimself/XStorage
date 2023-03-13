@@ -31,6 +31,7 @@ $SolutionPath = $(Get-Location)
 $PackagePath = New-Item -Type Directory -Path "$SolutionPath\Package\$Target" -Force
 $ReleasePath = New-Item -Type Directory -Path "$SolutionPath\Release" -Force
 $DocsPath = "$SolutionPath\Docs"
+$PrePackagePath = "$ProjectPath\Prepackage"
 
 # Print an overview of variables
 Write-Host "Target:             $Target"
@@ -43,6 +44,7 @@ Write-Host "SolutionPath:       $SolutionPath"
 Write-Host "PackagePath:        $PackagePath"
 Write-Host "ReleasePath:        $ReleasePath"
 Write-Host "DocsPath:           $DocsPath"
+Write-Host "PrePackagePath:     $PrePackagePath"
 
 # Test some preliminaries
 ("$TargetPath",
@@ -72,7 +74,7 @@ if ($Target.Equals("Debug"))
     Copy-Item -Path "$TargetPath\$name.dll" -Destination "$PluginPath" -Force
     Copy-Item -Path "$TargetPath\$name.pdb" -Destination "$PluginPath" -Force
     Copy-Item -Path "$TargetPath\$name.dll.mdb" -Destination "$PluginPath" -Force
-    #Copy-Item -Path "$DocsPath\Translations" -Destination "$PluginPath\" -Recurse -Force
+    #Copy-Item -Path "$PrePackagePath\Translations" -Destination "$PluginPath\" -Recurse -Force
 
     Write-Host "Packaging debug release..."
     
@@ -96,7 +98,7 @@ if($Target.Equals("Release"))
     $PackagePluginPath = New-Item -Type Directory -Path "$PackagePath\plugins\$name" -Force
 
     Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$PackagePluginPath\" -Force
-    #Copy-Item -Path "$DocsPath\Translations" -Destination "$PackagePluginPath\" -Recurse -Force
+    #Copy-Item -Path "$PrePackagePath\Translations" -Destination "$PackagePluginPath\" -Recurse -Force
     Copy-Item -Path "$DocsPath\README.Thunderstore.md" -Destination "$PackagePath\README.md" -Force
     Copy-Item -Path "$DocsPath\manifest.json" -Destination "$PackagePath\" -Force
     Copy-Item -Path "$SolutionPath\Images\icon.png" -Destination "$PackagePath\" -Force
