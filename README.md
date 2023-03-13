@@ -18,7 +18,7 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 
 
 
-# Bugs, Feature Requests and Translations
+# Bugs and Feature Requests
 
 To report a bug, please navigate to the [Issues page](https://github.com/SpikeHimself/XStorage/issues), click [New issue](https://github.com/SpikeHimself/XStorage/issues/new/choose), choose `Bug report`, and fill out the template.
 

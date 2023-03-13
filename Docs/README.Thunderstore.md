@@ -51,6 +51,29 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 
 # Changelogs
 
+* **v1.1.1** (2023-03-13)
+
+	* Fix mod breaking after logging out and then starting/joining another game
+
+	* Store panel positions in config instead of hidden away in player preferences
+
+	* Clamp panel to screen boundaries after restoring its position
+
+	* Fix error that sometimes appears when logging out or quitting the game
+
+	* Fix error that can occur when `Ctrl+Click`-ing an empty cell in one of the the inventory grids
+
+	* Use the position of the chest you're opening, instead of the position of your character, when searching for nearby chests
+
+	* Order chests by weight so empty ones show up last
+
+	* Add config option `NearbyChestRadius` to set how far away to look for chests for
+
+	* Fix a compatibility issue whereby the Take All button would stop working if another mod added more buttons to the container panel
+
+<details>
+<summary>Click to view previous versions</summary>
+
 * **v1.1.0** (2023-03-11)
 
 	* Fix error when placing a new chest
@@ -68,9 +91,6 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 		* XStorage will store the position of the panel per grid size when you close the panel, so that next time you open a panel of the same size, it will be restored to that position on the screen.
 
 	* Many code improvements and optimisations
-
-<details>
-<summary>Click to view previous versions</summary>
 
 * **v1.0.2** (2023-03-02)
 
