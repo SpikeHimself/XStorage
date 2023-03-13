@@ -71,6 +71,10 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 
 	* Fix a compatibility issue whereby the Take All button would stop working if another mod added more buttons to the container panel
 
+* Known issue:
+
+	* The panel will not grow higher than 1 row when you set MaxColumns to 1. I'll address this in the next release.
+
 <details>
 <summary>Click to view previous versions</summary>
 
