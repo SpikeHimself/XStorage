@@ -98,7 +98,6 @@
     <Compile Include="Patches\Patcher.cs" />
     <Compile Include="Patches\UITooltip.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
-    <Compile Include="RPC.cs" />
     <Compile Include="GUI\ScrollablePanel.cs" />
     <Compile Include="RPC\RPCManager.cs" />
     <Compile Include="RPC\SendToServer.cs" />
