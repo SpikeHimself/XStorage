@@ -40,11 +40,9 @@ namespace XStorage.GUI
                 anchorMin: new Vector2(0, 1),
                 anchorMax: new Vector2(1, 1),
                 position: new Vector2(0, 0),
-                font: Resources.FindObjectsOfTypeAll<Font>().Where(f => f.name == "Norsebold").First(),
-                //font: GUIManager.Instance.NorseBold, // This will be available in the next version of Jotunn
+                font: GUIManager.Instance.NorseBold,
                 fontSize: 18,
-                color: new Color(0.8529f, 0.725f, 0.5331f, 1),
-                //color: GUIManager.Instance.ValheimBeige, // This will be available in the next version of Jotunn
+                color: GUIManager.Instance.ValheimBeige,
                 outline: true,
                 outlineColor: Color.black,
                 width: initialSize.x,
