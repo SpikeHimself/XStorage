@@ -40,16 +40,11 @@ namespace XStorage.GUI
             return $"{Columns}x{Rows}";
         }
 
-        public static GridSize Calculate(int maxColumns, int maxRows, int cells)
+        public static GridSize Calculate(int maxCols, int maxRows, int cells)
         {
-            var sqrt = Mathf.Sqrt(cells);
-
-            var rounded = Mathf.RoundToInt(sqrt);
-            var ceiled = Mathf.CeilToInt(sqrt);
-
-            int cols = Math.Min(maxColumns, ceiled);
-            int rows = Math.Min(maxRows, rounded);
-
+            int cols = Mathf.Min(maxCols, cells);
+            int totalRows = Mathf.CeilToInt(cells / (float)cols);
+            int rows = Mathf.Min(maxRows, totalRows);
             return new GridSize(cols, rows);
         }
 
