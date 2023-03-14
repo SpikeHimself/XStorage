@@ -50,20 +50,20 @@ namespace XStorage
         }
 
         #region Panel Position
-        private ConfigEntry<Vector3> BindPanelPosition(GridSize gridSize)
+        private ConfigEntry<Vector2> BindPanelPosition(GridSize gridSize)
         {
             var key = $"Position_{gridSize}";
-            return configFile.Bind("Panel Position", key, Vector3.zero, $"The position on the screen when the panel is sized `{gridSize}`");
+            return configFile.Bind("Panel Position", key, Vector2.zero, $"The position on the screen when the panel is sized `{gridSize}`");
         }
 
-        public void SavePanelPosition(GridSize gridSize, Vector3 position)
+        public void SavePanelPosition(GridSize gridSize, Vector2 position)
         {
             var panelPosition = BindPanelPosition(gridSize);
             panelPosition.Value = position;
             configFile.Save();
         }
 
-        public Vector3 GetPanelPosition(GridSize gridSize)
+        public Vector2 GetPanelPosition(GridSize gridSize)
         {
             var panelPosition = BindPanelPosition(gridSize);
             return panelPosition.Value;
