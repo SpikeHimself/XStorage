@@ -51,6 +51,17 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 
 # Changelogs
 
+* **v1.1.2** (2023-03-15)
+
+	* Dependency updates: BepInEx 5.4.21, Jotunn 2.11.0
+
+	* Fix panel size calculation
+
+	* Save panel positions as Vector2 instead of Vector3
+
+<details>
+<summary>Click to view previous versions</summary>
+
 * **v1.1.1** (2023-03-13)
 
 	* Fix mod breaking after logging out and then starting/joining another game
@@ -70,13 +81,6 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 	* Add config option `NearbyChestRadius` to set how far away to look for chests for
 
 	* Fix a compatibility issue whereby the Take All button would stop working if another mod added more buttons to the container panel
-
-* Known issue:
-
-	* The panel will not grow higher than 1 row when you set MaxColumns to 1. I'll address this in the next release.
-
-<details>
-<summary>Click to view previous versions</summary>
 
 * **v1.1.0** (2023-03-11)
 
