@@ -45,6 +45,9 @@ namespace XStorage
             //ChestChaining = configFile.Bind("Algorithm", "ChestChaining", true, "Recursively open chests near the chest that was opened.");
             NearbyChestRadius = configFile.Bind("Algorithm", "NearbyChestRange", 4, "The radius in meters within which to look for nearby chests. Setting this too high will cause performance issues.");
 
+            // Bind the entry of an arbitrary gridsize so that the description is saved in the config file.
+            BindPanelPosition(GridSize.OneByOne);
+
             //this.configFile.ConfigReloaded += LocalConfigChanged;
             //this.configFile.SettingChanged += LocalConfigChanged;
         }

@@ -4,6 +4,8 @@ namespace XStorage.GUI
 {
     public class GridSize
     {
+        public static GridSize OneByOne = new GridSize(1, 1);
+
         public int Columns { get; }
         public int Rows { get; }
 
