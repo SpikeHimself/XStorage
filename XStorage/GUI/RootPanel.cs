@@ -137,8 +137,8 @@ namespace XStorage.GUI
             float minY = rect.height / 2f * lossyScale.y;
             float maxY = Screen.height - minY;
 
-            pos.x = Mathf.Clamp(pos.x, minX, maxX);
-            pos.y = Mathf.Clamp(pos.y, minY, maxY);
+            pos.x = Mathf.RoundToInt(Mathf.Clamp(pos.x, minX, maxX));
+            pos.y = Mathf.RoundToInt(Mathf.Clamp(pos.y, minY, maxY));
 
             Transform.position = pos;
         }
