@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <StartAction>Program</StartAction>
     <StartProgram>$(VALHEIM_INSTALL)\valheim.exe</StartProgram>
-    <StartArguments>-console</StartArguments>
+    <StartArguments>-console -screen-width 1920 -screen-height 1080</StartArguments>
     <StartWorkingDirectory>$(VALHEIM_INSTALL)</StartWorkingDirectory>
   </PropertyGroup>
   <ItemGroup>
