@@ -54,10 +54,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="manifest.json">
+    <None Include="GitHub.Release.md">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>manifest.tt</DependentUpon>
+      <DependentUpon>GitHub.Release.tt</DependentUpon>
     </None>
     <None Include="Modules\00Urls.t4" />
     <None Include="Modules\10Header.t4" />
@@ -65,31 +65,47 @@
     <None Include="Modules\30Installation.t4" />
     <None Include="Modules\40Bugs.t4" />
     <None Include="Modules\50Changelogs.t4" />
+    <None Include="Modules\51Changelog-current.t4" />
+    <None Include="Modules\52Changelogs-previous.t4" />
     <None Include="Modules\60Credits.t4" />
     <None Include="Modules\90InstallationDev.t4" />
     <None Include="Modules\99Footer.t4" />
-    <None Include="README.GitHub.md">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>README.GitHub.tt</DependentUpon>
-    </None>
     <None Include="README.Nexus.bbcode">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>README.Nexus.tt</DependentUpon>
     </None>
-    <None Include="README.Thunderstore.md">
+    <None Include="SolutionDir\.github\ISSUE_TEMPLATE\bug_report.md">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>README.Thunderstore.tt</DependentUpon>
+      <DependentUpon>bug_report.tt</DependentUpon>
+    </None>
+    <None Include="SolutionDir\.github\ISSUE_TEMPLATE\feature_request.md">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>feature_request.tt</DependentUpon>
+    </None>
+    <None Include="SolutionDir\Package\Release\CHANGELOG.md">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CHANGELOG.tt</DependentUpon>
+    </None>
+    <None Include="SolutionDir\Package\Release\manifest.json">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>manifest.tt</DependentUpon>
+    </None>
+    <None Include="SolutionDir\Package\Release\README.md">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>README.tt</DependentUpon>
+    </None>
+    <None Include="SolutionDir\README.md">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>README.tt</DependentUpon>
     </None>
     <None Include="_Header.t4" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.GitHub.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>README.GitHub.md</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.Nexus.tt">
@@ -98,19 +114,37 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.Thunderstore.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>README.Thunderstore.md</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="manifest.tt">
+    <Content Include="GitHub.Release.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GitHub.Release.md</LastGenOutput>
+    </Content>
+    <Content Include="SolutionDir\.github\ISSUE_TEMPLATE\bug_report.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>bug_report.md</LastGenOutput>
+    </Content>
+    <Content Include="SolutionDir\.github\ISSUE_TEMPLATE\feature_request.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>feature_request.md</LastGenOutput>
+    </Content>
+    <Content Include="SolutionDir\Package\Release\CHANGELOG.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CHANGELOG.md</LastGenOutput>
+    </Content>
+    <Content Include="SolutionDir\Package\Release\manifest.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>manifest.json</LastGenOutput>
-    </None>
+    </Content>
+    <Content Include="SolutionDir\Package\Release\README.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>README.md</LastGenOutput>
+    </Content>
+    <Content Include="SolutionDir\README.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>README.md</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
