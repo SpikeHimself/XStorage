@@ -2,4 +2,4 @@
 
 * Clean up panel position values in config file
 
-* Update Jotun 2.11.2, BepInEx 5.4.2102
+* Dependency updates: BepInEx 5.4.2102, Jotunn 2.11.2
