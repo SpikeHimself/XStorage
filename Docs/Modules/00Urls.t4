@@ -14,6 +14,7 @@
 
 	
 	// My GitHub pages
+	var linkGitHub = mf.Link($"{thisModName}'s GitHub page", urlThisModGitHub);
 	var linkGitHubIssues = mf.Link("Issues page", urlThisModGitHubIssues);
 	var linkGitHubNewIssue = mf.Link("New issue", urlThisModGitHubNewIssue);
 
@@ -24,6 +25,12 @@
 
 	var urlXStorage = CreateUrl(2290, "SpikeHimself/XStorage");
 	var linkXStorage = mf.Link("XStorage", urlXStorage);
+
+
+	// My resources
+	var urlBuyMeACoffeeImage = "https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/buy-me-a-coffee-small.png";
+	var imgBuyMeACoffee = mf.Image(urlBuyMeACoffeeImage, align: Alignment.Right);
+	var linkBuyMeACoffee = mf.Link( imgBuyMeACoffee, "https://www.buymeacoffee.com/SpikeHimself");
 
 	
 	// External mods
