@@ -7,7 +7,7 @@ namespace XStorage
 {
     public class XConfig
     {
-        public const string Key_ContainerName = Mod.Info.Name + "_Name";
+
 
         ////////////////////////////
         //// Singleton instance ////

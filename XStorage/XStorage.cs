@@ -12,6 +12,8 @@ namespace XStorage
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Patch)]
     public class XStorage : BaseUnityPlugin
     {
+        public const string Key_ContainerName = Mod.Info.Name + "_Name";
+
         #region Unity Events
         /// <summary>
         /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html
@@ -96,7 +98,7 @@ namespace XStorage
         #region Name functions
         public static void SetXStorageName(ZDOID containerId, string newName)
         {
-            ZDOMan.instance.GetZDO(containerId).Set(XConfig.Key_ContainerName, newName);
+            ZDOMan.instance.GetZDO(containerId).Set(XStorage.Key_ContainerName, newName);
         }
 
         public static void UpdateContainerAndInventoryName(Container container)
