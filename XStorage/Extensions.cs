@@ -47,6 +47,11 @@ namespace XStorage
             return container.GetZDO().GetString(XStorage.Key_ContainerName, Localization.instance.Localize(container.m_name));
         }
 
+        internal static bool GetXStorageSkipMark(this Container container)
+        {
+            return container.GetZDO().GetBool(XStorage.Key_SkipMark, defaultValue: false);
+        }
+
         internal static bool HasRoomFor(this Container container, string itemName)
         {
             var inv = container.GetInventory();
