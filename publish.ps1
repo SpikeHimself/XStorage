@@ -18,6 +18,19 @@ param(
     [System.String]$DeployPath
 )
 
+########
+# You need to run the following command as admin, only once.
+# It installs a module that fixes a bug with Compress-Archive using backward slashes as path separators, which should be forward slashes.
+# https://github.com/PowerShell/Microsoft.PowerShell.Archive/issues/48#issuecomment-491968156
+#
+#   Install-Module Microsoft.PowerShell.Archive -MinimumVersion 1.2.3.0 -Repository PSGallery -Force
+########
+
+if ([version]$(Get-Module -ListAvailable Microsoft.PowerShell.Archive | Sort-Object Version -Descending  | Select-Object Version -First 1  | Select-Object @{n='ModuleVersion'; e={$_.Version -as [string]}} | Select-Object ModuleVersion -ExpandProperty ModuleVersion) -lt [version]"1.2.3.0")
+{
+    Write-Error -ErrorAction Stop -Message "Microsoft.PowerShell.Archive is not the correct version. Read the comments in publish.ps1 to fix this."
+}
+
 if ($DeployPath.Equals("") -Or $DeployPath.Equals("Build")){
     Write-Host "Fix DeployPath"
     $DeployPath = "$ValheimPath\BepInEx\plugins"
@@ -31,7 +44,7 @@ $SolutionPath = $(Get-Location)
 $PackagePath = New-Item -Type Directory -Path "$SolutionPath\Package\$Target" -Force
 $ReleasePath = New-Item -Type Directory -Path "$SolutionPath\Release" -Force
 $DocsPath = "$SolutionPath\Docs"
-$PrePackagePath = "$ProjectPath\Prepackage"
+$TranslationsPath = "$ProjectPath\Translations"
 
 # Print an overview of variables
 Write-Host "Target:             $Target"
@@ -44,7 +57,7 @@ Write-Host "SolutionPath:       $SolutionPath"
 Write-Host "PackagePath:        $PackagePath"
 Write-Host "ReleasePath:        $ReleasePath"
 Write-Host "DocsPath:           $DocsPath"
-Write-Host "PrePackagePath:     $PrePackagePath"
+Write-Host "TranslationsPath:   $TranslationsPath"
 
 # Test some preliminaries
 ("$TargetPath",
@@ -74,7 +87,7 @@ if ($Target.Equals("Debug"))
     Copy-Item -Path "$TargetPath\$name.dll" -Destination "$PluginPath" -Force
     Copy-Item -Path "$TargetPath\$name.pdb" -Destination "$PluginPath" -Force
     Copy-Item -Path "$TargetPath\$name.dll.mdb" -Destination "$PluginPath" -Force
-    #Copy-Item -Path "$PrePackagePath\Translations" -Destination "$PluginPath\" -Recurse -Force
+    #Copy-Item -Path "$TranslationsPath" -Destination "$PluginPath\" -Recurse -Force
 
     Write-Host "Packaging debug release..."
     
@@ -95,7 +108,7 @@ if($Target.Equals("Release"))
     Write-Host "Packaging for ThunderStore..."
     $PackagePluginPath = New-Item -Type Directory -Path "$PackagePath\plugins\$name" -Force
     Copy-Item -Path "$TargetPath\$TargetAssembly" -Destination "$PackagePluginPath\" -Force
-    #Copy-Item -Path "$PrePackagePath\Translations" -Destination "$PackagePluginPath\" -Recurse -Force
+    #Copy-Item -Path "$TranslationsPath" -Destination "$PackagePluginPath\" -Recurse -Force
     Copy-Item -Path "$SolutionPath\Images\icon.png" -Destination "$PackagePath\" -Force
     
     $CompressedOutputFilename = "$ReleasePath\$name-new.zip"
