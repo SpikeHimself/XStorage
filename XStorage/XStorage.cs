@@ -59,16 +59,10 @@ namespace XStorage
         #endregion
 
         #region Container functions
-        //public enum ContainerSearchMethod
-        //{
-        //    NearPlayer,
-        //    NearContainer
-        //}
-
-        public static void OpenNearbyContainers(Container container) //, ContainerSearchMethod method = ContainerSearchMethod.NearPlayer)
+        public static void OpenNearbyContainers(Container container)
         {
             var player = Player.m_localPlayer;
-            var nearbyContainers = FindNearbyContainers(container); //, method);
+            var nearbyContainers = FindNearbyContainers(container);
 
             Jotunn.Logger.LogDebug($"Found {nearbyContainers.Count} extra container(s)");
             foreach (Container nearbyContainer in nearbyContainers)
@@ -78,7 +72,7 @@ namespace XStorage
             }
         }
 
-        public static List<Container> FindNearbyContainers(Container container) //, ContainerSearchMethod method)
+        public static List<Container> FindNearbyContainers(Container container)
         {
             var maxDistance = XConfig.Instance.NearbyChestRadius.Value;
 

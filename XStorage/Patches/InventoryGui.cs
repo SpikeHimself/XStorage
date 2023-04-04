@@ -7,7 +7,7 @@ namespace XStorage.Patches
     {
         static void Postfix(Container container)
         {
-            if (container) // && !XStorageConfig.Instance.ChestChaining.Value)
+            if (container)
             {
                 Jotunn.Logger.LogDebug($"Showing container `{container.GetXStorageNameOrDefault()}`");
 
@@ -38,11 +38,10 @@ namespace XStorage.Patches
         }
     }
 
-
     [HarmonyPatch(typeof(InventoryGui), nameof(InventoryGui.OnSelectedItem))]
     static class InventoryGui_OnSelectedItem
     {
-        static bool Prefix(InventoryGui __instance, InventoryGrid grid, ItemDrop.ItemData item, Vector2i pos, InventoryGrid.Modifier mod)
+        static bool Prefix(InventoryGui __instance, InventoryGrid grid, ItemDrop.ItemData item, InventoryGrid.Modifier mod)
         {
             if (grid != InventoryGui.instance.m_playerGrid)
             {
