@@ -20,9 +20,20 @@ When you auto-move an item from your inventory (via <#= mf.Code("Ctrl + Click") 
 
 In multiplayer games, all players need to have XStorage installed, or it will not work. If you play on a dedicated server, the server also has to have XStorage installed.
 
+<#= mf.Heading("Mod compatibility", size: HeadingSize.Small) #>
+
+As of v1.1.3, XStorage can be stopped from opening nearby chests, if the chest being opened is marked with the XStorage "SkipMark". This allows other mods, such as <#= linkSeidrChest #>, to function as intended.
+
+To do this, set the <#= mf.Code("XStorage_SkipMark") #> to <#= mf.Code("true") #> in the Container's ZDO, like so:
+
+<#= mf.Code("container.m_nview.GetZDO().Set(\"XStorage_SkipMark\", true);", mode: CodeMode.Block) #>
+
+If you need assistance with this, reach out to me on <#= linkGitHub #>.
+
 <#= mf.Heading("Known shortcomings", size: HeadingSize.Small) #>
 
 There are a few things that, at this stage, XStorage does not do well, or at all:
+
 <#= 
 	mf.List(ListBullets.Asterisk, items: new string[] {
 		$"{mf.Bold("Gamepad input")}: XStorage does not deal with gamepad input at all. That is to say, the UI kind of breaks when you use a gamepad. I will look into this in the future, but for now this mod is pretty much mouse/keyboard only.",

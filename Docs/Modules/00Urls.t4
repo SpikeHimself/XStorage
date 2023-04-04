@@ -40,6 +40,7 @@
 	var linkJotunn = CreateLink("Jotunn", 1138, "ValheimModding/Jotunn");
 	var linkStonePortal = CreateLink("Stone Portal", 2007, "JereKuusela/Stone_Portal");
 	var linkAdvancedPortals = CreateLink("Advanced Portals", 2187, "RandyKnapp/AdvancedPortals");
+	var linkSeidrChest = CreateLink("Seidr Chest", 2172, "Neobotics/SeidrChest");
 
 
 	// Static links to other pages
