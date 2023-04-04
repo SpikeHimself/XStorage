@@ -13,6 +13,7 @@ namespace XStorage
     public class XStorage : BaseUnityPlugin
     {
         public const string Key_ContainerName = Mod.Info.Name + "_Name";
+        public const string Key_SkipMark = Mod.Info.Name + "_SkipMark";
 
         #region Unity Events
         /// <summary>
