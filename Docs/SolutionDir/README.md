@@ -17,6 +17,8 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 3. On [Nexus Mods](https://www.nexusmods.com/valheim/mods/2290) click 'Mod manager download', or on [Thunderstore](https://valheim.thunderstore.io/package/SpikeHimself/XStorage/) click 'Install with Mod Manager'.
 
 
+To install XStorage on a dedicated server, copy all of the contents of the `plugins\` directory found inside the .zip file download to the  `Valheim\BepInEx\plugins\` directory on your server. 
+
 
 # Bugs and Feature Requests
 
@@ -39,4 +41,4 @@ Please have a look at my other mod too! [XPortal](https://www.nexusmods.com/valh
 
 My mods are free and will remain free, for everyone to use, edit or learn from. I lovingly poured many hours of hard work into these projects. If you enjoy my mods and want to support my work, please consider buying me a coffee :)
 
-[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="40" align="right" />](https://www.buymeacoffee.com/SpikeHimself)
+[<img src="https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/buy-me-a-coffee-small.png" align="right" />](https://www.buymeacoffee.com/SpikeHimself)

@@ -27,9 +27,22 @@ When you auto-move an item from your inventory (via `Ctrl + Click`), XStorage tr
 
 In multiplayer games, all players need to have XStorage installed, or it will not work. If you play on a dedicated server, the server also has to have XStorage installed.
 
+#### Mod compatibility
+
+As of v1.1.3, XStorage can be stopped from opening nearby chests, if the chest being opened is marked with the XStorage "SkipMark". This allows other mods, such as [Seidr Chest](https://valheim.thunderstore.io/package/Neobotics/SeidrChest/), to function as intended.
+
+To do this, set the `XStorage_SkipMark` to `true` in the Container's ZDO, like so:
+
+```
+container.m_nview.GetZDO().Set("XStorage_SkipMark", true);
+```
+
+If you need assistance with this, reach out to me on [XStorage's GitHub page](https://github.com/SpikeHimself/XStorage).
+
 #### Known shortcomings
 
 There are a few things that, at this stage, XStorage does not do well, or at all:
+
 * **Gamepad input**: XStorage does not deal with gamepad input at all. That is to say, the UI kind of breaks when you use a gamepad. I will look into this in the future, but for now this mod is pretty much mouse/keyboard only.
 
 
@@ -48,6 +61,8 @@ I very strongly recommend using a mod manager such as [Vortex](https://www.nexus
 3. On [Nexus Mods](https://www.nexusmods.com/valheim/mods/2290) click 'Mod manager download', or on [Thunderstore](https://valheim.thunderstore.io/package/SpikeHimself/XStorage/) click 'Install with Mod Manager'.
 
 
+To install XStorage on a dedicated server, copy all of the contents of the `plugins\` directory found inside the .zip file download to the  `Valheim\BepInEx\plugins\` directory on your server. 
+
 
 # Bugs and Feature Requests
 
@@ -65,4 +80,4 @@ Please have a look at my other mod too! [XPortal](https://valheim.thunderstore.i
 
 My mods are free and will remain free, for everyone to use, edit or learn from. I lovingly poured many hours of hard work into these projects. If you enjoy my mods and want to support my work, don't forget to click the Like button, and please consider buying me a coffee :)
 
-[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="40" align="right" />](https://www.buymeacoffee.com/SpikeHimself)
+[<img src="https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/buy-me-a-coffee-small.png" align="right" />](https://www.buymeacoffee.com/SpikeHimself)
