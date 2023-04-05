@@ -11,8 +11,6 @@ namespace XStorage.Components
     /// </summary>
     public class ContainerGui : MonoBehaviour
     {
-        private RectTransform m_rect;
-
         // Container being displayed by this ContainerGui
         public Container m_currentContainer;
 
@@ -29,9 +27,7 @@ namespace XStorage.Components
         {
             Log.Debug("ContainerGui.Awake");
 
-            m_rect = (RectTransform)transform;
             m_grid = GetComponentInChildren<InventoryGrid>();
-
             m_grid.m_onSelected += OnGridItemSelected;
             m_grid.m_onRightClick += OnGridItemRightClick;
 
@@ -151,6 +147,5 @@ namespace XStorage.Components
         {
             InventoryGui.instance.SetupDragItem(null, null, 1);
         }
-
     }
 }
