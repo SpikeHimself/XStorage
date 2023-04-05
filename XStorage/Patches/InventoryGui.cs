@@ -9,13 +9,13 @@ namespace XStorage.Patches
         {
             if (container)
             {
-                Jotunn.Logger.LogDebug($"Showing container `{container.GetXStorageNameOrDefault()}`");
+                Log.Debug($"Showing container `{container.GetXStorageNameOrDefault()}`");
 
                 // Do not open nearby containers if this container has the SkipMark set
                 // Other mods can use this if they don't want XStorage to open nearby chests
                 if (container.GetXStorageSkipMark())
                 {
-                    Jotunn.Logger.LogDebug("This container has the SkipMark set. Not opening nearby containers.");
+                    Log.Debug("This container has the SkipMark set. Not opening nearby containers.");
                     return;
                 }
 

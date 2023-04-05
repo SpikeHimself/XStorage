@@ -104,7 +104,7 @@ namespace XStorage.GUI
 
         private void UpdatePanelSize()
         {
-            Jotunn.Logger.LogDebug($"Setting size based on {GridSize}");
+            Log.Debug($"Setting size based on {GridSize}");
 
             var newPanelSize = CalculatePanelSize();
             RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newPanelSize.x);

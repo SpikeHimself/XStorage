@@ -55,7 +55,7 @@ namespace XStorage.GUI
                 return;
             }
 
-            Jotunn.Logger.LogDebug("Cloning vanilla container panel..");
+            Log.Debug("Cloning vanilla container panel..");
 
             var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root/Container");
 

@@ -23,7 +23,7 @@ namespace XStorage
         private void Awake()
         {
             // Hello, world!
-            Jotunn.Logger.LogDebug("oooh chesty!");
+            Log.Debug("oooh chesty!");
 
             // Load config
             XConfig.Instance.LoadLocalConfig(Config);
@@ -62,14 +62,17 @@ namespace XStorage
         #region Container functions
         public static void OpenNearbyContainers(Container container)
         {
-            var player = Player.m_localPlayer;
             var nearbyContainers = FindNearbyContainers(container);
-
-            Jotunn.Logger.LogDebug($"Found {nearbyContainers.Count} extra container(s)");
-            foreach (Container nearbyContainer in nearbyContainers)
+            if (nearbyContainers.Count > 0)
             {
-                Jotunn.Logger.LogDebug($"Calling .Interact() on extra container `{nearbyContainer.GetXStorageNameOrDefault()}`");
-                nearbyContainer.Interact(player, false, false);
+                Log.Info($"Found {nearbyContainers.Count} extra chests near `{container.GetXStorageNameOrDefault()}`");
+
+                var player = Player.m_localPlayer;
+                foreach (Container nearbyContainer in nearbyContainers)
+                {
+                    Log.Debug($"Calling .Interact() on extra container `{nearbyContainer.GetXStorageNameOrDefault()}`");
+                    nearbyContainer.Interact(player, false, false);
+                }
             }
         }
 
@@ -112,7 +115,7 @@ namespace XStorage
 
         public static void UpdateContainerAndInventoryName(Container container, string newName)
         {
-            Jotunn.Logger.LogDebug($"Updating `{container.m_name}`: `{newName}`");
+            Log.Debug($"Updating `{container.m_name}`: `{newName}`");
             container.m_name = newName;
             container.GetInventory().m_name = newName;
         }
@@ -130,7 +133,7 @@ namespace XStorage
             }
 
             var itemNameLocalised = Localization.instance.Localize(item.m_shared.m_name);
-            Jotunn.Logger.LogDebug($"Moving `{itemNameLocalised}` to `{containerWithStackSpace.GetXStorageNameOrDefault()}`");
+            Log.Debug($"Moving `{itemNameLocalised}` to `{containerWithStackSpace.GetXStorageNameOrDefault()}`");
 
             containerWithStackSpace.GetInventory().MoveItemToThis(grid.GetInventory(), item);
             return true;
@@ -140,7 +143,7 @@ namespace XStorage
         {
             var itemNameLocalised = Localization.instance.Localize(itemName);
 
-            Jotunn.Logger.LogDebug($"Looking for containers containing `{itemNameLocalised}`");
+            Log.Debug($"Looking for containers containing `{itemNameLocalised}`");
 
             var allContainers = new List<Container>
             {
@@ -154,7 +157,7 @@ namespace XStorage
 
             if (candidates.Any())
             {
-                Jotunn.Logger.LogDebug($"Found {candidates.Count()} container(s) containing `{itemNameLocalised}` with room for more");
+                Log.Debug($"Found {candidates.Count()} container(s) containing `{itemNameLocalised}` with room for more");
                 return candidates.First();
             }
 

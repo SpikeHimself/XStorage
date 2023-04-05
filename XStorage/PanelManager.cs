@@ -63,7 +63,7 @@ namespace XStorage
 
             if (!IsVisible())
             {
-                Jotunn.Logger.LogDebug("Opening ContainersPanel, resetting scroll view");
+                Log.Debug("Opening ContainersPanel, resetting scroll view");
                 RootPanel.ScrollablePanel.ScrollUp();
             }
 
@@ -83,7 +83,7 @@ namespace XStorage
 
             RootPanel.SavePosition();
 
-            Jotunn.Logger.LogDebug("Hiding");
+            Log.Debug("Hiding");
             containerPanels.ForEach(c => c.Hide());
             RootPanel.SetActive(false);
         }
@@ -96,13 +96,11 @@ namespace XStorage
 
             containerPanels.Add(newPanel.ContainerGui);
 
-            Jotunn.Logger.LogDebug($"[AddPanel] Total container panels: {containerPanels.Count}");
+            Log.Debug($"Total container panels: {containerPanels.Count}");
         }
 
         private ContainerGui AddOrEnablePanel(Container container)
         {
-            Jotunn.Logger.LogDebug("AddOrEnablePanel");
-
             // If this container is already being displayed, return its panel instead of adding a new one
             var activePanel = FindPanel(container);
             if (activePanel)
@@ -152,12 +150,12 @@ namespace XStorage
                 return;
             }
 
-            Jotunn.Logger.LogDebug("Creating root panel");
+            Log.Debug("Creating root panel");
 
             var inventoryScreenRoot = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root");
             if (!inventoryScreenRoot)
             {
-                Jotunn.Logger.LogError("Can't find inventory screen root");
+                Log.Error("Can't find inventory screen root");
                 return;
             }
 

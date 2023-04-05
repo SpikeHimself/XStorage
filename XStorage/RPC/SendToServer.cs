@@ -9,7 +9,7 @@
         /// <param name="newName">The new name of the container</param>
         internal static void RenameRequest(ZDOID containerId, string newName)
         {
-            Jotunn.Logger.LogDebug($"Requesting server to rename `{containerId}` to `{newName}`");
+            Log.Debug($"Requesting server to rename `{containerId}` to `{newName}`");
             ZRoutedRpc.instance.InvokeRoutedRPC(Environment.ServerPeerId, RPCManager.RPC_RENAMEREQUEST, containerId, newName);
         }
     }

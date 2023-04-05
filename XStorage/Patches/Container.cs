@@ -12,7 +12,7 @@ namespace XStorage.Patches
             if (!__instance.m_piece)
             {
                 // Don't do anything if this container has no Piece property (i.e. ghost items).
-                Jotunn.Logger.LogDebug($"Ignoring `{__instance.m_name}` (this is fine)");
+                Log.Debug($"Ignoring `{__instance.m_name}` (this is fine)");
                 return;
             }
 
@@ -28,7 +28,7 @@ namespace XStorage.Patches
         {
             if (Environment.ShuttingDown)
             {
-                Jotunn.Logger.LogDebug("Shutting down, ignoring hover");
+                Log.Debug("Shutting down, ignoring hover");
                 return;
             }
 
@@ -108,17 +108,17 @@ namespace XStorage.Patches
             if (!InventoryGui.instance.m_currentContainer)
             {
                 // InventoryGui does not have a container yet, so this one must be the one it's trying to show
-                Jotunn.Logger.LogDebug($"Opening container `{containerName}` into the vanilla UI");
+                Log.Debug($"Opening container `{containerName}` into the vanilla UI");
                 return true;
             }
 
             if (!granted)
             {
-                Jotunn.Logger.LogDebug($"No access to container `{containerName}`");
+                Log.Debug($"No access to container `{containerName}`");
                 return false;
             }
 
-            Jotunn.Logger.LogDebug($"Opening container `{containerName}` into XStorage panel");
+            Log.Debug($"Opening container `{containerName}` into XStorage panel");
             PanelManager.Instance.Show(__instance);
             return false;
         }

@@ -27,7 +27,7 @@ namespace XStorage.Components
 
         public void Awake()
         {
-            Jotunn.Logger.LogDebug("ContainerGui.Awake");
+            Log.Debug("ContainerGui.Awake");
 
             m_rect = (RectTransform)transform;
             m_grid = GetComponentInChildren<InventoryGrid>();
@@ -50,7 +50,7 @@ namespace XStorage.Components
 
         public void OnDestroy()
         {
-            Jotunn.Logger.LogDebug("ContainerGui.OnDestroy");
+            Log.Debug("ContainerGui.OnDestroy");
 
             if (m_grid)
             {

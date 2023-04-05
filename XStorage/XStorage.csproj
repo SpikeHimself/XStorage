@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Components\ContainerGui.cs" />
     <Compile Include="Environment.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="PanelManager.cs" />
     <Compile Include="Components\ContainerTextReceiver.cs" />
     <Compile Include="Extensions.cs" />

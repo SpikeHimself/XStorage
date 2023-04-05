@@ -12,11 +12,11 @@
         {
             if (!Environment.IsServer)
             {
-                Jotunn.Logger.LogDebug($"{sender} wants to rename container `{containerId}` to `{newName}`, but I am not the server");
+                Log.Debug($"{sender} wants to rename container `{containerId}` to `{newName}`, but I am not the server");
                 return;
             }
 
-            Jotunn.Logger.LogDebug($"{sender} wants to rename container `{containerId}` to `{newName}`");
+            Log.Debug($"{sender} wants to rename container `{containerId}` to `{newName}`");
             XStorage.SetXStorageName(containerId, newName);
         }
     }
