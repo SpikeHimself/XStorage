@@ -5,6 +5,6 @@
   "website_url": "https://github.com/SpikeHimself/XStorage",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2102",
-    "ValheimModding-Jotunn-2.11.2"
+    "ValheimModding-Jotunn-2.11.3"
   ]
 }
