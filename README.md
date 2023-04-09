@@ -4,6 +4,19 @@ XStorage is a Valheim mod that lets you open multiple chests at once, rename the
 
 <img src="https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-v1.1.0-small.png" height="480" />
 
+# Where to download
+(click the image!)
+
+<div align="center">
+
+&nbsp;
+
+[![Nexus Mods](https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/nexus-logo-small.png)](https://www.nexusmods.com/valheim/mods/2290) &nbsp;&nbsp;&nbsp; [![Thunderstore](https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/thunderstore-logo-small.png)](https://valheim.thunderstore.io/package/SpikeHimself/XStorage/)
+
+&nbsp;
+
+</div>
+
 
 # Download and installation instructions (for players)
 

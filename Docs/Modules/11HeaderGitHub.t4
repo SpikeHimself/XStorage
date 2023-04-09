@@ -1,0 +1,18 @@
+<#= mf.Heading(thisModName) #>
+
+<#= thisModName #> is a Valheim mod that lets you open multiple chests at once, rename them, and move items/stacks to the most suitable chest.
+
+<#= mf.Image("https://raw.githubusercontent.com/SpikeHimself/XStorage/main/images/screenshot-v1.1.0-small.png", height: 480) #>
+
+<#= mf.Heading("Where to download") #>
+(click the image!)
+
+<div align="center">
+
+&nbsp;
+
+[![Nexus Mods](https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/nexus-logo-small.png)](<#= urlThisModNexus #>) &nbsp;&nbsp;&nbsp; [![Thunderstore](https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/thunderstore-logo-small.png)](<#= urlThisModThunderstore #>)
+
+&nbsp;
+
+</div>
