@@ -21,7 +21,7 @@ namespace Docs
         public override string Code(string text, CodeMode mode = CodeMode.Inline)
         {
             return (mode == CodeMode.Inline)
-                ? Font(Bold("'" + text + "'"), "Courier New")
+                ? Font(Bold("'" + text + "'"), FontName.CourierNew)
                 : base.Code(text, mode);
         }
     }
