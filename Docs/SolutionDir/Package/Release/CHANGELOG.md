@@ -1,14 +1,18 @@
-#### v1.1.3 (2023-04-10)
+#### v1.1.4 (2023-04-10)
 
-* Don't open nearby containers when SkipMark is set (by other mods)
-
-* Clean up panel position values in config file
-
-* Dependency updates: BepInEx 5.4.2102, Jotunn 2.11.3
+* No changes yet
 
 <details>
 <summary>Click to view previous versions</summary>
-	
+
+* **v1.1.3** (2023-04-10)
+
+	* Don't open nearby containers when SkipMark is set (by other mods)
+
+	* Clean up panel position values in config file
+
+	* Dependency updates: BepInEx 5.4.2102, Jotunn 2.11.3
+
 * **v1.1.2** (2023-03-15)
 
 	* Dependency updates: BepInEx 5.4.21, Jotunn 2.11.0
