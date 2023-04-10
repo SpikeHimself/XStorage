@@ -64,6 +64,7 @@
     </None>
     <None Include="Modules\00Urls.t4" />
     <None Include="Modules\10Header.t4" />
+    <None Include="Modules\11HeaderGitHub.t4" />
     <None Include="Modules\20Features.t4" />
     <None Include="Modules\30Installation.t4" />
     <None Include="Modules\40Bugs.t4" />
