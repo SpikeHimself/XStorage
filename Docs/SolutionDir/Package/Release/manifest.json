@@ -1,10 +1,1 @@
-{
-  "name": "XStorage",
-  "description": "Open multiple chests at once, rename them, and move items/stacks to the most suitable chest.",
-  "version_number": "1.1.4",
-  "website_url": "https://github.com/SpikeHimself/XStorage",
-  "dependencies": [
-    "denikson-BepInExPack_Valheim-5.4.2102",
-    "ValheimModding-Jotunn-2.11.3"
-  ]
-}
+ErrorGeneratingOutput
