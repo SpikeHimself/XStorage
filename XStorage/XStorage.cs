@@ -79,17 +79,26 @@ namespace XStorage
         public static List<Container> FindNearbyContainers(Container container)
         {
             var maxDistance = XConfig.Instance.NearbyChestRadius.Value;
+            var maxOpenChests = XConfig.Instance.MaxOpenChests.Value;
 
-            return GameObject.FindObjectsOfType<Container>()
-            .Where(c =>
-                    c != container &&
-                    !PanelManager.Instance.ContainsPanel(c) &&
-                    c.IsPlacedByPlayer() &&
-                    !c.IsInUse() &&
-                    c.Distance(container) <= maxDistance
-                )
-                .OrderByDescending(c => c.GetInventory().GetTotalWeight())
-                .ToList();
+            var nearbyContainers =
+                GameObject.FindObjectsOfType<Container>()
+                    .Where(c =>
+                            c != container &&
+                            !PanelManager.Instance.ContainsPanel(c) &&
+                            c.IsPlacedByPlayer() &&
+                            !c.IsInUse() &&
+                            c.Distance(container) <= maxDistance
+                    )
+                    .OrderByDescending(c => c.GetInventory().GetTotalWeight())
+                    .ToList();
+
+            if (maxOpenChests > 0)
+            {
+                nearbyContainers = nearbyContainers.Take(maxOpenChests).ToList();
+            }
+
+            return nearbyContainers;
         }
         #endregion
 

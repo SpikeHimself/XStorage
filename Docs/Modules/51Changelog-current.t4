@@ -1,1 +1,2 @@
+* Add config option `MaxOpenChests` which limits the maximum amount of chests to be opened at once
 * Update Jotun v2.11.5, BepInEx v5.4.2105
