@@ -1,6 +1,8 @@
-#### v1.1.4 (2023-04-10)
+#### v1.1.4 (2023-08-26)
 
-* No changes yet
+* Add config option `MaxOpenChests` which limits the maximum amount of chests to be opened at once
+* Update Jotun v2.12.6, BepInEx v5.4.2105
+* Add world level to item reference
 
 <details>
 <summary>Click to view previous versions</summary>

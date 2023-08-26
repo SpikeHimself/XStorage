@@ -1,6 +1,8 @@
 ### Changelog
 
-* No changes yet
+* Add config option `MaxOpenChests` which limits the maximum amount of chests to be opened at once
+* Update Jotun v2.12.6, BepInEx v5.4.2105
+* Add world level to item reference
 
 ### Debug
 
