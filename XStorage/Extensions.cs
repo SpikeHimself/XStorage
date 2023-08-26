@@ -52,10 +52,10 @@ namespace XStorage
             return container.GetZDO().GetBool(XStorage.Key_SkipMark, defaultValue: false);
         }
 
-        internal static bool HasRoomFor(this Container container, string itemName)
+        internal static bool HasRoomFor(this Container container, string itemName, float worldLevel)
         {
             var inv = container.GetInventory();
-            return inv.FindFreeStackSpace(itemName) > 0 || inv.HaveEmptySlot();
+            return inv.FindFreeStackSpace(itemName, worldLevel) > 0 || inv.HaveEmptySlot();
         }
 
         internal static bool IsPlacedByPlayer(this Container container)

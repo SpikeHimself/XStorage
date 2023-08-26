@@ -134,8 +134,9 @@ namespace XStorage
         public static bool MoveItemToSuitableContainer(InventoryGrid grid, ItemDrop.ItemData item)
         {
             var itemName = item.m_shared.m_name;
+            var worldLevel = item.m_worldLevel;
 
-            var containerWithStackSpace = FindSuitableContainer(itemName);
+            var containerWithStackSpace = FindSuitableContainer(itemName, worldLevel);
             if (!containerWithStackSpace)
             {
                 return false;
@@ -148,7 +149,7 @@ namespace XStorage
             return true;
         }
 
-        private static Container FindSuitableContainer(string itemName)
+        private static Container FindSuitableContainer(string itemName, float worldLevel)
         {
             var itemNameLocalised = Localization.instance.Localize(itemName);
 
@@ -161,7 +162,7 @@ namespace XStorage
             allContainers.AddRange(PanelManager.Instance.GetContainerList());
 
             var candidates = allContainers
-                .Where(c => c.HasRoomFor(itemName))
+                .Where(c => c.HasRoomFor(itemName, worldLevel))
                 .OrderByDescending(c => c.GetInventory().CountItems(itemName));
 
             if (candidates.Any())
