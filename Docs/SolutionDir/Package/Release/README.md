@@ -75,9 +75,3 @@ For feature requests, choose `Feature request` on the [New issue](https://github
 
 Please have a look at my other mod too! [XPortal](https://valheim.thunderstore.io/package/SpikeHimself/XPortal/) lets you select a portal destination from a list of existing portals, so that you don't have to match portal tags anymore.
 
-
-# Support me
-
-My mods are free and will remain free, for everyone to use, edit or learn from. I lovingly poured many hours of hard work into these projects. If you enjoy my mods and want to support my work, don't forget to click the Like button, and please consider buying me a coffee :)
-
-[<img src="https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/buy-me-a-coffee-small.png" align="right" />](https://www.buymeacoffee.com/SpikeHimself)

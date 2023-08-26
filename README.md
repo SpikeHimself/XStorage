@@ -49,9 +49,3 @@ I will soon write a guide to get XStorage working in your development environmen
 
 Please have a look at my other mod too! [XPortal](https://www.nexusmods.com/valheim/mods/2239) lets you select a portal destination from a list of existing portals, so that you don't have to match portal tags anymore.
 
-
-# Support me
-
-My mods are free and will remain free, for everyone to use, edit or learn from. I lovingly poured many hours of hard work into these projects. If you enjoy my mods and want to support my work, please consider buying me a coffee :)
-
-[<img src="https://raw.githubusercontent.com/SpikeHimself/resources/main/images/thirdparty/buy-me-a-coffee-small.png" align="right" />](https://www.buymeacoffee.com/SpikeHimself)
