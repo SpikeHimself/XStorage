@@ -68,6 +68,9 @@ namespace XStorage.GUI
 
             // Set the ScrollablePanel's ScrollRect's content to be the ContainerGridPanel we just created
             ScrollablePanel.ScrollRectContent = ContentPanel;
+
+            var localScale = XConfig.Instance.GetPanelScale();
+            RectTransform.localScale = new Vector3(localScale, localScale, localScale);
         }
 
         public void UpdateSize(int visiblePanelCount)
