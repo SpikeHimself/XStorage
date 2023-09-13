@@ -8,7 +8,7 @@
         public const string Author = "SpikeHimself";
         public const string Name = "XStorage";
         public const string GitHubRepo = "SpikeHimself/XStorage";
-        public const string Version = "1.1.4";
+        public const string Version = "1.1.5";
         public const string Description = "Open multiple chests at once, rename them, and move items/stacks to the most suitable chest.";
         public const string WebsiteUrl = "https://github.com/" + GitHubRepo;
         public const int NexusId = 2290;
