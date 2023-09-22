@@ -9,6 +9,8 @@
 
 <#@ include file="Modules\20Features.t4" once="true" #>
 
+<#@ include file="Modules\25Configuration.t4" once="true" #>
+
 <#@ include file="Modules\30Installation.t4" once="true" #>
 
 <#@ include file="Modules\40Bugs.t4" once="true" #>

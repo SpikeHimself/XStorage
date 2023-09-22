@@ -1,0 +1,23 @@
+<#= mf.Heading("Configuration") #>
+
+<#= thisModName #>'s config file, which can be found at <#= mf.Code($"Valheim\\BepInEx\\config\\{thisModGUID}.cfg") #>, contains the following settings:
+
+<#= mf.Code("NearbyChestRange") #>
+
+The radius in meters within which to look for nearby chests. Setting this too high might cause performance issues!
+
+<#= mf.Code("MaxOpenChests") #>
+
+The maximum amount of chests to open at once. 0 or fewer means infinite.
+
+<#= mf.Code("Panel Position") #>
+
+The Panel Position section contains the saved screen positions of each panel (per panel size). It is not recommended to edit these values manually.
+
+<#= mf.Code("MaxColumns") #> and <#= mf.Code("MaxRows") #>
+
+The maximum amount of rows and columns that XStorage can expand the containers panel to.
+
+<#= mf.Code("PanelScale") #>
+
+The relative size of XStorage's panel. Can be any value between 0.5 and 1.5, where 0.5 = 50%, 1 = 100%, and 1.5 = 150%
