@@ -68,9 +68,6 @@ namespace XStorage.GUI
 
             // Set the ScrollablePanel's ScrollRect's content to be the ContainerGridPanel we just created
             ScrollablePanel.ScrollRectContent = ContentPanel;
-
-            var localScale = XConfig.Instance.GetPanelScale();
-            RectTransform.localScale = new Vector3(localScale, localScale, localScale);
         }
 
         public void UpdateSize(int visiblePanelCount)
@@ -86,8 +83,15 @@ namespace XStorage.GUI
 
             GridSize = GridSize.Calculate(maxCols, maxRows, visiblePanelCount);
 
+            UpdatePanelScale();
             UpdatePanelSize();
             RestorePosition();
+        }
+
+        private void UpdatePanelScale()
+        {
+            var localScale = XConfig.Instance.PanelScaleValue;
+            RectTransform.localScale = new Vector3(localScale, localScale, localScale);
         }
 
         private Vector2 CalculatePanelSize()
@@ -123,7 +127,7 @@ namespace XStorage.GUI
             XConfig.Instance.SavePanelPosition(GridSize, Transform.position);
         }
 
-        public void RestorePosition()
+        private void RestorePosition()
         {
             Transform.position = XConfig.Instance.GetPanelPosition(GridSize);
             ClampToScreen();

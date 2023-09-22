@@ -8,7 +8,6 @@ namespace XStorage
     public class XConfig
     {
 
-
         ////////////////////////////
         //// Singleton instance ////
         private static readonly Lazy<XConfig> lazy = new Lazy<XConfig>(() => new XConfig());
@@ -16,11 +15,25 @@ namespace XStorage
         ////////////////////////////
 
         private ConfigFile configFile;
+
         private ConfigEntry<int> MaxColumns;
         private ConfigEntry<int> MaxRows;
         public ConfigEntry<int> NearbyChestRadius;
         public ConfigEntry<int> MaxOpenChests;
+        
         private ConfigEntry<float> PanelScale;
+        public float PanelScaleValue
+        {
+            get
+            {
+                PanelScale.Value = Mathf.Clamp(PanelScale.Value, 0.5f, 1.5f);
+                return PanelScale.Value;
+            }
+            set
+            {
+                PanelScale.Value = Mathf.Clamp(value, 0.5f, 1.5f);
+            }
+        }
 
         public GridSize MaxSize
         {
@@ -72,16 +85,6 @@ namespace XStorage
         {
             var panelPosition = BindPanelPosition(gridSize);
             return panelPosition.Value;
-        }
-        #endregion
-
-        #region Panel Scale
-        public float GetPanelScale()
-        {
-            var panelScale = PanelScale.Value;
-            panelScale = Mathf.Clamp(panelScale, 0.5f, 1.5f);
-            PanelScale.Value = panelScale;
-            return panelScale;
         }
         #endregion
     }
