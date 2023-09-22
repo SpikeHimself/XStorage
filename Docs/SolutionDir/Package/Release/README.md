@@ -49,6 +49,31 @@ There are a few things that, at this stage, XStorage does not do well, or at all
 XStorage looks best when playing at a 16:9 ratio with a UI scaling of 95% or smaller.
 
 
+# Configuration
+
+XStorage's config file, which can be found at `Valheim\BepInEx\config\yay.spikehimself.xstorage.cfg`, contains the following settings:
+
+`NearbyChestRange`
+
+The radius in meters within which to look for nearby chests. Setting this too high might cause performance issues!
+
+`MaxOpenChests`
+
+The maximum amount of chests to open at once. 0 or fewer means infinite.
+
+`Panel Position`
+
+The Panel Position section contains the saved screen positions of each panel (per panel size). It is not recommended to edit these values manually.
+
+`MaxColumns` and `MaxRows`
+
+The maximum amount of rows and columns that XStorage can expand the containers panel to.
+
+`PanelScale`
+
+The relative size of XStorage's panel. Can be any value between 0.5 and 1.5, where 0.5 = 50%, 1 = 100%, and 1.5 = 150%
+
+
 # Installation instructions
 
 XStorage is a [BepInEx](https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/) plugin. As such, you must have BepInEx installed. Most other Valheim mods are also BepInEx plugins, so chances are you already have this.

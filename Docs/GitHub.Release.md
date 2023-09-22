@@ -1,8 +1,6 @@
 ### Changelog
 
-* Add config option `MaxOpenChests` which limits the maximum amount of chests to be opened at once
-* Update Jotun v2.12.6, BepInEx v5.4.2105
-* Add world level to item reference
+* Add config option `PanelScale` using which you can scale XStorage's panel
 
 ### Debug
 
