@@ -1,9 +1,17 @@
-#### v1.1.5 (2023-09-22)
+#### v1.1.6 (2023-10-14)
 
-* Add config option `PanelScale` using which you can scale XStorage's panel
+* Fix chest name and weight not updating in the UI
+
+* Fix error spam in console when opening a chest
+
+* Update Jotunn v2.14.4, BepInEx v5.4.2200
 
 <details>
 <summary>Click to view previous versions</summary>
+	
+* **v1.1.5** (2023-09-22)
+	
+	* Add config option `PanelScale` using which you can scale XStorage's panel
 
 * **v1.1.4** (2023-08-26)
 
