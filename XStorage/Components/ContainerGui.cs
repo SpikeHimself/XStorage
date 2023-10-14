@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace XStorage.Components
@@ -16,8 +17,8 @@ namespace XStorage.Components
 
         // Child controls
         private InventoryGrid m_grid;
-        private Text m_containerName;
-        private Text m_containerWeight;
+        private TextMeshProUGUI m_containerName;
+        private TextMeshProUGUI m_containerWeight;
         private Button m_takeAllButton;
 
         // Used to reset the InventoryGrid view on the first update
@@ -34,8 +35,8 @@ namespace XStorage.Components
             m_takeAllButton = transform.Find("TakeAll").GetComponent<Button>();
             m_takeAllButton.onClick.AddListener(OnTakeAll);
 
-            m_containerName = transform.Find("container_name").GetComponent<Text>();
-            m_containerWeight = transform.Find("Weight/weight_text").GetComponent<Text>();
+            m_containerName = transform.Find("container_name").GetComponent<TextMeshProUGUI>();
+            m_containerWeight = transform.Find("Weight/weight_text").GetComponent<TextMeshProUGUI>();
         }
 
         public void Update()
