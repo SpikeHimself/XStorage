@@ -1,5 +1,9 @@
 <details>
 <summary>Click to view previous versions</summary>
+	
+* **v1.1.5** (2023-09-22)
+	
+	* Add config option `PanelScale` using which you can scale XStorage's panel
 
 * **v1.1.4** (2023-08-26)
 
