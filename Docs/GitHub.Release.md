@@ -1,10 +1,8 @@
 ### Changelog
 
-* Fix chest name and weight not updating in the UI
+* Fix bug where UI panels would not open after latest game update
 
-* Fix error spam in console when opening a chest
-
-* Update Jotunn v2.14.4, BepInEx v5.4.2200
+* Update Jotunn v2.14.6
 
 ### Debug
 

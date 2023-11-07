@@ -1,13 +1,20 @@
-#### v1.1.6 (2023-10-14)
+#### v1.1.7 (2023-11-07)
 
-* Fix chest name and weight not updating in the UI
+* Fix bug where UI panels would not open after latest game update
 
-* Fix error spam in console when opening a chest
-
-* Update Jotunn v2.14.4, BepInEx v5.4.2200
+* Update Jotunn v2.14.6
 
 <details>
 <summary>Click to view previous versions</summary>
+	
+* **v1.1.6** (2023-10-14)
+	
+	* Fix chest name and weight not updating in the UI
+
+	* Fix error spam in console when opening a chest
+
+	* Update Jotunn v2.14.4, BepInEx v5.4.2200
+
 	
 * **v1.1.5** (2023-09-22)
 	
