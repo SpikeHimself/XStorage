@@ -57,7 +57,12 @@ namespace XStorage.GUI
 
             Log.Debug("Cloning vanilla container panel..");
 
-            var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root/Container");
+            var vanillaContainerPanel = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui/Inventory_screen/root/Container");
+            if(!vanillaContainerPanel)
+            {
+                Log.Error("Vanilla container panel not found!");
+                return;
+            }
 
             panelPrefab = UnityEngine.Object.Instantiate(vanillaContainerPanel, parent);
             panelPrefab.SetActive(false); // Hide for now

@@ -152,7 +152,7 @@ namespace XStorage
 
             Log.Debug("Creating root panel");
 
-            var inventoryScreenRoot = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui(Clone)/Inventory_screen/root");
+            var inventoryScreenRoot = GameObject.Find("_GameMain/LoadingGUI/PixelFix/IngameGui/Inventory_screen/root");
             if (!inventoryScreenRoot)
             {
                 Log.Error("Can't find inventory screen root");
